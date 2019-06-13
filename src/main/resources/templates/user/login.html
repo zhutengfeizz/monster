@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <link rel="icon" type="image/x-icon" href="../../static/images/gun.ico" />
+    <link rel="stylesheet" href="../../static/layui-v2.5.3/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <style>
+        #bg{
+            background:url("../../static/images/水墨背景1.png") no-repeat ;
+        }
+    </style>
+</head>
+<body id="bg">
+
+<div style="height: 300px;width: 300px;margin: 0 auto;background-color: #C2C9DA;border-radius:5px;">
+    <form  class="layui-form" style="height: 300px;width: 200px;text-align: center;margin: 0 auto" action="login" method="post">
+        <div style="margin-top: 90px;">
+            <p style="color: #009688;font-size: 30px;margin: 0 auto"><b>用户登录</b></p>
+            <div style="margin-top: 10px">
+                账号：<input type="text" name="username" placeholder="请输入账号"></br>
+            </div>
+            <div style="margin-top: 10px">
+                密码：<input type="password" name="password" placeholder="请输入密码"></br>
+            </div>
+
+        </div>
+
+        <div style="margin-bottom: 10px">
+              <span style="color: red" th:text="${error}">
+
+              </span>
+        </div>
+
+        <div style="margin-top: 10px">
+              <button type="submit">登录</button>&nbsp;&nbsp;|&nbsp;&nbsp;<button type="button"><a href="/register">注册</a></button>
+        </div>
+    </form>
+</div>
+
+<script src="../../static/js/jquery.js"></script>
+<script src="../../static/layui-v2.5.3/layui/layui.all.js"></script>
+<script src="../../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script>
+    //Demo
+    layui.use('form', function(){
+        var form = layui.form;
+
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+</body>
+</html>

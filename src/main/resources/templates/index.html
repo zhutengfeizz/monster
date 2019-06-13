@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Monster</title>
+    <link rel="icon" type="image/x-icon" href="../static/images/gun.ico" />
+    <link rel="stylesheet" href="../static/layui-v2.5.3/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+    <style>
+        #bigbg{
+            background:url("../static/images/水墨背景1.png") no-repeat ;
+            height: 1000px;
+        }
+        ul{
+            margin-bottom: 1px;
+        }
+
+        @font-face {
+            font-family: 'webfont';
+            font-display: swap;
+            src: url('//at.alicdn.com/t/webfont_1mszht3zjt1.eot'); /* IE9*/
+            src: url('//at.alicdn.com/t/webfont_1mszht3zjt1.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('//at.alicdn.com/t/webfont_1mszht3zjt1.woff2') format('woff2'),
+            url('//at.alicdn.com/t/webfont_1mszht3zjt1.woff') format('woff'), /* chrome、firefox */
+            url('//at.alicdn.com/t/webfont_1mszht3zjt1.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('//at.alicdn.com/t/webfont_1mszht3zjt1.svg#AlibabaPuHuiTiH') format('svg'); /* iOS 4.1- */
+        }
+
+        .web-font{
+            font-family:"webfont" !important;
+            font-size:16px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body{
+
+        }
+    </style>
+</head>
+<body>
+<div>
+    <ul class="layui-nav">
+        <img src="../static/images/g2.png" width="60px" height="60px"><li class="layui-nav-item">Monster</li>
+        <li class="layui-nav-item"><a href="/index">首页</a></li>
+        <li class="layui-nav-item layui-this">
+            <a href="javascript:;">宝库</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">CSGO</a></dd>
+                <dd><a href="">游戏商城</a></dd>
+                <dd><a href="">游戏中心</a></dd>
+                <dd><a href="adminIndex">管理员</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">论坛</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">更多</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">BUG反馈</a></dd>
+                <dd><a href="">意见和建议</a></dd>
+                <dd class="layui-this"><a href="">加入我们！</a></dd>
+                <dd><a href="">商务合作</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+                <li class="layui-nav-item" style="float: right" ><!-- Large modal -->
+                    <a href="login">登录</a>
+                </li>
+                <li class="layui-nav-item" style="float: right" >
+                    <a href="register">注册</a>
+                </li>
+
+
+    </ul>
+</div>
+
+<div id="bigbg">
+    <div class="layui-container" style="background-color: white;padding: 0 1px;">
+        <!--轮播图-->
+        <div class="layui-carousel" id="test1" style="padding-top: 1px">
+            <div carousel-item style="color: #353C4C">
+                <div>
+                    <div style="float: right;color: #353C4C">
+                        <img src="../static/images/5cbfc569a7f25262e5e1dbd0p2AlOda702.png" width="680px" height="300"style="margin-top: 0px" >
+                    </div>
+                </div>
+                <div><img src="../static/images/水墨背景1.png"></div>
+                <div><img src="../static/images/蝴蝶.jpg"></div>
+                <div><img src="../static/images/hehua.jpg"></div>
+                <div><img src="../static/images/zhuce.jpg"></div>
+            </div>
+        </div>
+        <!--登录注册模态框-->
+
+
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin-top: 100px">
+            <ul class="layui-tab-title">
+                <li class="layui-this">管理员推荐<img src="../static/images/热门.png"></li>
+                <li>最新 <img src="../static/images/new%20(2).png"></li>
+                <li>热门推荐 <img src="../static/images/推荐.png" width="30px" height="32"></li>
+                <li>文章区热门<span class="layui-badge">99+</span></li></li>
+                <li>E3游戏展 <img src="../static/images/游戏.png" width="24px" height="20px"></li>
+            </ul>
+            <div class="layui-tab-content">
+                <!--内容1-->
+                <div class="layui-tab-item layui-show">
+                    <i class="web-font" style="color: #FD4C5B">知识就像内-裤，看不见但很重要。</i>
+                    <hr style="color: #E6E6E6; size: 4px;">
+                    <div style="border: #1b6d85 solid 2px;width: 670px;height: 200px">
+                        <div style="width: 60px;height: 40px;float: left;padding: 0px 10px 0px 10px">
+                            <div style="float: left"><i style="color:#FD4C5B;font-style: oblique;font-weight: bold;font-size: 15px">132&nbsp;</i></div><br>
+                            <div style="float: left"><i style="color:grey;font-style: oblique;font-weight: bold;font-size: 15px">评论&nbsp;</i></div>
+                        </div>
+                        <a href="#" style="color: #0C0C0C;font-size: 20px;font-family: 'Bradley Hand ITC'">美国记者5年采访上百中国剩女：她们太酷了，不该单身歧视</a>
+                        <div><i style="font-size: 15px;color:grey">2007年，教育部发布《中国语言生活状况报告》，第一次收录了“剩女”这个词，指那些......</i></div>
+                          <div style="color: grey;font-size: 14px;width: 670px;height: 21px;margin-top: 10px;padding: 0px 10px 0px 10px">
+                              <a href="#" style="float: left">作者:zhuzhu</a>
+                              <p style="float: left">2019年06月13日 15:43:28</p>
+                              <p style="float: right">来自：<a href="#">杂谈</a></p>
+                          </div>
+
+                    </div>
+                </div>
+                <!--内容2-->
+                <div class="layui-tab-item">
+                    内容2
+                </div>
+                <!--内容3-->
+                <div class="layui-tab-item">
+                    内容3
+                </div>
+                <!--内容4-->
+                <div class="layui-tab-item">
+                    内容4
+                </div>
+                <!--内容5-->
+                <div class="layui-tab-item">
+                    内容5
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../static/js/jquery.js"></script>
+<script src="../static/layui-v2.5.3/layui/layui.all.js"></script>
+<script src="../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script>
+    //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
+    ;!function(){
+        var layer = layui.layer
+            ,form = layui.form
+            ,carousel = layui.carousel
+            ,$ = layui.jquery
+            ,element=layui.element,
+            util = layui.util;
+
+        //执行
+        util.fixbar({
+            bar1: true
+            ,click: function(type){
+                console.log(type);
+                if(type === 'bar1'){
+                    alert('点击了bar1')
+                }
+            }
+        });
+
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,arrow: 'hover' //始终显示箭头
+            ,anim: 'updown' //切换动画方式
+            ,height:"400px"
+            ,autoplay:"false"
+        }),
+        $('#layerDemo .layui-btn').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });
+
+        layer.msg('欢迎光临！尊敬的用户！');
+    }();
+
+
+</script>
+</body>
+
+
+</html>

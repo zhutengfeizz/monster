@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div>
+    <ul class="layui-nav" th:fragment="index_nav_MyCenter">
+        <img src="../static/images/g2.png" width="60px" height="60px"><li class="layui-nav-item">Monster</li>
+        <li class="layui-nav-item"><a href="/index">首页</a></li>
+        <li class="layui-nav-item layui-this">
+            <a href="javascript:;">饰品市场</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">CSGO</a></dd>
+                <dd><a href="">DOTA2</a></dd>
+                <dd><a href="">绝地求生</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">论坛</a></li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">更多</a>
+            <dl class="layui-nav-child">
+                <dd><a href="">BUG反馈</a></dd>
+                <dd><a href="">意见和建议</a></dd>
+                <dd class="layui-this"><a href="">加入我们！</a></dd>
+                <dd><a href="">商务合作</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item"><a href="">社区</a></li>
+        <li class="layui-nav-item" style="float: right"><!-- Large modal -->
+            <a href="/login">登录</a>
+        </li>
+        <li class="layui-nav-item" style="float: right">
+            <a href="/register">注册</a></li>
+    </ul>
+</div>
+</body>
+</html>

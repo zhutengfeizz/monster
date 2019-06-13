@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改用户信息</title>
+    <link rel="stylesheet" href="../../static/layui-v2.5.3/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+<div id="body" style="width: 1200px;height: 600px;margin: 0 auto;border: orange solid 3px" >
+
+    <form class="layui-form" action="/user/save" method="post" style="width: 500px;height: 500px;text-align: center;margin: 0 auto">
+        <div style="margin: 10px 0px 10px 0px;text-align: left">
+            <button type="button" class="layui-btn">用户信息编辑</button>
+        </div>
+
+        <input type="hidden" name="id" th:value="${user.id}">
+
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">账号</label>
+            <div class="layui-input-inline">
+                <input type="text"  readonly  unselectable="on" th:value="${user.username}" name="username" lay-verType="tips" lay-verify="required" lay-reqtext="用户名不能为空哦！" placeholder="请输入账号" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">您用来登录的账号</div>
+
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">邮箱</label>
+            <div class="layui-input-inline">
+                <input type="text"  th:value="${user.email}"  name="email" lay-verify="email"   lay-verType="tips" autocomplete="off" class="layui-input" placeholder="请输入邮箱">
+            </div>
+            <div class="layui-form-mid layui-word-aux">请填写邮箱。例123@qq.com</div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">年龄</label>
+            <div class="layui-input-inline">
+                <input type="text"  th:value="${user.age}" name="age"  lay-verType="tips" autocomplete="off" class="layui-input" placeholder="请输入邮箱">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">性别</label>
+            <div class="layui-input-block" style="text-align: left">
+                <input type="radio" name="sex" value="男" title="男" checked="">
+                <input type="radio" name="sex" value="女" title="女">
+                <input type="radio" name="sex" value="保密" title="保密" disabled="">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">生日</label>
+            <div class="layui-input-inline">
+                <input type="text"  th:value="${user.birthday}" name="birthday" id="date" lay-verify="date"   lay-verType="tips" placeholder="年-月-日" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div style="margin-bottom: 10px">
+              <span style="color: red" th:text="${message}">
+
+              </span>
+        </div>
+
+        <div class="layui-form-item" style="text-align: left">
+            <div class="layui-input-block">
+                <button class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+<script src="../../static/js/jquery.js"></script>
+<script src="../../static/layui-v2.5.3/layui/layui.all.js"></script>
+<script src="../../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script>
+    //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
+    ;!function(){
+        var layer = layui.layer
+            ,form = layui.form
+            ,carousel = layui.carousel
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+
+    }();
+
+</script>
+</html>
