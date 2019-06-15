@@ -20,7 +20,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String cont;//评论的内容
+    @JoinColumn(name="post_id")
     private Post post;
+    @JoinColumn(name="user_id")
     private User user;
     @Column(name = "create_time", nullable = false)
     private Date creationTime;

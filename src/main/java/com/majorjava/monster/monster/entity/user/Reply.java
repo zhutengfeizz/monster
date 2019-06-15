@@ -19,6 +19,7 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @JoinColumn(name="user_id")
     private User user;
     @Column(name = "create_time", nullable = false)
     private Date creationTime;
