@@ -21,9 +21,8 @@ public interface PostMapper {
 
     @Select("select * from t_post  where state = 0  order by create_time desc")
     @Results({
+            @Result(property = "createTime", column = "create_time"),
 
-            @Result(property = "user", column = "user_id"),
-            @Result(property = "createTime", column = "create_time")
     })
     List<Post> findAll();
 }

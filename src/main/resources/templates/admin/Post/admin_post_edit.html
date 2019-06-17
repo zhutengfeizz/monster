@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>帖子详情</title>
+    <link rel="stylesheet" href="../../../static/layui-v2.5.3/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+<div id="body" style="width: 1200px;height: 600px;margin: 0 auto;border: orange solid 3px" >
+
+    <form class="layui-form" action="/user/save" method="post" style="width: 500px;height: 500px;text-align: center;margin: 0 auto">
+        <div style="margin: 10px 0px 10px 0px;text-align: left">
+            <button type="button" class="layui-btn">文章投稿</button>
+        </div>
+
+        <input type="hidden" name="id" th:value="${post.id}">
+
+        <div style="background-color: #F5F7FA;width: ">
+
+        </div>
+
+
+    </form>
+</div>
+</body>
+<script src="../../../static/js/jquery.js"></script>
+<script src="../../../static/layui-v2.5.3/layui/layui.all.js"></script>
+<script src="../../../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script>
+    //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
+    ;!function(){
+        var layer = layui.layer
+            ,form = layui.form
+            ,carousel = layui.carousel
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+
+    }();
+
+</script>
+</html>

@@ -19,7 +19,7 @@
         <tr>
             <th>Id</th>
             <th>标题</th>
-            <th>发布者ID</th>
+            <th>发布者</th>
             <th>分类</th>
             <th>投稿类型</th>
             <th>发布时间</th>
@@ -28,22 +28,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr  th:each="post,postStat : ${postList}">
+        <tr  th:each="post,userStat : ${allPost}">
             <td th:text="${post.id}"></td>
             <td th:text="${post.name}"></td>
-            <td th:text="${post.user}"></td>
+            <td th:text="${post.user.username}"></td>
             <td th:text="${post.sort}"></td>
             <td th:text="${post.sort}"></td>
             <td th:text="${post.createTime}"></td>
-            <td th:text="${post.Introduction}"></td>
-            <td><a th:href="@{/user/delete(id=${user.id})}" href="#">删除</a> <a  th:href="@{/user/edit(id=${user.id})}" href="#">修改</a>
-
-                <a href="/user/edit/">添加用户</a></td>
+            <td th:text="${post.introduction}"></td>
+            <td><a>删除</a></td>
         </tr>
         </tbody>
-        <span style="color: red" th:text="${message}">
-
-              </span>
     </table>
 </div>
 </body>

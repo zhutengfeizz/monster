@@ -28,7 +28,7 @@ public class Post {
     private String sort;//分类
     private String type;//投稿类型 （原创or转载）
     @Column(name = "create_time", nullable = false)
-    private Date creationTime;
+    private Date createTime;
     private String content;//内容
     private String Introduction;//投稿简介
     private String img;//投稿封面
