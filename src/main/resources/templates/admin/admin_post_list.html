@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/layui-v2.5.3/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="layui-form">
+    <table class="layui-table">
+        <colgroup>
+            <col width="150">
+            <col width="150">
+            <col width="200">
+            <col>
+        </colgroup>
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>标题</th>
+            <th>发布者ID</th>
+            <th>分类</th>
+            <th>投稿类型</th>
+            <th>发布时间</th>
+            <th>简介</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="post,postStat : ${postList}">
+            <td th:text="${post.id}"></td>
+            <td th:text="${post.name}"></td>
+            <td th:text="${post.user}"></td>
+            <td th:text="${post.sort}"></td>
+            <td th:text="${post.sort}"></td>
+            <td th:text="${post.createTime}"></td>
+            <td th:text="${post.Introduction}"></td>
+            <td><a th:href="@{/user/delete(id=${user.id})}" href="#">删除</a> <a  th:href="@{/user/edit(id=${user.id})}" href="#">修改</a>
+
+                <a href="/user/edit/">添加用户</a></td>
+        </tr>
+        </tbody>
+        <span style="color: red" th:text="${message}">
+
+              </span>
+    </table>
+</div>
+</body>
+<script src="../../static/js/jquery.js"></script>
+<script src="../../static/layui-v2.5.3/layui/layui.all.js"></script>
+<script src="../../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<script>
+
+</script>
+</html>
