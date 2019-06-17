@@ -41,7 +41,12 @@ public class User {
     @JoinTable(name = "t_role", joinColumns = {@JoinColumn(name = "uid")}, inverseJoinColumns = {
             @JoinColumn(name = "rid")})
     private List<Role> roleList;
-
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Reply> replyList;
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Post> postList;
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Comment> commentList;
     @Transient
     public Set<String> getRolesName() {
         List<Role> roles = getRoleList();
