@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * <h3>monster</h3>
@@ -28,8 +29,20 @@ public class PostController {
         model.addAttribute("allPost",posts);
         return "admin/admin_post_list";
     }
+
     @GetMapping("addpost")
     public String addPost(){
         return "admin/admin_post_add";
+    }
+    @GetMapping("edit")
+    public String edit(Long id,Model model){
+        Post post=null;
+        if (id==null){
+            post=new Post();
+        }else {
+            post = postDao.findById(id).get();
+        }
+        model.addAttribute("Post",post);
+        return "admin_post_edit";
     }
 }
