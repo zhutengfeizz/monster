@@ -2,15 +2,17 @@ package com.majorjava.monster.monster.controller;
 
 import com.majorjava.monster.monster.dao.PostDao;
 import com.majorjava.monster.monster.entity.user.Post;
-import com.majorjava.monster.monster.mapper.PostMapper;
+import com.majorjava.monster.monster.entity.user.PostPartition;
+import com.majorjava.monster.monster.service.PartitionService;
+import com.majorjava.monster.monster.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * <h3>monster</h3>
@@ -20,29 +22,38 @@ import java.util.Optional;
  * @date : 2019-06-15 10:23
  **/
 @Controller
+@RequestMapping("/post")
 public class PostController {
     @Autowired
- private PostDao postDao;
+ private PostService postService;
+    @Autowired
+    private PartitionService partitionService;
     @GetMapping("allPost")
     public String allPost(Model model){
-        List<Post> posts =(List<Post>) postDao.findAll();
+        List<Post> posts =(List<Post>) postService.postAll();
         model.addAttribute("allPost",posts);
-        return "admin/admin_post_list";
+        return "admin/post/admin_post_list";
     }
 
-    @GetMapping("addpost")
+    @GetMapping("save")
     public String addPost(){
-        return "admin/admin_post_add";
+        return "/admin/post/admin_post_edit";
     }
+
     @GetMapping("edit")
     public String edit(Long id,Model model){
-        Post post=null;
-        if (id==null){
-            post=new Post();
-        }else {
-            post = postDao.findById(id).get();
+        if (id!=null){
+            Post post = postService.finByid(id);
+            model.addAttribute("post",post);
+            //获取分区列表
+            List<PostPartition> partitionList=partitionService.postPartitionAll();
         }
-        model.addAttribute("Post",post);
-        return "admin_post_edit";
+
+        return "admin/post/admin_post_edit";
+    }
+    @PostMapping("save")
+    public String save(Long id,String title,String type,String quiz2,String introduction,String content){
+        Post post=new Post();
+        return "redirect:/post/allPost";
     }
 }

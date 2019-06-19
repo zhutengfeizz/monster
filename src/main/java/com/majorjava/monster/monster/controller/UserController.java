@@ -34,14 +34,14 @@ public class UserController {
       public String list(Model model){
           List<User> userList = userServices.findAll();
           model.addAttribute("userList",userList);
-          return "admin/admin_user_list";
+          return "admin/user/admin_user_list";
       }
 
     @GetMapping("/duserList")
     public String listByDelete(Model model){
         List<User> userList = userServices.findBydelete();
         model.addAttribute("userList",userList);
-        return "admin/admin_user_list";
+        return "admin/user/admin_user_list";
     }
 
       @GetMapping("/edit")
@@ -53,7 +53,7 @@ public class UserController {
             user=userServices.finByid(id);
         }
         model.addAttribute("user",user);
-        return "admin/admin_user_edit";
+        return "admin/user/admin_user_edit";
     }
 
       @PostMapping("/save")
