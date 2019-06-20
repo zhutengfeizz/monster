@@ -1,7 +1,9 @@
 package com.majorjava.monster.monster.controller;
 
+import com.majorjava.monster.monster.entity.user.PartitionField;
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.PostPartition;
+import com.majorjava.monster.monster.service.Post.FieldService;
 import com.majorjava.monster.monster.service.Post.PartitionService;
 import com.majorjava.monster.monster.service.Post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +26,12 @@ import java.util.List;
 @RequestMapping("/post")
 public class PostController {
     @Autowired
- private PostService postService;
+    private PostService postService;
     @Autowired
     private PartitionService partitionService;
-    @GetMapping("allPost")
+    @Autowired
+    private FieldService fieldService;
+    @GetMapping("postList")
     public String allPost(Model model){
         List<Post> posts =(List<Post>) postService.postAll();
         model.addAttribute("allPost",posts);
@@ -46,6 +50,12 @@ public class PostController {
             model.addAttribute("post",post);
             //获取分区列表
             List<PostPartition> partitionList=partitionService.postPartitionAll();
+            model.addAttribute("partitionList",partitionList);
+            //获取领域列表
+            List<PartitionField> partitionFields = fieldService.partitionFieldAll();
+            model.addAttribute("partitionFields",partitionFields);
+        }else {
+            model.addAttribute("error","修改失败!id为空。");
         }
 
         return "admin/post/admin_post_edit";
@@ -53,6 +63,6 @@ public class PostController {
     @PostMapping("save")
     public String save(Long id,String title,String type,String quiz2,String introduction,String content){
         Post post=new Post();
-        return "redirect:/post/allPost";
+        return "redirect:/post/postList";
     }
 }

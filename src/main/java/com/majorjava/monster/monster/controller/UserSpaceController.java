@@ -1,3 +1,4 @@
+/*
 package com.majorjava.monster.monster.controller;
 
 import com.majorjava.monster.monster.dao.FollowersAndFans.UserRepository;
@@ -17,13 +18,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+*/
 /**
  * <h3>monster</h3>
  * <p>${description}</p>
  *
  * @author : ztf
  * @date : 2019-06-20 15:24
- **/
+ **//*
+
 @RequestMapping("/manage")
 @Controller
 @PreAuthorize("hasAnyAuthority('ROLE_ADMIN','ROLE_USER')")  // 指定角色权限才能操作方法
@@ -37,12 +40,14 @@ public class UserSpaceController extends BaseController {
         return "forward:/manage/relationships/follows";
     }
     //粉丝-关注 start
-    /**
+    */
+/**
      * 我的关注者列表
      * @param userId
      * @param optType
      * @return
-     */
+     *//*
+
     @GetMapping("/relationships/follows")
     public ModelAndView follows(
             @RequestParam(value = "async", required = false) boolean async,
@@ -66,13 +71,15 @@ public class UserSpaceController extends BaseController {
         model.addAttribute("is_follows", true);
         return new ModelAndView(async == true ? "home/userspace/relationship :: .tab-pane" : "home/userspace/relationship");
     }
-   /**
+   */
+/**
     * 2019/6/20
     * 描述一下方法的作用
     *我的粉丝列表
     * @author ztf
     * @return org.springframework.web.servlet.ModelAndView
-    */
+    *//*
+
     @GetMapping("/relationships/fans")
     public ModelAndView fans(
             @RequestParam(value = "async", required = false) boolean async,
@@ -96,12 +103,14 @@ public class UserSpaceController extends BaseController {
         model.addAttribute("is_fans", "true");
         return new ModelAndView(async == true ? "home/userspace/relationship :: .tab-pane" : "home/userspace/relationship");
     }
-    /**
+    */
+/**
      * 添加关系
      * @param userId
      * @param optType
      * @return
-     */
+     *//*
+
     @PostMapping("/relationships")
     public ResponseEntity<Response> followUser(Integer userId, String optType) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -126,3 +135,4 @@ public class UserSpaceController extends BaseController {
     }
     //粉丝-关注 end
 }
+*/

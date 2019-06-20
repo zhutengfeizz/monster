@@ -6,8 +6,6 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   resources:
     static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css
-    mvc:
-      static-path-pattern=/static/**,
   jpa:
     properties:
       hibernate:
@@ -19,8 +17,11 @@ spring:
       ddl-auto: update
     show-sql: true
     database: mysql
+  server:
+    port: 5858
 mybatis:
   type-aliases-package: com.oac.sbdemo.domain
+
 
 
 

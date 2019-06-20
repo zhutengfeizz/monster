@@ -47,11 +47,15 @@ public class PartitionServiceImpl implements PartitionService {
 
     @Override
     public PostPartition add(PostPartition postPartition) {
-        return null;
+
+        return partitionDao.save(postPartition);
     }
 
     @Override
     public void delete(Long id) {
+        PostPartition postPartition = partitionDao.findById(id).get();
+        postPartition.setState(0);
+        partitionDao.save(postPartition);
 
     }
 
@@ -63,6 +67,18 @@ public class PartitionServiceImpl implements PartitionService {
 
     @Override
     public PostPartition update(PostPartition postPartition) {
-        return null;
+        Long pid=postPartition.getId().longValue();
+        PostPartition p=null;
+         if(pid!=null){
+             PostPartition partition = partitionDao.findById(pid).get();
+             partition.setTname(postPartition.getTname());
+             p = partitionDao.save(partition);
+         }else {
+           PostPartition  p1=postPartition;
+             p1.setCreateTime(new Timestamp(System.currentTimeMillis()));
+              p = partitionDao.save(p1);
+         }
+
+        return p;
     }
 }

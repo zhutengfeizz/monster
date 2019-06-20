@@ -95,11 +95,13 @@ private UserMapper userMapper;
 
     @Override
     public void delete(Long id) {
-             userDao.deleteById(id);
+        User user = userDao.findById(id).get();
+        user.setState(0);
+        userDao.save(user);
     }
 
     @Override
-    public User finByid(long id) {
+    public User finByid(Long id) {
         User user = userDao.findById(id).get();
         return user;
     }

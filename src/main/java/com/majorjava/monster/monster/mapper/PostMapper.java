@@ -33,16 +33,5 @@ public interface PostMapper {
     })
     List<Post> findBydelete();
 
-    @Select("select * from t_user  where state = 0  order by create_time desc")
-    @Results({
-            @Result(property = "username",  column = "username"),
-            @Result(property = "sex",  column = "sex"),
-            @Result(property = "email",  column = "email"),
-            @Result(property = "age",  column = "age"),
-            @Result(property = "id",  column = "id"),
-            @Result(property = "password", column = "password"),
-            @Result(property = "createTime", column = "create_time")
-    })
 
-    void delete();
 }
