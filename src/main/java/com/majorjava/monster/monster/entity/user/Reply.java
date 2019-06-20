@@ -25,6 +25,7 @@ public class Reply {
     @Column(name = "create_time", nullable = false)
     private Date creationTime;
     private String content;//内容
+    @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
 
 }

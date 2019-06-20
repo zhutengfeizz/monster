@@ -5,6 +5,7 @@ import com.majorjava.monster.monster.entity.user.User;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -19,10 +20,29 @@ import java.util.List;
 @Repository
 public interface PostMapper {
 
-    @Select("select * from t_post  where state = 0  order by create_time desc")
+    @Select("select * from t_post  where state = 1  order by create_time desc")
     @Results({
             @Result(property = "createTime", column = "create_time"),
 
     })
     List<Post> findAll();
+
+    @Select("select * from t_post  where state = 0  order by create_time desc")
+    @Results({
+            @Result(property = "createTime", column = "create_time")
+    })
+    List<Post> findBydelete();
+
+    @Select("select * from t_user  where state = 0  order by create_time desc")
+    @Results({
+            @Result(property = "username",  column = "username"),
+            @Result(property = "sex",  column = "sex"),
+            @Result(property = "email",  column = "email"),
+            @Result(property = "age",  column = "age"),
+            @Result(property = "id",  column = "id"),
+            @Result(property = "password", column = "password"),
+            @Result(property = "createTime", column = "create_time")
+    })
+
+    void delete();
 }

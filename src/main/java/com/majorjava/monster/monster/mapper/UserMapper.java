@@ -12,16 +12,9 @@ import java.util.List;
 @Repository
 public interface UserMapper {
 
-    @Select("SELECT * FROM t_user")
-    @Results({
-            @Result(property = "username",  column = "username"),
-            @Result(property = "password", column = "password"),
-            @Result(property = "createTime", column = "create_time")
-    })
-    List<User> getAll();
 
 
-    @Select("select * from t_user  where state = 0  order by create_time desc")
+    @Select("select * from t_user  where state = 1  order by create_time desc")
     @Results({
             @Result(property = "username",  column = "username"),
             @Result(property = "sex",  column = "sex"),
@@ -35,7 +28,7 @@ public interface UserMapper {
 
 
 
-    @Select("select * from t_user  where state = 1  order by create_time desc")
+    @Select("select * from t_user  where state = 0  order by create_time desc")
     @Results({
             @Result(property = "username",  column = "username"),
             @Result(property = "sex",  column = "sex"),

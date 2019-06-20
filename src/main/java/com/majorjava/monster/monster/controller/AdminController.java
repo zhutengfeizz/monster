@@ -1,6 +1,6 @@
 package com.majorjava.monster.monster.controller;
 
-import com.majorjava.monster.monster.service.UserServices;
+import com.majorjava.monster.monster.service.User.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

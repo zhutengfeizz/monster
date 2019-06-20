@@ -23,6 +23,7 @@ public class PostPartition {
     private String tname;
     @OneToMany(mappedBy = "partition",cascade= CascadeType.ALL,fetch= FetchType.LAZY)
     List<PartitionField> fieldList;
+    @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
     @Column(name = "create_time", nullable = false)
     private Date createTime;

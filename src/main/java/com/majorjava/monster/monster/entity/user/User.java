@@ -22,7 +22,7 @@ import java.util.Set;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     @Column(name = "username", length = 32, unique = true, nullable = false)
     private String username;
     @Column(name = "password")
@@ -36,6 +36,7 @@ public class User {
     private int age;
     @Column(name = "salt", length = 64, nullable = true)
     private String salt;
+    @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
     @ManyToMany(fetch = FetchType.EAGER)//立即从数据库中进行加载数据；
     @JoinTable(name = "t_role", joinColumns = {@JoinColumn(name = "uid")}, inverseJoinColumns = {
@@ -47,6 +48,13 @@ public class User {
     private List<Post> postList;
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Comment> commentList;
+    @Column(name = "follow_size",insertable = false,columnDefinition = "int default 0")
+    private Integer followSize=0;//关注数
+    @Column(name = "fan_size",insertable = false,columnDefinition = "int default 0")
+    private Integer fanSize=0;//粉丝数
+    @Transient
+    private Integer isFriend = 0;//关系，0表示没有关系，2表示互相关注
+
     @Transient
     public Set<String> getRolesName() {
         List<Role> roles = getRoleList();

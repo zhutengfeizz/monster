@@ -23,6 +23,7 @@ public class PartitionField {
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="partition_id")
     private PostPartition partition;
+    @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
     @Column(name = "create_time", nullable = false)
     private Date createTime;

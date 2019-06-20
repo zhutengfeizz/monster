@@ -32,6 +32,7 @@ public class Post {
     private String content;//内容
     private String Introduction;//投稿简介
     private String img;//投稿封面
+    @Column(insertable = false,columnDefinition = "int default 1")
     private int state;//状态
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Comment> commentList; //评论的集合（一个帖子有多个评论）

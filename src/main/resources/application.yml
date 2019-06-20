@@ -5,7 +5,9 @@ spring:
     password: zhutengfei
     driver-class-name: com.mysql.jdbc.Driver
   resources:
-    static-locations: classpath:/
+    static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css
+    mvc:
+      static-path-pattern=/static/**,
   jpa:
     properties:
       hibernate:

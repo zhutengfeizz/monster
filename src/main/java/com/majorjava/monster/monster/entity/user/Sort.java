@@ -19,6 +19,7 @@ public class Sort {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+    @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
 
 }

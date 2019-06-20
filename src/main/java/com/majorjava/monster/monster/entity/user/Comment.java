@@ -28,5 +28,6 @@ public class Comment {
     private User user;
     @Column(name = "create_time", nullable = false)
     private Date creationTime;
+    @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
 }

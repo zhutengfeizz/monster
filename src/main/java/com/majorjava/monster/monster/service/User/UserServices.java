@@ -1,4 +1,4 @@
-package com.majorjava.monster.monster.service;
+package com.majorjava.monster.monster.service.User;
 
 import com.majorjava.monster.monster.entity.user.User;
 

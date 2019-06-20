@@ -19,7 +19,7 @@ import java.util.List;
 @Repository
 public interface FieldMapper {
 
-    @Select("select * from t_field  where state = 0  order by create_time desc")
+    @Select("select * from t_field  where state = 1  order by create_time desc")
     @Results({
             @Result(property = "createTime", column = "create_time"),
 

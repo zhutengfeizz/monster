@@ -1,9 +1,9 @@
-package com.majorjava.monster.monster.service.impl;
+package com.majorjava.monster.monster.service.impl.Post;
 
 import com.majorjava.monster.monster.dao.PostDao;
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.mapper.PostMapper;
-import com.majorjava.monster.monster.service.PostService;
+import com.majorjava.monster.monster.service.Post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

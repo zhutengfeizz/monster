@@ -1,7 +1,7 @@
 package com.majorjava.monster.monster.shiro;
 
 import com.majorjava.monster.monster.entity.user.User;
-import com.majorjava.monster.monster.service.UserServices;
+import com.majorjava.monster.monster.service.User.UserServices;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;

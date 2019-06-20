@@ -1,4 +1,4 @@
-package com.majorjava.monster.monster.service;
+package com.majorjava.monster.monster.service.Post;
 
 import com.majorjava.monster.monster.entity.user.PartitionField;
 import com.majorjava.monster.monster.entity.user.Post;

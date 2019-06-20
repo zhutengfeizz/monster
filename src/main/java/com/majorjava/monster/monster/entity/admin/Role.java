@@ -32,6 +32,9 @@ public class Role {
     @OneToMany(mappedBy = "role", fetch=FetchType.EAGER)
     private List<Permission> permissionList;// 一个角色对应多个权限
 
+    @Column(insertable = false,columnDefinition = "int default 1")
+    private int state;
+
     @Transient
     public List<String> getPermissionsName() {
         List<String> list = new ArrayList<String>();

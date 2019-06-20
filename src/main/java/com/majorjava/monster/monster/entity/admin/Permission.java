@@ -23,6 +23,9 @@ public class Permission {
 
     private String url;
 
+    @Column(insertable = false,columnDefinition = "int default 1")
+    private int state;
+
 
     @ManyToOne
     @JoinColumn(name = "rid")

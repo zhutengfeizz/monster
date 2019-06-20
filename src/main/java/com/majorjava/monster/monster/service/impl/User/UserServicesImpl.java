@@ -1,9 +1,9 @@
-package com.majorjava.monster.monster.service.impl;
+package com.majorjava.monster.monster.service.impl.User;
 
 import com.majorjava.monster.monster.dao.UserDao;
 import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.mapper.UserMapper;
-import com.majorjava.monster.monster.service.UserServices;
+import com.majorjava.monster.monster.service.User.UserServices;
 import com.majorjava.monster.monster.shiro.ShiroUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;

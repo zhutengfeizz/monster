@@ -20,7 +20,7 @@ import java.util.List;
 @Repository
 public interface PartitionMapper {
 
-    @Select("select * from t_post_partition  where state = 0  order by create_time desc")
+    @Select("select * from t_post_partition  where state = 1  order by create_time desc")
     @Results({
             @Result(property = "createTime", column = "create_time"),
 
