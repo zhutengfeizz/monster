@@ -17,8 +17,8 @@ public interface PostService  {
     Post addPost(Post post);
     List<Post> postAll();
     Post add(Post post);
-    void delete(Long id);
-    Post finByid(long id);
+    void delete(Integer id);
+    Post finByid(Integer id);
     Post update(Post post);
 
 }

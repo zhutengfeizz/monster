@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
  * @date : 2019-06-19 17:16
  **/
 @Repository
-public interface PartitionDao extends CrudRepository<PostPartition, Long> {
+public interface PartitionDao extends CrudRepository<PostPartition, Integer> {
 }

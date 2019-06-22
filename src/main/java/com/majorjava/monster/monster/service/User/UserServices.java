@@ -18,8 +18,8 @@ public interface UserServices {
 
 
     User add(User user);
-    void delete(Long id);
-    User finByid(Long id);
+    void delete(Integer id);
+    User finByid(Integer id);
     User  update(User user);
     List<User> userFinall ();
     List<User> findAll();

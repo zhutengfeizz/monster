@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
  * @date : 2019-06-17 16:32
  **/
 @Repository
-public interface PostDao extends CrudRepository<Post, Long> {
+public interface PostDao extends CrudRepository<Post, Integer> {
 }

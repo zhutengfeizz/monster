@@ -12,6 +12,6 @@ import org.springframework.stereotype.Repository;
  * @date : 2019-06-05 19:37
  **/
 @Repository
-public interface UserDao extends CrudRepository<User, Long> {
+public interface UserDao extends CrudRepository<User, Integer> {
     User findByUsername(String username);
 }

@@ -33,10 +33,11 @@
             <td th:text="${post.name}"></td>
             <td th:text="${post.user.username}"></td>
             <td th:text="${post.sort}"></td>
-            <td th:text="${post.sort}"></td>
-            <td th:text="${post.createTime}"></td>
+            <td th:text="${post.region}"></td>
+            <!--<td th:text="${post.createTime}"></td>-->
             <td th:text="${post.introduction}"></td>
-            <td><a>删除</a></td>
+           <td> <a href="#" th:href="@{/post/delete(id=${post.id})}" onclick="return confirm('确认删除此记录吗？')">删除</a>  |
+            <a href="#" th:href="@{/post/edit(id=${post.id})}">修改</a></td>
         </tr>
         </tbody>
     </table>

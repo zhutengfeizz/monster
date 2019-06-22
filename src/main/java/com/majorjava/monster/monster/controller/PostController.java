@@ -3,6 +3,7 @@ package com.majorjava.monster.monster.controller;
 import com.majorjava.monster.monster.entity.user.PartitionField;
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.PostPartition;
+import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.service.Post.FieldService;
 import com.majorjava.monster.monster.service.Post.PartitionService;
 import com.majorjava.monster.monster.service.Post.PostService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 /**
@@ -31,6 +33,7 @@ public class PostController {
     private PartitionService partitionService;
     @Autowired
     private FieldService fieldService;
+
     @GetMapping("postList")
     public String allPost(Model model){
         List<Post> posts =(List<Post>) postService.postAll();
@@ -44,7 +47,7 @@ public class PostController {
     }
 
     @GetMapping("edit")
-    public String edit(Long id,Model model){
+    public String edit(Integer id,Model model){
         if (id!=null){
             Post post = postService.finByid(id);
             model.addAttribute("post",post);
@@ -61,8 +64,22 @@ public class PostController {
         return "admin/post/admin_post_edit";
     }
     @PostMapping("save")
-    public String save(Long id,String title,String type,String quiz2,String introduction,String content){
+    public String save(Integer id,String title,String type,String quiz2,String introduction,String content,String quiz1,Integer uid){
         Post post=new Post();
+        post.setName(title);
+        post.setType(type);
+        post.setCreateTime(new Timestamp(System.currentTimeMillis()));
+        post.setIntroduction(introduction);
+        post.setContent(content);
+        post.setSort(quiz2);
+        post.setRegion(quiz1);
+        post.setImg(post.getImg());
+        postService.update(post);
+        return "redirect:/post/postList";
+    }
+    @GetMapping("delete")
+    public String delete(Integer id){
+        postService.delete(id);
         return "redirect:/post/postList";
     }
 }

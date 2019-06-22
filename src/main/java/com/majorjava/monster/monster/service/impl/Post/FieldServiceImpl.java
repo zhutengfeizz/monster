@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,27 +47,27 @@ public class FieldServiceImpl implements FieldService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         PartitionField field = fieldDao.findById(id).get();
         field.setState(0);
         fieldDao.save(field);
     }
 
     @Override
-    public PartitionField finByid(long id) {
+    public PartitionField finByid(Integer id) {
         return fieldDao.findById(id).get();
     }
 
     @Override
     public PartitionField update(PartitionField partitionField) {
-         Long id= partitionField.getId().longValue();
+        Integer id= partitionField.getId();
         PartitionField f=null;
          if (id!=null){
              PartitionField field = fieldDao.findById(id).get();
              field.setFname(partitionField.getFname());
             f= fieldDao.save(field);
          }else {
-             partitionField.setCreateTime(new Timestamp(System.currentTimeMillis()));
+             partitionField.setCreateTime(new Date());
             f= fieldDao.save(partitionField);
          }
         return f;

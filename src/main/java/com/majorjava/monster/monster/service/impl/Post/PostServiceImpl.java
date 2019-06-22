@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> postAll() {
-        List<Post> postList = postMapper.findAll();
+        List<Post> postList =(List<Post>) postDao.findAll();
         return postList;
     }
 
@@ -44,15 +45,15 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         Post post = postDao.findById(id).get();
-        post.setState(1);
+        post.setState(0);
         postDao.save(post);
 
     }
 
     @Override
-    public Post finByid(long id) {
+    public Post finByid(Integer id) {
         return postDao.findById(id).get();
     }
 
@@ -64,16 +65,21 @@ public class PostServiceImpl implements PostService {
             post1.setName(post.getName());
             post1.setContent(post.getContent());
             post1.setType(post.getType());
-            post1.setUser(post.getUser());
-            post1.setCreateTime(new Timestamp(System.currentTimeMillis()));
+            post1.setCreateTime(new Date());
             post1.setIntroduction(post.getIntroduction());
             post1.setImg(post.getImg());
+            post1.setSort(post.getSort());
+            post1.setRegion(post.getRegion());
+            post1.setState(1);
 
         }else {
-            long id=post.getId();
+            Integer id=post.getId();
             post1=postDao.findById(id).get();
             post1.setContent(post.getContent());
             post1.setIntroduction(post.getIntroduction());
+            post1.setRegion(post.getRegion());
+            post1.setSort(post.getSort());
+            post1.setType(post.getType());
 
         }
         Post post2 = postDao.save(post1);

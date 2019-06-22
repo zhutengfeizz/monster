@@ -23,15 +23,13 @@ public interface PostMapper {
     @Select("select * from t_post  where state = 1  order by create_time desc")
     @Results({
             @Result(property = "createTime", column = "create_time"),
-
     })
     List<Post> findAll();
 
     @Select("select * from t_post  where state = 0  order by create_time desc")
     @Results({
-            @Result(property = "createTime", column = "create_time")
+            @Result(property = "createTime", column = "create_time"),
     })
     List<Post> findBydelete();
-
 
 }

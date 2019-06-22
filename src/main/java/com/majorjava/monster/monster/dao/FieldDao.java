@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  * @date : 2019-06-19 17:16
  **/
 @Repository
-public interface FieldDao extends CrudRepository<PartitionField, Long> {
+public interface FieldDao extends CrudRepository<PartitionField, Integer> {
 }

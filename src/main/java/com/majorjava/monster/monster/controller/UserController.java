@@ -45,7 +45,7 @@ public class UserController {
     }
 
       @GetMapping("/edit")
-      public String edit(Long id,Model model){
+      public String edit(Integer id,Model model){
         User user=null;
         if (id==null){
             user=new User();
@@ -57,7 +57,7 @@ public class UserController {
     }
 
       @PostMapping("/save")
-      public String sava(int age,Long id,RedirectAttributes redirectAttributes, String username, String password, String password2, String sex, String birthday, String email, Model model){
+      public String sava(int age,Integer id,RedirectAttributes redirectAttributes, String username, String password, String password2, String sex, String birthday, String email, Model model){
             User user=null;
             if (id==null){
                 user=new User();
@@ -91,7 +91,7 @@ public class UserController {
       }
 
     @GetMapping("/delete")
-    public String delete(Long id, RedirectAttributes redirectAttributes){
+    public String delete(Integer id, RedirectAttributes redirectAttributes){
         User user = userServices.finByid(id);
         user.setState(1);
         userServices.add(user);

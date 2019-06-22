@@ -16,8 +16,8 @@ public interface PartitionService {
     PostPartition addPostPartition(PostPartition postPartition);
     List<PostPartition> postPartitionAll();
     PostPartition add(PostPartition postPartition);
-    void delete(Long id);
-    PostPartition finByid(long id);
+    void delete(Integer id);
+    PostPartition finByid(Integer id);
     PostPartition update(PostPartition postPartition);
 
 }

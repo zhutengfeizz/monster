@@ -94,14 +94,14 @@ private UserMapper userMapper;
     }
 
     @Override
-    public void delete(Long id) {
+    public void delete(Integer id) {
         User user = userDao.findById(id).get();
         user.setState(0);
         userDao.save(user);
     }
 
     @Override
-    public User finByid(Long id) {
+    public User finByid(Integer id) {
         User user = userDao.findById(id).get();
         return user;
     }

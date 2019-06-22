@@ -54,6 +54,8 @@ public class User {
     private Integer fanSize=0;//粉丝数
     @Transient
     private Integer isFriend = 0;//关系，0表示没有关系，2表示互相关注
+    @Column(name = "svip",insertable = false,columnDefinition = "int default 0")
+    private Integer svip;//0普通会员，1超级会员；
 
     @Transient
     public Set<String> getRolesName() {

@@ -16,8 +16,8 @@ public interface FieldService {
     PartitionField addPartitionField(PartitionField partitionField);
     List<PartitionField> partitionFieldAll();
     PartitionField add(PartitionField partitionField);
-    void delete(Long id);
-    PartitionField finByid(long id);
+    void delete(Integer id);
+    PartitionField finByid(Integer id);
     PartitionField update(PartitionField partitionField);
 
 }

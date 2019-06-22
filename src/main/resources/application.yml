@@ -17,8 +17,6 @@ spring:
       ddl-auto: update
     show-sql: true
     database: mysql
-  server:
-    port: 5858
 mybatis:
   type-aliases-package: com.oac.sbdemo.domain
 

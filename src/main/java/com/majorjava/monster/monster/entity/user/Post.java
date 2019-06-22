@@ -36,4 +36,5 @@ public class Post {
     private int state;//状态
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Comment> commentList; //评论的集合（一个帖子有多个评论）
+    private String region;//分区
 }

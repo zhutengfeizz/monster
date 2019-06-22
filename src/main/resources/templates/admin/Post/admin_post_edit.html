@@ -15,13 +15,13 @@
         <div style="margin: 10px 0px 10px 0px;text-align: left">
             <button type="button" class="layui-btn">文章投稿</button>
         </div>
-        <input type="hidden" name="id" th:field="*{id}">
+        <input type="hidden" name="id" th:field="${post.id}">
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 110px">
                 <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿标题</B>
             </label>
             <div class="layui-input-block">
-                <input type="text" th:value="*{name}" name="title" lay-verify="title" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
+                <input type="text" th:value="${post.name}" name="title" lay-verify="title" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="">
@@ -30,9 +30,9 @@
             </label>
             <div class="layui-input-block" style="">
                 <div class="layui-input-block"style="float: left">
-                    <input type="radio" th:field="*{type}" name="type" title="原创">
-                    <input type="radio" th:field="*{type}" name="type" title="转载">
-                    <input type="radio" th:field="*{type}" name="type" title="其他">
+                    <input type="radio" name="type" title="原创">
+                    <input type="radio" name="type" title="转载">
+                    <input type="radio"  name="type" title="其他">
                 </div>
             </div>
         </div>
@@ -43,20 +43,22 @@
             </label>
             <div class="layui-input-inline">
                 <select name="quiz1">
-                    <option value="" disabled="disabled">所属区</option>
-                    <option value="游戏" selected="">游戏</option>
-                    <option value="生活情感">生活情感</option>
-                    <option value="综合">综合</option>
+                    <option th:each="pr : ${partitionList}"
+                            th:value="${pr.id}"
+                            th:text="${pr.tname}"
+                            >
+                            分区3
+                    </option>
                 </select>
             </div>
             <div class="layui-input-inline">
                 <select name="quiz2">
-                    <option value="请选择领域">请选择领域</option>
-                    <option value="杭州">杭州</option>
-                    <option value="宁波" disabled="">宁波</option>
-                    <option value="温州">温州</option>
-                    <option value="温州">台州</option>
-                    <option value="温州">绍兴</option>
+                    <option th:each="pr : ${partitionFields}"
+                            th:value="${pr.id}"
+                            th:text="${pr.fname}"
+                    >
+                            领域
+                    </option>
                 </select>
             </div>
         </div>
@@ -86,7 +88,7 @@
                 <B style="font-size: 15px;color:grey">投稿简介</B>
             </label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" th:field="*{introduction}" name="introduction" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" th:field="${post.introduction}" name="introduction" class="layui-textarea"></textarea>
             </div>
         </div>
 
@@ -96,7 +98,7 @@
             </label>
             <div class="layui-input-block">
                 <div class="layui-form-item layui-form-text">
-                  <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor"></textarea>
+                  <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor" th:field="${post.content}"></textarea>
                 </div>
             </div>
         </div>
