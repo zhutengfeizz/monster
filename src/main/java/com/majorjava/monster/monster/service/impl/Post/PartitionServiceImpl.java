@@ -31,14 +31,6 @@ public class PartitionServiceImpl implements PartitionService {
     @Autowired
     private PartitionMapper partitionMapper;
 
-    @Override
-    public PostPartition addPostPartition(PostPartition postPartition) {
-        PostPartition p=new PostPartition();
-         p.setTname(postPartition.getTname());
-         p.setCreateTime(new Date());
-        PostPartition save = partitionDao.save(p);
-        return save;
-    }
 
     @Override
     public List<PostPartition> postPartitionAll() {
@@ -47,7 +39,7 @@ public class PartitionServiceImpl implements PartitionService {
     }
 
     @Override
-    public PostPartition add(PostPartition postPartition) {
+    public PostPartition save(PostPartition postPartition) {
 
         return partitionDao.save(postPartition);
     }
@@ -66,20 +58,4 @@ public class PartitionServiceImpl implements PartitionService {
         return partition;
     }
 
-    @Override
-    public PostPartition update(PostPartition postPartition) {
-        Integer pid=postPartition.getId();
-        PostPartition p=null;
-         if(pid!=null){
-             PostPartition partition = partitionDao.findById(pid).get();
-             partition.setTname(postPartition.getTname());
-             p = partitionDao.save(partition);
-         }else {
-           PostPartition  p1=postPartition;
-             p1.setCreateTime(new Date());
-              p = partitionDao.save(p1);
-         }
-
-        return p;
-    }
 }

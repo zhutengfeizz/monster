@@ -2,6 +2,7 @@ package com.majorjava.monster.monster.controller;
 
 import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.service.User.UserServices;
+import com.majorjava.monster.monster.upload.UploadProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -29,6 +31,8 @@ public class UserController {
     @Autowired
     private UserServices userServices;
 
+    @Resource
+    private UploadProperties uploadProperties;
 
     @GetMapping("/userList")
       public String list(Model model){

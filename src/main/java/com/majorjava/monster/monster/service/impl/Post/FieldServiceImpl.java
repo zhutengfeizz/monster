@@ -32,17 +32,12 @@ public class FieldServiceImpl implements FieldService {
     private FieldMapper fieldMapper;
 
     @Override
-    public PartitionField addPartitionField(PartitionField partitionField) {
-        return fieldDao.save(partitionField);
-    }
-
-    @Override
     public List<PartitionField> partitionFieldAll() {
         return fieldMapper.findAll();
     }
 
     @Override
-    public PartitionField add(PartitionField partitionField) {
+    public PartitionField save(PartitionField partitionField) {
         return fieldDao.save(partitionField);
     }
 
@@ -56,20 +51,5 @@ public class FieldServiceImpl implements FieldService {
     @Override
     public PartitionField finByid(Integer id) {
         return fieldDao.findById(id).get();
-    }
-
-    @Override
-    public PartitionField update(PartitionField partitionField) {
-        Integer id= partitionField.getId();
-        PartitionField f=null;
-         if (id!=null){
-             PartitionField field = fieldDao.findById(id).get();
-             field.setFname(partitionField.getFname());
-            f= fieldDao.save(field);
-         }else {
-             partitionField.setCreateTime(new Date());
-            f= fieldDao.save(partitionField);
-         }
-        return f;
     }
 }

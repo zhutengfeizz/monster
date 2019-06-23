@@ -16,9 +16,8 @@ import java.util.List;
 public interface PostService  {
     Post addPost(Post post);
     List<Post> postAll();
-    Post add(Post post);
+    Post save(Post post);
     void delete(Integer id);
     Post finByid(Integer id);
-    Post update(Post post);
 
 }

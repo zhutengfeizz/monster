@@ -34,12 +34,12 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> postAll() {
-        List<Post> postList =(List<Post>) postDao.findAll();
+        List<Post> postList =(List<Post>) postMapper.findAll();
         return postList;
     }
 
     @Override
-    public Post add(Post post) {
+    public Post save(Post post) {
 
         return postDao.save(post);
     }
@@ -57,34 +57,5 @@ public class PostServiceImpl implements PostService {
         return postDao.findById(id).get();
     }
 
-    @Override
-    public Post update(Post post) {
-        Post post1=null;
-        if (post.getId()==null){
-            post1=new Post();
-            post1.setName(post.getName());
-            post1.setContent(post.getContent());
-            post1.setType(post.getType());
-            post1.setCreateTime(new Date());
-            post1.setIntroduction(post.getIntroduction());
-            post1.setImg(post.getImg());
-            post1.setSort(post.getSort());
-            post1.setRegion(post.getRegion());
-            post1.setState(1);
 
-        }else {
-            Integer id=post.getId();
-            post1=postDao.findById(id).get();
-            post1.setContent(post.getContent());
-            post1.setIntroduction(post.getIntroduction());
-            post1.setRegion(post.getRegion());
-            post1.setSort(post.getSort());
-            post1.setType(post.getType());
-
-        }
-        Post post2 = postDao.save(post1);
-
-        return post2;
-
-    }
 }

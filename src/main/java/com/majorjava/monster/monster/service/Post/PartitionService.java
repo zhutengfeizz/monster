@@ -13,11 +13,8 @@ import java.util.List;
  * @date : 2019-06-19 10:50
  **/
 public interface PartitionService {
-    PostPartition addPostPartition(PostPartition postPartition);
     List<PostPartition> postPartitionAll();
-    PostPartition add(PostPartition postPartition);
+    PostPartition save(PostPartition postPartition);
     void delete(Integer id);
     PostPartition finByid(Integer id);
-    PostPartition update(PostPartition postPartition);
-
 }

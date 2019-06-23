@@ -11,17 +11,17 @@
 <body>
 <div id="body" style="width: 1200px;margin: 0 auto;border: orange solid 3px;background-color:#F5F7FA">
 
-    <form class="layui-form" th:action="@{/post/save}" method="post" style="width: 800px;text-align: center;margin: 0 auto;background-color: white;padding-right: 10px">
+    <form class="layui-form" th:action="@{/post/save}" th:object="${post}" enctype="multipart/form-data" method="post" style="width: 800px;text-align: center;margin: 0 auto;background-color: white;padding-right: 10px">
         <div style="margin: 10px 0px 10px 0px;text-align: left">
             <button type="button" class="layui-btn">文章投稿</button>
         </div>
-        <input type="hidden" name="id" th:field="${post.id}">
+        <input type="hidden" name="id" th:field="*{id}">
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 110px">
                 <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿标题</B>
             </label>
             <div class="layui-input-block">
-                <input type="text" th:value="${post.name}" name="title" lay-verify="title" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
+                <input type="text" th:value="*{name}" name="title" lay-verify="title" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="">
@@ -42,7 +42,7 @@
                 <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿分类</B>
             </label>
             <div class="layui-input-inline">
-                <select name="quiz1">
+                <select name="field">
                     <option th:each="pr : ${partitionList}"
                             th:value="${pr.id}"
                             th:text="${pr.tname}"
@@ -52,7 +52,7 @@
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select name="quiz2">
+                <select name="partition">
                     <option th:each="pr : ${partitionFields}"
                             th:value="${pr.id}"
                             th:text="${pr.fname}"
@@ -77,7 +77,7 @@
                 </div>
                      <b style="">预览图：</b>
                     <div class="layui-upload-list" style="float: right;padding-left: 20px;margin: 0px">
-                        <img class="layui-upload-img" style="width: 200px;max-height: 183px" id="demo1">
+                        <img class="layui-upload-img" th:if="${post.img!=null}" th:src="${post.img}" style="width: 200px;max-height: 183px" id="demo1">
                         <p id="demoText"></p>
                     </div>
             </div>

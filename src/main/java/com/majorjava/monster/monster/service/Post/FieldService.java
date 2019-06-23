@@ -13,11 +13,9 @@ import java.util.List;
  * @date : 2019-06-19 10:50
  **/
 public interface FieldService {
-    PartitionField addPartitionField(PartitionField partitionField);
     List<PartitionField> partitionFieldAll();
-    PartitionField add(PartitionField partitionField);
+    PartitionField save(PartitionField partitionField);
     void delete(Integer id);
     PartitionField finByid(Integer id);
-    PartitionField update(PartitionField partitionField);
 
 }
