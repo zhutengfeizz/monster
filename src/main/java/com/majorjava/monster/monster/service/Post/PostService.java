@@ -14,7 +14,6 @@ import java.util.List;
  * @date : 2019-06-19 10:50
  **/
 public interface PostService  {
-    Post addPost(Post post);
     List<Post> postAll();
     Post save(Post post);
     void delete(Integer id);

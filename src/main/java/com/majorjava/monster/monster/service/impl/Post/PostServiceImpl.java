@@ -26,11 +26,7 @@ public class PostServiceImpl implements PostService {
     private PostDao postDao;
     @Autowired
     private PostMapper postMapper;
-    @Override
-    public Post addPost(Post post) {
-        Post save = postDao.save(post);
-        return save;
-    }
+
 
     @Override
     public List<Post> postAll() {
