@@ -2,14 +2,10 @@ package com.majorjava.monster.monster.service.impl.Post;
 
 import com.majorjava.monster.monster.dao.PostDao;
 import com.majorjava.monster.monster.entity.user.Post;
-import com.majorjava.monster.monster.mapper.PostMapper;
 import com.majorjava.monster.monster.service.Post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,13 +20,12 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
     @Autowired
     private PostDao postDao;
-    @Autowired
-    private PostMapper postMapper;
+
 
 
     @Override
     public List<Post> postAll() {
-        List<Post> postList =(List<Post>) postMapper.findAll();
+        List<Post> postList =(List<Post>) postDao.findByStateOrderByCreateTimeDesc(1);
         return postList;
     }
 
@@ -51,6 +46,16 @@ public class PostServiceImpl implements PostService {
     @Override
     public Post finByid(Integer id) {
         return postDao.findById(id).get();
+    }
+
+    @Override
+    public void finalDelete(Integer id) {
+        postDao.deleteById(id);
+    }
+
+    @Override
+    public List<Post> findBydelete() {
+        return postDao.findByStateOrderByCreateTimeDesc(0);
     }
 
 

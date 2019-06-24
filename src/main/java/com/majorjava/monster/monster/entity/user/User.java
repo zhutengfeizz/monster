@@ -33,7 +33,7 @@ public class User {
     private int age;
     @Column(name = "salt", length = 64, nullable = true)
     private String salt;
-    private int state=1;
+    private int state;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="t_user_role",
             joinColumns = {@JoinColumn(name="user_id")},

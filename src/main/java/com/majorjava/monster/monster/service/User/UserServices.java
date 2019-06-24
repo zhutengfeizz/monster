@@ -17,12 +17,12 @@ public interface UserServices {
     Map<String,Object> register(User user);
 
 
-    User add(User user);
+    User save(User user);
     void delete(Integer id);
     User finByid(Integer id);
     User  update(User user);
-    List<User> userFinall ();
     List<User> findAll();
     User findByUsername(String username);
     List<User> findBydelete();
+    void finalDelete(Integer id);
 }

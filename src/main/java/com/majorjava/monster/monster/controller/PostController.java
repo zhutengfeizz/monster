@@ -45,6 +45,13 @@ public class PostController {
         return "admin/post/admin_post_list";
     }
 
+    @GetMapping("deleteList")
+    public String deleteList(Model model){
+        List<Post> posts = postService.findBydelete();
+        model.addAttribute("allPost",posts);
+        return "admin/post/admin_post_list";
+    }
+
     @GetMapping("save")
     public String addPost(){
         return "/admin/post/admin_post_edit";
@@ -87,6 +94,20 @@ public class PostController {
     @GetMapping("delete")
     public String delete(Integer id){
         postService.delete(id);
+        return "redirect:/post/deleteList";
+    }
+
+    @GetMapping("restore")
+    private String restore(Integer id){
+        Post post = postService.finByid(id);
+        post.setState(1);
+       postService.save(post);
         return "redirect:/post/postList";
+    }
+
+    @GetMapping("finalDelete")
+    private String finalDelete(Integer id){
+        postService.finalDelete(id);
+        return "redirect:/post/deleteList";
     }
 }

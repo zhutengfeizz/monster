@@ -3,9 +3,6 @@ package com.majorjava.monster.monster.service.impl.Post;
 import com.majorjava.monster.monster.dao.FieldDao;
 import com.majorjava.monster.monster.dao.PostDao;
 import com.majorjava.monster.monster.entity.user.PartitionField;
-import com.majorjava.monster.monster.entity.user.Post;
-import com.majorjava.monster.monster.mapper.FieldMapper;
-import com.majorjava.monster.monster.mapper.PostMapper;
 import com.majorjava.monster.monster.service.Post.FieldService;
 import com.majorjava.monster.monster.service.Post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +25,10 @@ import java.util.List;
 public class FieldServiceImpl implements FieldService {
     @Autowired
     private FieldDao fieldDao;
-    @Autowired
-    private FieldMapper fieldMapper;
 
     @Override
     public List<PartitionField> partitionFieldAll() {
-        return fieldMapper.findAll();
+        return fieldDao.findByStateOrderByCreateTimeDesc(1);
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.majorjava.monster.monster.service.impl.User;
 
 import com.majorjava.monster.monster.dao.UserDao;
 import com.majorjava.monster.monster.entity.user.User;
-import com.majorjava.monster.monster.mapper.UserMapper;
 import com.majorjava.monster.monster.service.User.UserServices;
 import com.majorjava.monster.monster.shiro.ShiroUtil;
 import org.apache.shiro.SecurityUtils;
@@ -30,8 +29,6 @@ public class UserServicesImpl implements UserServices {
 @Autowired
  private UserDao userDao;
 
-@Autowired
-private UserMapper userMapper;
     @Override
     public Map<String, Object> login(String username, String password) {
         Map<String,Object> map =new HashMap<String, Object>();
@@ -75,6 +72,7 @@ private UserMapper userMapper;
             user2.setBirthday(user.getBirthday());
             user2.setSalt(salt);
             user2.setCreateTime(new Timestamp(System.currentTimeMillis()));
+            user2.setState(1);
             User save = userDao.save(user2);
             if (save!=null){
                 map.put("ok",true);
@@ -88,7 +86,7 @@ private UserMapper userMapper;
     }
 
     @Override
-    public User add(User user) {
+    public User save(User user) {
         User save = userDao.save(user);
         return save;
     }
@@ -112,16 +110,11 @@ private UserMapper userMapper;
         return save;
     }
 
-    @Override
-    public List<User> userFinall () {
-        List<User> users =(List<User>) userDao.findAll();
-        return users;
-    }
 
     @Override
     public List<User> findAll() {
-        List<User> userList = userMapper.findAll();
-        return userList;
+        List<User> users =(List<User>) userDao.findByStateOrderByCreateTimeDesc(1);
+        return users;
     }
 
     @Override
@@ -131,7 +124,12 @@ private UserMapper userMapper;
 
     @Override
     public List<User> findBydelete() {
-        List<User> userList = userMapper.findBydelete();
-        return userList;
+        List<User> users =(List<User>) userDao.findByStateOrderByCreateTimeDesc(0);
+        return users;
+    }
+
+    @Override
+    public void finalDelete(Integer id) {
+        userDao.deleteById(id);
     }
 }

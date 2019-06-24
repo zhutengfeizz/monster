@@ -20,12 +20,20 @@
         <div class="layui-form-item">
             <label class="layui-form-label">账号</label>
             <div class="layui-input-inline">
-                <input type="text"  readonly  unselectable="on" th:value="${user.username}" name="username" lay-verType="tips" lay-verify="required" lay-reqtext="用户名不能为空哦！" placeholder="请输入账号" autocomplete="off" class="layui-input">
+                <input type="text"  th:value="${user.username}" name="username" lay-verType="tips" lay-verify="required" lay-reqtext="用户名不能为空哦！" placeholder="请输入账号" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">您用来登录的账号</div>
 
         </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-inline">
+                <input type="password"  th:value="${user.password}" name="password" lay-verType="tips" lay-verify="required" lay-reqtext="密码不能为空哦！" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux">您账号的密码</div>
+
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">邮箱</label>
             <div class="layui-input-inline">

@@ -4,6 +4,8 @@ import com.majorjava.monster.monster.entity.user.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * <h3>monster</h3>
  * <p>${description}</p>
@@ -14,4 +16,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao extends CrudRepository<User, Integer> {
     User findByUsername(String username);
+
+    List<User> findByStateOrderByCreateTimeDesc(int state);
 }

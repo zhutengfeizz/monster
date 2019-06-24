@@ -1,5 +1,6 @@
 package com.majorjava.monster.monster.controller;
 
+import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.service.User.UserServices;
 import com.majorjava.monster.monster.upload.UploadProperties;
@@ -89,7 +90,7 @@ public class UserController {
                 user.setEmail(email);
                 user.setSex(sex);
             }
-           user = userServices.add(user);
+           user = userServices.save(user);
           redirectAttributes.addFlashAttribute("message","保存用户成功！");
           return "redirect:/user/userList";
       }
@@ -97,9 +98,26 @@ public class UserController {
     @GetMapping("/delete")
     public String delete(Integer id, RedirectAttributes redirectAttributes){
         User user = userServices.finByid(id);
-        user.setState(1);
-        userServices.add(user);
+        user.setState(0);
+        userServices.save(user);
         redirectAttributes.addFlashAttribute("message","删除用户成功！");
+        return "redirect:/user/duserList";
+    }
+
+    @GetMapping("restore")
+    private String restore(Integer id,RedirectAttributes redirectAttributes){
+        User user = userServices.finByid(id);
+        user.setState(1);
+        userServices.save(user);
+        redirectAttributes.addFlashAttribute("message","恢复用户成功！");
         return "redirect:/user/userList";
+
+    }
+
+    @GetMapping("finalDelete")
+    private String finalDelete(Integer id, RedirectAttributes redirectAttributes){
+        userServices.finalDelete(id);
+        redirectAttributes.addFlashAttribute("message","最终删除成功！");
+        return "redirect:/user/duserList";
     }
 }

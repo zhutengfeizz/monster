@@ -68,13 +68,30 @@
                 <dd><a href="">商务合作</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item"><a href="">社区</a></li>
-                <li class="layui-nav-item" style="float: right" ><!-- Large modal -->
-                    <a href="login">登录</a>
-                </li>
-                <li class="layui-nav-item" style="float: right" >
-                    <a href="register">注册</a>
-                </li>
+
+        <ul class="layui-nav layui-layout-right" th:if="${loginUser==null}">
+            <li class="layui-nav-item" th:if="${loginUser==null}" style="float: right" ><!-- Large modal -->
+                <a href="login">登录</a>
+            </li>
+            <li class="layui-nav-item" th:if="${loginUser==null}" style="float: right" >
+                <a href="register">注册</a>
+            </li>
+        </ul>
+
+        <ul class="layui-nav layui-layout-right" th:if="${loginUser!=null}">
+            <li class="layui-nav-item" th:if="${loginUser!=null}">
+                <a href="javascript:;">
+                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <a th:text="${loginUser.username}"></a>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="#" th:href="@{/user/edit(id=${loginUser.id})}">基本资料</a></dd>
+                    <dd><a href="">修改密码</a></dd>
+                    <dd><a href="">找回密码</a></dd>
+                    <dd><a href="/logout">注销</a></dd>
+                </dl>
+            </li>
+        </ul>
 
 
     </ul>

@@ -60,10 +60,10 @@ public class IndexController {
         if((Boolean) resultMap.get("ok")){
             //把登录成功后的用户对象保存到session中
             session.setAttribute("loginUser", resultMap.get("user"));
-            return "redirect:/";
+            return "redirect:/index";
         }else{
             model.addAttribute("error", resultMap.get("error"));
-            return "login";
+            return "user/login";
         }
     }
 

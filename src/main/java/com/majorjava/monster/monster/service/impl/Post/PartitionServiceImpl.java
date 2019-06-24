@@ -4,8 +4,6 @@ import com.majorjava.monster.monster.dao.PartitionDao;
 import com.majorjava.monster.monster.dao.PostDao;
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.PostPartition;
-import com.majorjava.monster.monster.mapper.PartitionMapper;
-import com.majorjava.monster.monster.mapper.PostMapper;
 import com.majorjava.monster.monster.service.Post.PartitionService;
 import com.majorjava.monster.monster.service.Post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +26,11 @@ import java.util.List;
 public class PartitionServiceImpl implements PartitionService {
     @Autowired
     private PartitionDao partitionDao;
-    @Autowired
-    private PartitionMapper partitionMapper;
 
 
     @Override
     public List<PostPartition> postPartitionAll() {
-        List<PostPartition> partitions = partitionMapper.findAll();
+        List<PostPartition> partitions = partitionDao.findByStateOrderByCreateTimeDesc(1);
         return partitions;
     }
 

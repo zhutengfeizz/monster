@@ -18,5 +18,7 @@ public interface PostService  {
     Post save(Post post);
     void delete(Integer id);
     Post finByid(Integer id);
+    void finalDelete(Integer id);
+    List<Post> findBydelete();
 
 }

@@ -19,6 +19,7 @@
         <tr>
             <th>Id</th>
             <th>用户名</th>
+            <th>头像</th>
             <th>年龄</th>
             <th>邮箱</th>
             <th>性别</th>
@@ -32,6 +33,7 @@
         <tr  th:each="user,userStat : ${userList}">
             <td th:text="${user.id}"></td>
             <td th:text="${user.username}"></td>
+            <td th:text="${user.head}"></td>
             <td th:text="${user.age}"></td>
             <td th:text="${user.email}"></td>
             <td th:text="${user.sex}"></td>
@@ -39,9 +41,10 @@
             <td th:text="${user.createTime}"></td>
             <td th:if="${user.svip}==0" th:text="普通会员"></td>
             <td th:if="${user.svip}==1" th:text="超级会员"></td>
-            <td><a th:href="@{/user/delete(id=${user.id})}" href="#">删除</a> <a  th:href="@{/user/edit(id=${user.id})}" href="#">修改</a>
-
-                <a href="/user/edit/">添加用户</a></td>
+            <td><a th:if="${user.state==1}" th:href="@{/user/delete(id=${user.id})}" href="#" onclick="return confirm('确认删除此记录吗？')">删除</a> <a th:if="${user.state==1}" th:href="@{/user/edit(id=${user.id})}" href="#">修改</a>
+                <a href="" th:if="${user.state==0}" th:text="恢复用户" th:href="@{/user/restore(id=${user.id})}" onclick="return confirm('确认要恢复吗？')"></a>
+                <a href="" th:if="${user.state==0}" th:text="彻底删除用户" onclick="return confirm('确认删除此记录吗？')" th:href="@{/user/finalDelete(id=${user.id})}"></a>
+            </td>
         </tr>
         </tbody>
         <span style="color: red" th:text="${message}">
