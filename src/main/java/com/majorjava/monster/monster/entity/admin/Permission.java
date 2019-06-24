@@ -19,15 +19,12 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer pid;
 
-    private String pname;
 
-    private String url;
+    private String pname; //权限名字
+
+    private String url;//权限Url
 
     @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
 
-
-    @ManyToOne
-    @JoinColumn(name = "rid")
-    private Role role;
 }

@@ -1,8 +1,5 @@
 package com.majorjava.monster.monster.entity.admin;
-
-import com.majorjava.monster.monster.entity.user.User;
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,28 +17,27 @@ import java.util.List;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer rid;
+    private Integer id;
+    private String name;
+    private String summary;//描述
 
-    private String rname;
 
-    @ManyToMany
-    @JoinTable(name = "t_role",joinColumns ={ @JoinColumn(name = "rid") }, inverseJoinColumns = {
-            @JoinColumn(name = "uid") })
-    private List<User> userList;// 一个角色对应多个用户
-
-    @OneToMany(mappedBy = "role", fetch=FetchType.EAGER)
-    private List<Permission> permissionList;// 一个角色对应多个权限
-
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name="t_role_permission",
+            joinColumns = {@JoinColumn(name="role_id")},
+            inverseJoinColumns = {@JoinColumn(name="permission_id")})
+    private List<Permission> permissions=new ArrayList<Permission>();//角色的权限列表
     @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
 
-    @Transient
-    public List<String> getPermissionsName() {
-        List<String> list = new ArrayList<String>();
-        List<Permission> perlist = getPermissionList();
-        for (Permission per : perlist) {
-            list.add(per.getPname());
-        }
-        return list;
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", summary='" + summary + '\'' +
+                ", permissionList=" + permissions +
+                '}';
     }
 }

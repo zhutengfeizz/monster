@@ -2,6 +2,10 @@ package com.majorjava.monster.monster.controller;
 
 import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.service.User.UserServices;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,17 +46,24 @@ public class IndexController {
         return "user/register";
     }
 
+    @GetMapping("logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "redirect:/";
+    }
+
 
 
     @PostMapping("login")
     public String login(String username, String password, Model model, HttpSession session){
-        Map<String, Object> map = userServices.login(username, password);
-        if ((boolean)map.get("ok")){
-            session.setAttribute("loginUser",map.get("user"));
+        Map<String, Object> resultMap = userServices.login(username, password);
+        if((Boolean) resultMap.get("ok")){
+            //把登录成功后的用户对象保存到session中
+            session.setAttribute("loginUser", resultMap.get("user"));
             return "redirect:/";
-        }else {
-            model.addAttribute("error",map.get("error"));
-            return "user/login";
+        }else{
+            model.addAttribute("error", resultMap.get("error"));
+            return "login";
         }
     }
 

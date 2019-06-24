@@ -4,10 +4,7 @@ import com.majorjava.monster.monster.entity.admin.Role;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * <h3>monster</h3>
@@ -36,12 +33,12 @@ public class User {
     private int age;
     @Column(name = "salt", length = 64, nullable = true)
     private String salt;
-    @Column(insertable = false,columnDefinition = "int default 1")
-    private int state;
-    @ManyToMany(fetch = FetchType.EAGER)//立即从数据库中进行加载数据；
-    @JoinTable(name = "t_role", joinColumns = {@JoinColumn(name = "uid")}, inverseJoinColumns = {
-            @JoinColumn(name = "rid")})
-    private List<Role> roleList;
+    private int state=1;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="t_user_role",
+            joinColumns = {@JoinColumn(name="user_id")},
+            inverseJoinColumns = {@JoinColumn(name="role_id")})
+    private List<Role> roles = new ArrayList<Role>();//用户拥有的角色列表
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Reply> replyList;
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
@@ -57,16 +54,7 @@ public class User {
     @Column(name = "svip",insertable = false,columnDefinition = "int default 0")
     private Integer svip;//0普通会员，1超级会员；
 
-    @Transient
-    public Set<String> getRolesName() {
-        List<Role> roles = getRoleList();
-        Set<String> set = new HashSet<String>();
-        for (Role role : roles) {
-            set.add(role.getRname());
-        }
-        return set;
 
-    }
 
 
     @Override
