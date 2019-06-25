@@ -1,5 +1,6 @@
 package com.majorjava.monster.monster.shiro;
 
+import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
@@ -27,7 +28,9 @@ public class ShiroConfiguration {
 
     @Bean
     public MyShiroRealm myRealm() {
-    return new MyShiroRealm();
+        MyShiroRealm myShiroRealm = new MyShiroRealm();
+        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return myShiroRealm;
 }
 
     @Bean
@@ -35,6 +38,14 @@ public class ShiroConfiguration {
         DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
         manager.setRealm(myRealm());
         return manager;
+    }
+
+    @Bean
+    public HashedCredentialsMatcher hashedCredentialsMatcher() {
+        HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
+        hashedCredentialsMatcher.setHashAlgorithmName("MD5");//散列算法:MD2、MD5、SHA-1、SHA-256、SHA-384、SHA-512等。
+        hashedCredentialsMatcher.setHashIterations(1024);//散列的次数，默认1次， 设置两次相当于 md5(md5(""));
+        return hashedCredentialsMatcher;
     }
 
     @Bean

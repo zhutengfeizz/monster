@@ -42,7 +42,7 @@ public class UserServicesImpl implements UserServices {
         map.put("ok",true);
         //从subject中获取当前登录用户的对象
         User user =(User)subject.getPrincipal();
-        map.put("user",user);
+        map.put("loginUser",user);
     }catch (UnknownAccountException e){
         e.printStackTrace();
         map.put("error","登录失败！用户不存在！");
