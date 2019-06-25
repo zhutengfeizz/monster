@@ -53,6 +53,9 @@ public class User {
     private Integer isFriend = 0;//关系，0表示没有关系，2表示互相关注
     @Column(name = "svip",insertable = false,columnDefinition = "int default 0")
     private Integer svip;//0普通会员，1超级会员；
+    private boolean signIn;//签到
+    private String Signature;//个性签名
+    private String verification;//验证是否实名
 
 
 

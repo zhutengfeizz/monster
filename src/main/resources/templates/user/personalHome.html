@@ -72,20 +72,224 @@
         </div>
         <!--中间-->
         <div id="mid">
-            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style=" border: 1px #CECECE solid;width: 800px;margin: 0px">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style=" border: 1px #CECECE solid;width: 914px;margin: 0px">
                 <ul class="layui-tab-title">
-                    <li class="layui-this">网站设置</li>
-                    <li>用户管理</li>
-                    <li>权限分配</li>
-                    <li>商品管理</li>
-                    <li>订单管理</li>
+                    <span class="layui-badge-dot layui-bg-orange"></span><li class="layui-this">设置</li>
+                    <span class="layui-badge-dot layui-bg-green"></span><li>编辑资料</li>
+                    <span class="layui-badge-dot layui-bg-blue"></span><li>实名认证</li>
                 </ul>
-                <div class="layui-tab-content" style="height: 100px;">
-                    <div class="layui-tab-item layui-show">内容不一样是要有，因为你可以监听tab事件（阅读下文档就是了）</div>
-                    <div class="layui-tab-item">内容2sssssssssssssssssssssssssssssssssssssssssssssssssssssssssss</div>
-                    <div class="layui-tab-item">内容3</div>
-                    <div class="layui-tab-item">内容4</div>
-                    <div class="layui-tab-item">内容5</div>
+                <div class="layui-tab-content" style="">
+                    <!--1-->
+                    <div class="layui-tab-item layui-show">
+
+                        <div style="width: 100%;height: 60px;background-color: white;border: 1px #E4E6E9 solid;">
+                            <div style="border: 1px #87C9EC solid;height: 30px;width: 769px;line-height: 60px;background-color: #D9EDF7;text-align: center;margin: 0px auto">
+                                <p style="color:#63B2DB;line-height: 60px;">配置信息存储于用户本地，清空浏览器数据将会导致配置信息丢失。</p>
+                            </div>
+                        </div>
+
+                        <div style="height: 170px;width: 890px;background-color: white;border: 1px #E4E6E9 solid;margin-top: 20px">
+                            <blockquote class="layui-elem-quote">
+                                <b style="font-size: 15px">隐私</b>
+                                <i style="font-size: 13px;color: silver">privacy</i>
+                            </blockquote>
+                            <div style="width: 600px;height: 40px;">
+                                <div style="margin-top: 10px;width: 130px;float: left">
+                                    <p style="color: #3A9BD9;font-weight: bold;font-size: 15px;margin-left: 5%">个人资料公开</p>
+                                </div>
+                                <div style="width: 100px;float: right;">
+                                    <form class="layui-form" style="">
+                                        <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div style="width: 600px;height: 40px;">
+                                <div style="margin-top: 10px;width: 130px;float: left">
+                                    <p style="color: #3A9BD9;font-weight: bold;font-size: 15px;margin-left: 5%">个人主页公开</p>
+                                </div>
+                                <div style="width: 100px;float: right;">
+                                    <form class="layui-form" style="">
+                                        <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="height: 170px;width: 890px;background-color: white;border: 1px #E4E6E9 solid;margin-top: 20px">
+                            <blockquote class="layui-elem-quote">
+                                <b style="font-size: 15px">其他</b>
+                                <i style="font-size: 13px;color: silver">privacy</i>
+                            </blockquote>
+                            <div style="width: 600px;height: 40px;">
+                                <div style="margin-top: 20px;width: 130px;float: left">
+                                    <p style="color: #3A9BD9;font-weight: bold;font-size: 15px;margin-left: 5%">拒绝私信</p>
+                                </div>
+                                <div style="width: 100px;float: right;">
+                                    <form class="layui-form" style="">
+                                        <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div style="width: 600px;height: 40px;">
+                                <div style="margin-top: 20px;width: 130px;float: left">
+                                    <p style="color: #3A9BD9;font-weight: bold;font-size: 15px;margin-left: 5%">拒绝添加好友</p>
+                                </div>
+                                <div style="width: 100px;float: right;">
+                                    <form class="layui-form" style="">
+                                        <input type="checkbox" name="close" lay-skin="switch" lay-text="ON|OFF">
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="width: 100%;height: 60px;background-color: white;border: 1px #E4E6E9 solid;margin-top: 20px">
+                            <div style="border: 1px #87C9EC solid;height: 30px;width: 769px;line-height: 60px;background-color: #D9EDF7;text-align: center;margin: 0px auto">
+                                <p style="color:#63B2DB;line-height: 60px;">部分选项需重新载入页面后生效。</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--2-->
+                    <div class="layui-tab-item">
+                        <div style="width: 100%;height:240px;background-color: white;border: 1px #E4E6E9 solid;">
+                            <blockquote class="layui-elem-quote" style="">
+                                <span style="font-size: 15px">基本信息</span>
+                                <i style="font-size: 13px;color: silver;">information</i>
+                            </blockquote>
+                            <div style="">
+                                <div class="layui-inline" style="margin-left: 10px;float: left">
+                                    <img src="../../static/images/ghost.ico" class="layui-circle" style="border: white 2px solid">
+                                </div>
+                                <div style="float: left;margin-top: 20px;padding-left: 15px">
+                                    <a style="color: #D56666">梦雨生生</a>
+                                    <span style="color:grey;font-size: 10px">Uid:69</span>
+                                    <span style="color:#0088CC">正式会员</span><br/>
+                                    <p style="color: #666666;font-size: 12px">注册于：2019年6月25日11时34分</p>
+                                    <hr>
+                                </div>
+                                <hr>
+                                <div style="padding: 10px">
+                                    <button type="button" class="layui-btn layui-btn-sm"><a>修改个性签名</a></button>
+                                    <button type="button" class="layui-btn layui-btn-sm"><a>修改头像</a></button>
+                                    <button type="button" class="layui-btn layui-btn-sm" style="float: right"><a>修改密码</a></button>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div style="width: 100%;height:240px;background-color: white;border: 1px #E4E6E9 solid;">
+                            <blockquote class="layui-elem-quote" style="">
+                                <span style="font-size: 15px">扩展</span>
+                                <i style="font-size: 13px;color: silver;">information</i>
+                            </blockquote>
+                            <div style="">
+                                <form class="layui-form" style="">
+                                    <div style="padding: 20px">
+                                              性别：<input type="text" name="sex"><br/>
+
+                                              邮箱：<input type="email" name="email">  <button><a>修改邮箱</a></button><br/>
+
+                                              电话号码：<input type="text" name="phone">  <button><a>修改电话号码</a></button><br/>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!--3-->
+                    <div class="layui-tab-item">
+                        <div style="width: 100%;height: 60px;background-color: white;border: 1px #E4E6E9 solid;">
+                            <div style="border: 1px #87C9EC solid;height: 40px;margin-top:10px;margin-left: 7%;width: 769px;background-color: #D9EDF7;">
+                                <span style="color:#63B2DB;height: 50px;">
+                                    亲爱的AcFun用户，依《网络安全法》相关要求，为确保您的账号安全使用，账号需实名认证后才可使用投稿、评论及弹幕功能。感谢您的支持与理解。
+                                </span>
+                            </div>
+                        </div>
+
+                        <!--验证说明-->
+                        <div style="height: 130px;width: 890px;background-color: white;border: 1px #E4E6E9 solid;margin-top: 20px">
+                            <blockquote class="layui-elem-quote">
+                                <b style="font-size: 15px">认证说明</b>
+                            </blockquote>
+                            <div style="margin-left: 4%">
+                                <p>
+                                    1.Monster实名认证有绑定手机号、身份证认证、邮箱验证三种方式可以选择。<br/>
+                                    2. 身份证认证为掌上110提供的权威服务，您提交的信息安全保密且将受到严格保护，仅用于身份认证。已完成认证的身份证号不可更改。<br/>
+                                    3.如有需要进行身份证认证，需先绑定手机号才可进行。
+                                </p>
+                            </div>
+                        </div>
+
+                        <!--验证方式-->
+                            <div style="height: 200px;width: 400px;background-color: white;border: 1px #E4E6E9 solid;margin-top: 20px;float: left">
+                                <blockquote class="layui-elem-quote">
+                                    <b style="font-size: 15px">手机号验证</b>
+                                </blockquote>
+
+                                <div style="margin-left: 10px">
+                                    <form style="">
+                                        <div style="margin:0px 20px 20px 0px">
+                                            手机号验证：<input type="text" name="phone" placeholder="请输入手机号">
+                                            <button type="button" class="layui-btn layui-btn-sm">获取验证码</button><br/>
+                                        </div>
+
+                                        <div  style="margin:0px 20px 20px 0px">
+                                            手机验证码：<input type="text" name="verificationCode" placeholder="请输入您收到的验证码">
+                                        </div>
+                                        <div>
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">提交验证</button>
+                                            <button type="button" class="layui-btn layui-btn-sm">重新发送验证码</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div style="height: 200px;width: 400px;background-color: white;border: 1px #E4E6E9 solid;margin-top: 20px;float: left;margin-left: 10px">
+                                <blockquote class="layui-elem-quote">
+                                    <b style="font-size: 15px">邮箱验证</b>
+                                </blockquote>
+
+                                <div style="margin-left: 10px;padding-left: 10px">
+                                    <form style="">
+                                        <div style="margin:0px 20px 20px 0px">
+                                            邮箱验证：<input type="text" name="email" placeholder="请输入邮箱">
+                                            <button type="button" class="layui-btn layui-btn-sm">获取验证码</button><br/>
+                                        </div>
+
+                                        <div  style="margin:0px 20px 20px 0px">
+                                            邮箱验证码：<input type="text" name="verificationCode" placeholder="请输入您收到的验证码">
+                                        </div>
+                                        <div>
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">提交验证</button>
+                                            <button type="button" class="layui-btn layui-btn-sm">重新发送验证码</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div style="height: 200px;width: 400px;background-color: white;border: 1px #E4E6E9 solid;margin-top: 20px;float: left">
+                                <blockquote class="layui-elem-quote">
+                                    <b style="font-size: 15px">身份证验证</b>
+                                </blockquote>
+
+                                <div style="margin-left: 10px">
+                                    <form style="">
+                                        <div style="margin:0px 20px 20px 0px">
+                                            身份证号验证：<input type="text" name="phone" placeholder="请输入身份证">
+                                        </div>
+
+                                        <div  style="margin:0px 20px 20px 0px">
+                                            身份证的姓名：<input type="text" name="numberName" placeholder="请输入您身份证上的姓名">
+                                        </div>
+                                        <div>
+                                            <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">提交验证</button>
+                                            <button type="button" class="layui-btn layui-btn-sm">重新发送验证码</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,44 +300,14 @@
 </div>
 <script src="../../static/layui-v2.5.3/layui/layui.js"></script>
 <script>
-    layui.use('element', function(){
+    layui.use(['form', 'element'], function(){
         var $ = layui.jquery
+            ,form = layui.form
             ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-
-        //触发事件
-        var active = {
-            tabAdd: function(){
-                //新增一个Tab项
-                element.tabAdd('demo', {
-                    title: '新选项'+ (Math.random()*1000|0) //用于演示
-                    ,content: '内容'+ (Math.random()*1000|0)
-                    ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
-                })
-            }
-            ,tabDelete: function(othis){
-                //删除指定Tab项
-                element.tabDelete('demo', '44'); //删除：“商品管理”
-
-
-                othis.addClass('layui-btn-disabled');
-            }
-            ,tabChange: function(){
-                //切换到指定Tab项
-                element.tabChange('demo', '22'); //切换到：用户管理
-            }
-        };
 
         $('.site-demo-active').on('click', function(){
             var othis = $(this), type = othis.data('type');
             active[type] ? active[type].call(this, othis) : '';
-        });
-
-        //Hash地址的定位
-        var layid = location.hash.replace(/^#test=/, '');
-        element.tabChange('test', layid);
-
-        element.on('tab(test)', function(elem){
-            location.hash = 'test='+ $(this).attr('lay-id');
         });
 
     });
