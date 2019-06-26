@@ -58,7 +58,7 @@
                     <div class="layui-inline" style="">
                         <img src="../../static/images/ghost.ico" class="layui-circle" style="border: white 2px solid">
                     </div><br/><br/>
-                    <b>梦于笙笙</b>
+                    <b th:text="${user.username}"></b>
                 </div>
             </div>
 
@@ -162,10 +162,12 @@
                                     <img src="../../static/images/ghost.ico" class="layui-circle" style="border: white 2px solid">
                                 </div>
                                 <div style="float: left;margin-top: 20px;padding-left: 15px">
-                                    <a style="color: #D56666">梦雨生生</a>
-                                    <span style="color:grey;font-size: 10px">Uid:69</span>
-                                    <span style="color:#0088CC">正式会员</span><br/>
-                                    <p style="color: #666666;font-size: 12px">注册于：2019年6月25日11时34分</p>
+                                    <a style="color: #D56666" th:text="${user.username}"></a>
+                                    uid:<span style="color:grey;font-size: 10px" title="" th:text="${user.id}"></span>
+                                    <span style="color:#0088CC" th:if="${user.svip==0}">正式会员</span><br/>
+                                    <span style="color:#0088CC" th:if="${user.svip==1}">超级会员</span><br/>
+                                    <!--<span style="color:#0088CC" th:if="${user.svip==1}">超级会员</span><br/>-->
+                                    <p style="color: #666666;font-size: 12px" th:text="${user.createTime}">注册于：</p>
                                     <hr>
                                 </div>
                                 <hr>
@@ -186,11 +188,16 @@
                             <div style="">
                                 <form class="layui-form" style="">
                                     <div style="padding: 20px">
-                                              性别：<input type="text" name="sex"><br/>
+                                              性别：<input type="text" name="sex" th:value="${user.sex}"><br/>
 
-                                              邮箱：<input type="email" name="email">  <button><a>修改邮箱</a></button><br/>
-
-                                              电话号码：<input type="text" name="phone">  <button><a>修改电话号码</a></button><br/>
+                                            邮箱： <input type="email" title="邮箱" name="email" th:if="${user.email!=null}" th:value="${user.email}">
+                                                  <input type="email" name="email" th:if="${user.email==null}" th:value="您还没有绑定邮箱">
+                                                <button th:if="${user.email!=null}"><a>修改邮箱</a></button><br/>
+                                                <button th:if="${user.email==null}"><a>绑定邮箱</a></button><br/>
+                                        电话号码：<input type="text" name="phone" th:if="${user.phone==null}" th:value="您还没有绑定手机号码">
+                                                 <input type="text" name="phone" th:if="${user.phone!=null}" th:value="${user.phone}">
+                                                <button th:if="${user.phone!=null}"><a>修改电话号码</a></button><br/>
+                                                <button th:if="${user.phone==null}"><a>绑定电话号码</a></button><br/>
                                     </div>
                                 </form>
                             </div>
@@ -202,7 +209,7 @@
                         <div style="width: 100%;height: 60px;background-color: white;border: 1px #E4E6E9 solid;">
                             <div style="border: 1px #87C9EC solid;height: 40px;margin-top:10px;margin-left: 7%;width: 769px;background-color: #D9EDF7;">
                                 <span style="color:#63B2DB;height: 50px;">
-                                    亲爱的AcFun用户，依《网络安全法》相关要求，为确保您的账号安全使用，账号需实名认证后才可使用投稿、评论及弹幕功能。感谢您的支持与理解。
+                                    亲爱的Monster用户，依《网络安全法》相关要求，为确保您的账号安全使用，账号需实名认证后才可使用投稿、评论及弹幕功能。感谢您的支持与理解。
                                 </span>
                             </div>
                         </div>

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.text.ParseException;
@@ -49,17 +51,19 @@ public class IndexController {
     @GetMapping("logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return "redirect:/";
+        return "redirect:/index";
     }
 
 
 
     @PostMapping("login")
-    public String login(String username, String password, Model model, HttpSession session){
+    public String login(String username, String password, Model model, HttpSession session, RedirectAttributes redirectAttributes){
         Map<String, Object> resultMap = userServices.login(username, password);
         if((Boolean) resultMap.get("ok")){
             //把登录成功后的用户对象保存到session中
-            session.setAttribute("loginUser", resultMap.get("user"));
+          User user= (User)resultMap.get("user");
+            session.setAttribute("loginUser", user);
+            System.out.println(user.getUsername()+"pasword"+user.getPassword());
             return "redirect:/index";
         }else{
             model.addAttribute("error", resultMap.get("error"));
@@ -96,5 +100,11 @@ public class IndexController {
             model.addAttribute("error", "亲亲！您输入的2次密码不相同哦！");
             return "user/register";
         }
+    }
+    @GetMapping("myHome")
+    public String myHome(Integer id,Model model){
+        User user = userServices.finByid(id);
+        model.addAttribute("user",user);
+        return "user/myHome";
     }
 }

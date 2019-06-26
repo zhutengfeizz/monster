@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
@@ -62,38 +64,40 @@ public class UserController {
     }
 
       @PostMapping("/save")
-      public String sava(int age,Integer id,RedirectAttributes redirectAttributes, String username, String password, String password2, String sex, String birthday, String email, Model model){
-            User user=null;
-            if (id==null){
-                user=new User();
-                user.setUsername(username);
-                user.setPassword(password);
-                String s = UUID.randomUUID().toString().replaceAll("-", "");
-                user.setSalt(s);
-                user.setSex(sex);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    user.setBirthday(sdf.parse(birthday));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                user.setCreateTime(new Timestamp(System.currentTimeMillis()));
-            }else {
-                user=userServices.finByid(id);
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                try {
-                    user.setBirthday(sdf.parse(birthday));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                user.setAge(age);
-                user.setEmail(email);
-                user.setSex(sex);
-            }
-           user = userServices.save(user);
-          redirectAttributes.addFlashAttribute("message","保存用户成功！");
-          return "redirect:/user/userList";
-      }
+      public String sava(int age,Integer id,RedirectAttributes redirectAttributes, String username,
+                         String password, String password2, String sex, String birthday, String email,
+                         Model model,@RequestParam("file") MultipartFile file){
+                            User user=null;
+                            if (id==null){
+                                user=new User();
+                                user.setUsername(username);
+                                user.setPassword(password);
+                                String s = UUID.randomUUID().toString().replaceAll("-", "");
+                                user.setSalt(s);
+                                user.setSex(sex);
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                try {
+                                    user.setBirthday(sdf.parse(birthday));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                user.setCreateTime(new Timestamp(System.currentTimeMillis()));
+                            }else {
+                                user=userServices.finByid(id);
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                try {
+                                    user.setBirthday(sdf.parse(birthday));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                user.setAge(age);
+                                user.setEmail(email);
+                                user.setSex(sex);
+                            }
+                           user = userServices.save(user);
+                          redirectAttributes.addFlashAttribute("message","保存用户成功！");
+                          return "redirect:/user/userList";
+                      }
 
     @GetMapping("/delete")
     public String delete(Integer id, RedirectAttributes redirectAttributes){

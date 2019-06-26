@@ -53,7 +53,7 @@ public class ShiroConfiguration {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setLoginUrl("/login");//登录链接
-        shiroFilterFactoryBean.setSuccessUrl("/");//登录成功链接
+        shiroFilterFactoryBean.setSuccessUrl("/index");//登录成功链接
         shiroFilterFactoryBean.setUnauthorizedUrl("/error/403");//认证不通过跳转
 
         Map<String,String> map = new HashMap<String, String>();

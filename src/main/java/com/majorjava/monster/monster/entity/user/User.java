@@ -56,6 +56,7 @@ public class User {
     private boolean signIn;//签到
     private String Signature;//个性签名
     private String verification;//验证是否实名
+    private String phone;//手机号码
 
 
 

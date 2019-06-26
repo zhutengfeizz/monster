@@ -20,6 +20,12 @@ spring:
 mybatis:
   type-aliases-package: com.oac.sbdemo.domain
 
+  #上传文件
+  upload:
+    location:
+      windows: D:\uploads\monster\
+      linux: /usr/etc/uploads/
+
 
 
 
