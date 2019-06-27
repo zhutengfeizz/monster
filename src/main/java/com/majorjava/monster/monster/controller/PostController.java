@@ -3,7 +3,6 @@ package com.majorjava.monster.monster.controller;
 import com.majorjava.monster.monster.entity.user.PartitionField;
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.PostPartition;
-import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.service.Post.FieldService;
 import com.majorjava.monster.monster.service.Post.PartitionService;
 import com.majorjava.monster.monster.service.Post.PostService;

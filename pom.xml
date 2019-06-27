@@ -127,8 +127,6 @@
             <artifactId>thymeleaf-extras-shiro</artifactId>
             <version>1.2.1</version>
         </dependency>
-
-
     </dependencies>
 
 
@@ -137,6 +135,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
             </plugin>
         </plugins>
     </build>

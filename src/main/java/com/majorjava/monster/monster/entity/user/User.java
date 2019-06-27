@@ -24,7 +24,7 @@ public class User {
     private String username;
     @Column(name = "password")
     private String password;
-    private String head;
+    private String headshot;//头像
     private String email;
     private String sex;
     private Date birthday;
@@ -54,7 +54,7 @@ public class User {
     @Column(name = "svip",insertable = false,columnDefinition = "int default 0")
     private Integer svip;//0普通会员，1超级会员；
     private boolean signIn;//签到
-    private String Signature;//个性签名
+    private String signature;//个性签名
     private String verification;//验证是否实名
     private String phone;//手机号码
 
@@ -68,7 +68,7 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", head='" + head + '\'' +
+                ", headshot='" + headshot + '\'' +
                 ", email='" + email + '\'' +
                 ", sex='" + sex + '\'' +
                 ", birthday=" + birthday +

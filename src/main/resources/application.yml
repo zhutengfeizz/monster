@@ -19,11 +19,13 @@ spring:
     database: mysql
 mybatis:
   type-aliases-package: com.oac.sbdemo.domain
+server:
+  port: 5656
 
-  #上传文件
-  upload:
+#上传文件
+upload:
     location:
-      windows: D:\uploads\monster\
+      windows: D:\uploads\sb\
       linux: /usr/etc/uploads/
 
 

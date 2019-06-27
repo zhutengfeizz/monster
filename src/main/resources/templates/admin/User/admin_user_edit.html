@@ -9,7 +9,7 @@
 <body>
 <div id="body" style="width: 1200px;height: 600px;margin: 0 auto;border: orange solid 3px" >
 
-    <form class="layui-form" action="/user/save" method="post" style="width: 500px;height: 500px;text-align: center;margin: 0 auto">
+    <form class="layui-form" action="/user/save" method="post" enctype="multipart/form-data" style="width: 500px;height: 500px;text-align: center;margin: 0 auto">
         <div style="margin: 10px 0px 10px 0px;text-align: left">
             <button type="button" class="layui-btn">用户信息编辑</button>
         </div>
@@ -32,7 +32,6 @@
                 <input type="password"  th:value="${user.password}" name="password" lay-verType="tips" lay-verify="required" lay-reqtext="密码不能为空哦！" placeholder="请输入密码" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid layui-word-aux">您账号的密码</div>
-
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">邮箱</label>
@@ -61,7 +60,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">手机</label>
             <div class="layui-input-inline">
-                <input type="tel" th:value="${user.phone}" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" placeholder="请输入正确的手机号">
+                <input type="text" th:value="${user.phone}" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input" placeholder="请输入正确的手机号">
             </div>
         </div>
 
@@ -72,6 +71,13 @@
             </div>
         </div>
 
+        <div class="layui-form-item">
+            <label class="layui-form-label">个性签名</label>
+            <div class="layui-input-inline">
+                <input type="text" th:value="${user.signature}" name="signature"  autocomplete="off" class="layui-input" placeholder="非必填">
+            </div>
+        </div>
+
         <div>
             <img th:if="${user.headshot!=null}" th:src="${user.headshot}" style="width: 80px;height: 80px;"/>
         </div>
@@ -79,10 +85,6 @@
         <div style="">
             选择头像：<input type="file" name="file" /><br/>
         </div>
-
-
-
-
         <div style="margin-bottom: 10px">
               <span style="color: red" th:text="${message}">
 
