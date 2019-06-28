@@ -54,7 +54,8 @@
             <dl class="layui-nav-child">
                 <dd><a href="">CSGO</a></dd>
                 <dd><a href="">游戏商城</a></dd>
-                <dd><a href="../static/game/fk.html">游戏中心</a></dd>
+                <dd><a href="../static/game/fk.html">切方块</a></dd>
+                <dd><a href="../static/game/Mario/index.html">马里奥</a></dd>
                 <dd><a href="adminIndex">管理员</a></dd>
                 <dd><a href="/post/edit">发帖</a></dd>
             </dl>
@@ -77,14 +78,14 @@
                 <a href="/login">登录</a>
             </li>
             <li class="layui-nav-item"  style="float: right" >
-                <a href="/register">注册</a>
+                <a href="/register/">注册</a>
             </li>
         </ul>
 
         <ul class="layui-nav layui-layout-right" th:if="${session.loginUser!=null}">
                <li class="layui-nav-item">
                     <a href="javascript:;">
-                        <img th:src="/uploads/+${user.headshot}" class="layui-nav-img">
+                        <img  th:src="${session.loginUser.headshot}" class="layui-nav-img">
                          <span th:text="${session.loginUser.username}"></span>
                     </a>
                     <dl class="layui-nav-child">

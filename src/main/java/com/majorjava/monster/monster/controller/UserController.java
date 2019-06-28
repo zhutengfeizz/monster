@@ -74,8 +74,13 @@ public class UserController {
                             User user=null;
                             if (id==null){
                                 user=new User();
+                                user.setPassword(password);
+                                user.setUsername(username);
+                                String s = UUID.randomUUID().toString().replaceAll("-", "");
+                                user.setSalt(s);
                             }else {
                                 user=userServices.finByid(id);
+
                                 }
            /*                         File file1=new File("D:\\uploads\\sb");
           if(!file.getOriginalFilename().equals("")){
@@ -90,11 +95,6 @@ public class UserController {
               System.out.println("上传头像"+filename+"成功！");
               user.setHeadshot("/uploads/"+filename);
           }*/
-                              user.setUsername(username);
-                              user.setPassword(password);
-                              String s = UUID.randomUUID().toString().replaceAll("-", "");
-                              user.setSalt(s);
-                              user.setSex(sex);
                               SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                               try {
                                   user.setBirthday(sdf.parse(birthday));
@@ -110,7 +110,8 @@ public class UserController {
                               String headshotFilename = uploadHeadshot(file);
                               //头像名不为空，才更新头像的路径
                               if(headshotFilename!=null) {
-                                  user.setHeadshot(headshotFilename);
+                                  user.setHeadshot("/user/"+headshotFilename);
+                                  System.out.println("修改的图像为："+user.getHeadshot());
 
                             }
                            user = userServices.save(user);

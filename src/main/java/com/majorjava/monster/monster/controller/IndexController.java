@@ -63,6 +63,7 @@ public class IndexController {
             //把登录成功后的用户对象保存到session中
           User user= (User)resultMap.get("user");
             session.setAttribute("loginUser", user);
+            System.out.println("头像是："+user.getHeadshot());
             System.out.println(user.getUsername()+"pasword"+user.getPassword());
             return "redirect:/index";
         }else{

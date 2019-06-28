@@ -1,11 +1,11 @@
 spring:
   datasource:
-    url: jdbc:mysql://www.majorjava.com/monster?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://127.0.0.1:3306/monster?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: zhutengfei
+    password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   resources:
-    static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css
+    static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css,classpath:/user,
   jpa:
     properties:
       hibernate:
@@ -20,7 +20,7 @@ spring:
 mybatis:
   type-aliases-package: com.oac.sbdemo.domain
 server:
-  port: 5656
+  port: 9666
 
 #上传文件
 upload:
