@@ -57,7 +57,7 @@
                 <dd><a href="../static/game/fk.html">切方块</a></dd>
                 <dd><a href="../static/game/Mario/index.html">马里奥</a></dd>
                 <dd><a href="adminIndex">管理员</a></dd>
-                <dd><a href="/post/edit">发帖</a></dd>
+                <dd><a href="/post/save">发帖</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item"><a href="">论坛</a></li>
@@ -89,7 +89,8 @@
                          <span th:text="${session.loginUser.username}"></span>
                     </a>
                     <dl class="layui-nav-child">
-                        <dd><a href="">基本资料</a></dd>
+                        <dd><a href="#"  th:href="@{/user/edit(id=${session.loginUser.id})}">基本资料</a></dd>
+                        <dd><a href="#" th:href="@{/user/postList(id=${session.loginUser.id})}">我的帖子</a></dd>
                         <dd><a href="">我的收藏</a></dd>
                         <dd><a href="">我的关注</a></dd>
                         <dd><a href="">修改密码</a></dd>

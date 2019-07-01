@@ -3,9 +3,11 @@ package com.majorjava.monster.monster.controller;
 import com.majorjava.monster.monster.entity.user.PartitionField;
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.PostPartition;
+import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.service.Post.FieldService;
 import com.majorjava.monster.monster.service.Post.PartitionService;
 import com.majorjava.monster.monster.service.Post.PostService;
+import com.majorjava.monster.monster.service.User.UserServices;
 import com.majorjava.monster.monster.upload.UploadProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +38,8 @@ public class PostController {
     private FieldService fieldService;
     @Resource
     private UploadProperties uploadProperties;
+    @Autowired
+    private UserServices userServices;
 
     @GetMapping("postList")
     public String allPost(Model model){
@@ -52,7 +56,15 @@ public class PostController {
     }
 
     @GetMapping("save")
-    public String addPost(){
+    public String addPost(Model model){
+        Post post =new Post();
+        model.addAttribute(post);
+        //获取分区列表
+        List<PostPartition> partitionList=partitionService.postPartitionAll();
+        model.addAttribute("partitionList",partitionList);
+        //获取领域列表
+        List<PartitionField> partitionFields = fieldService.partitionFieldAll();
+        model.addAttribute("partitionFields",partitionFields);
         return "/admin/post/admin_post_edit";
     }
 
@@ -76,20 +88,35 @@ public class PostController {
     @PostMapping("save")
     public String save(Integer id,String title,String type,
                        String field,String introduction,
-                       String content,String partition,Integer uid
+                       String content,String partition,Integer uid,String img
     ){
-        Post post=new Post();
-        post.setName(title);
-        post.setType(type);
-        post.setCreateTime(new Timestamp(System.currentTimeMillis()));
-        post.setIntroduction(introduction);
-        post.setContent(content);
-        post.setSort(field);
-        post.setRegion(partition);
-        post.setImg(post.getImg());
-        postService.save(post);
+        Post p=null;
+        if (id!=null){
+            p=postService.finByid(id);
+            p.setName(title);
+            p.setType(type);
+            p.setContent(content);
+            p.setImg(img);
+            p.setIntroduction(introduction);
+            p.setSort(field);
+            p.setRegion(partition);
+        }else {
+            p =new Post();
+            User user = userServices.finByid(uid);
+            p.setUser(user);
+            p.setName(title);
+            p.setType(type);
+            p.setCreateTime(new Timestamp(System.currentTimeMillis()));
+            p.setIntroduction(introduction);
+            p.setContent(content);
+            p.setSort(field);
+            p.setRegion(partition);
+            p.setImg(p.getImg());
+        }
+        postService.save(p);
         return "redirect:/post/postList";
     }
+
     @GetMapping("delete")
     public String delete(Integer id){
         postService.delete(id);
@@ -109,4 +136,5 @@ public class PostController {
         postService.finalDelete(id);
         return "redirect:/post/deleteList";
     }
+
 }

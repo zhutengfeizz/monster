@@ -15,8 +15,9 @@
         <div style="margin: 10px 0px 10px 0px;text-align: left">
             <button type="button" class="layui-btn">文章投稿</button>
         </div>
+        <input type="hidden" name="uid" th:if="${session.loginUser.id!=null}" th:value="${session.loginUser.id}">
         <input type="hidden" name="id"  th:value="${post.id}">
-
+        <input type="hidden" name="file" id="img" value="">
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 110px">
                 <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿标题</B>
@@ -43,20 +44,23 @@
                 <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿分类</B>
             </label>
             <div class="layui-input-inline">
-                <select name="field">
-                    <option th:each="pr : ${partitionList}"
+                <select name="">
+                    <option th:each="pr :  ${partitionList}"
                             th:value="${pr.id}"
                             th:text="${pr.tname}"
+                            th:name="${pr.tname}"
+                            name="field"
                             >
-                            分区3
+                            分区
                     </option>
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select name="partition">
+                <select name="">
                     <option th:each="pr : ${partitionFields}"
                             th:value="${pr.id}"
                             th:text="${pr.fname}"
+                           name="partition"
                     >
                             领域
                     </option>
@@ -70,7 +74,7 @@
                     <B style="font-size: 15px;color:grey">投稿封面</B>
             </label>
             <div class="layui-upload" style="padding-left: 10px;float: left;">
-                <div class="layui-upload-drag" id="test10" style="width: 300px">
+                <div class="layui-upload-drag" id="test10" name="file" style="width: 300px">
                     <i class="layui-icon"></i>
                     <p>
                         点击上传，或将文件拖拽到此处(ps:支持10MB以下jpg、jpeg、png)。
@@ -78,7 +82,7 @@
                 </div>
                      <b style="">预览图：</b>
                     <div class="layui-upload-list" style="float: right;padding-left: 20px;margin: 0px">
-                        <img class="layui-upload-img" style="width: 200px;max-height: 183px" id="demo1">
+                        <img class="layui-upload-img" name="img" style="width: 200px;max-height: 183px" id="demo1">
                         <p id="demoText"></p>
                     </div>
             </div>
@@ -128,8 +132,10 @@
         //拖拽上传
        var uploadInst = upload.render({
             elem: '#test10'
-            ,url: 'post/upload/'
-            ,before: function(obj){
+            ,url: '/upload/add/'
+             ,type: 'file'
+            ,method: 'post'
+              ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
                     $('#demo1').attr('src', result); //图片链接（base64）
@@ -139,6 +145,10 @@
                 //如果上传失败
                 if(res.code > 0){
                     return layer.msg('上传失败');
+                }else {
+
+                    $("#img").val(res.data.src);
+                    return layer.msg('上传成功');
                 }
                 //上传成功
             }
@@ -150,6 +160,7 @@
                     uploadInst.upload()
                 });
             }
+            ,
         });
 
         //日期
@@ -161,7 +172,6 @@
         });
 
         var editIndex = layedit.build('LAY_demo_editor');
-
     }();
 
 </script>

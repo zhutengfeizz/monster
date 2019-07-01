@@ -101,6 +101,8 @@ public class UserController {
                               } catch (ParseException e) {
                                   e.printStackTrace();
                               }
+                              user.setSex(sex);
+                              user.setAge(age);
                               user.setCreateTime(new Timestamp(System.currentTimeMillis()));
                               user.setPhone(phone);
                               user.setEmail(email);
@@ -115,7 +117,7 @@ public class UserController {
 
                             }
                            user = userServices.save(user);
-                          redirectAttributes.addFlashAttribute("message","保存用户成功！");
+                          redirectAttributes.addFlashAttribute("message","修改成功！");
                           return "redirect:/user/userList";
                       }
 
