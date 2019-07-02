@@ -47,4 +47,9 @@ public class FieldServiceImpl implements FieldService {
     public PartitionField finByid(Integer id) {
         return fieldDao.findById(id).get();
     }
+
+    @Override
+    public List<PartitionField> findByPartitionId(int id) {
+        return fieldDao.findByPartitionId(id);
+    }
 }

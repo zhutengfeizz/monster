@@ -1,5 +1,6 @@
 package com.majorjava.monster.monster.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,12 +15,13 @@ import java.util.Date;
  **/
 @Entity
 @Table(name = "t_field")
-@Data
 public class PartitionField {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private String fname;
+
+    @JsonIgnore
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="partition_id")
     private PostPartition partition;
@@ -27,4 +29,44 @@ public class PartitionField {
     private int state;
     @Column(name = "create_time", nullable = false)
     private Date createTime;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public PostPartition getPartition() {
+        return partition;
+    }
+
+    public void setPartition(PostPartition partition) {
+        this.partition = partition;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

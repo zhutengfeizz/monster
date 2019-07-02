@@ -33,7 +33,12 @@ public class IndexController {
     private UserServices userServices;
 
     @GetMapping("index")
-    public String index(){
+    public String index(HttpSession session){
+        User loginUser = (User)session.getAttribute("loginUser");
+        if(loginUser!=null){
+            session.setAttribute("loginUser",userServices.finByid(loginUser.getId()));
+        }
+
         return "index";
     }
 

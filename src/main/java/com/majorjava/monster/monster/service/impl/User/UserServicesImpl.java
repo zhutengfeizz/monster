@@ -133,4 +133,13 @@ public class UserServicesImpl implements UserServices {
     public void finalDelete(Integer id) {
         userDao.deleteById(id);
     }
+
+    @Override
+    public User updateheadshot(Integer uid, String headshot) {
+
+        User user = userDao.findById(uid).get();
+        user.setHeadshot("/user/"+headshot);
+
+        return userDao.save(user);
+    }
 }

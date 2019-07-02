@@ -17,5 +17,6 @@ public interface FieldService {
     PartitionField save(PartitionField partitionField);
     void delete(Integer id);
     PartitionField finByid(Integer id);
+    List<PartitionField>findByPartitionId(int id);
 
 }

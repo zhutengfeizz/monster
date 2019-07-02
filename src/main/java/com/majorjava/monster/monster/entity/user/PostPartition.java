@@ -15,7 +15,6 @@ import java.util.List;
  **/
 @Entity
 @Table(name="t_postPartition")
-@Data
 public class PostPartition {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,4 +27,43 @@ public class PostPartition {
     @Column(name = "create_time", nullable = false)
     private Date createTime;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTname() {
+        return tname;
+    }
+
+    public void setTname(String tname) {
+        this.tname = tname;
+    }
+
+    public List<PartitionField> getFieldList() {
+        return fieldList;
+    }
+
+    public void setFieldList(List<PartitionField> fieldList) {
+        this.fieldList = fieldList;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 }

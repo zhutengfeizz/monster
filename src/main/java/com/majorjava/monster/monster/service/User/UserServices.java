@@ -25,4 +25,5 @@ public interface UserServices {
     User findByUsername(String username);
     List<User> findBydelete();
     void finalDelete(Integer id);
+    User  updateheadshot(Integer uid,String headshot);
 }

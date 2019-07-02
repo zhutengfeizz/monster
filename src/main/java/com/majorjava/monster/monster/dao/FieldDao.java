@@ -17,4 +17,5 @@ import java.util.List;
 @Repository
 public interface FieldDao extends CrudRepository<PartitionField, Integer> {
     List<PartitionField> findByStateOrderByCreateTimeDesc(int state);
+    List<PartitionField>findByPartitionId(int id);
 }

@@ -15,10 +15,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <h3>monster</h3>
@@ -76,13 +79,9 @@ public class PostController {
             //获取分区列表
             List<PostPartition> partitionList=partitionService.postPartitionAll();
             model.addAttribute("partitionList",partitionList);
-            //获取领域列表
-            List<PartitionField> partitionFields = fieldService.partitionFieldAll();
-            model.addAttribute("partitionFields",partitionFields);
         }else {
             model.addAttribute("error","修改失败!id为空。");
         }
-
         return "admin/post/admin_post_edit";
     }
     @PostMapping("save")
@@ -111,8 +110,9 @@ public class PostController {
             p.setContent(content);
             p.setSort(field);
             p.setRegion(partition);
-            p.setImg(p.getImg());
+            p.setImg(img);
         }
+        System.out.println(p);
         postService.save(p);
         return "redirect:/post/postList";
     }
@@ -135,6 +135,15 @@ public class PostController {
     private String finalDelete(Integer id){
         postService.finalDelete(id);
         return "redirect:/post/deleteList";
+    }
+
+    @ResponseBody
+    @PostMapping("getField")
+    public List<PartitionField> getField(Integer id){
+        System.out.println("id:"+id);
+        List<PartitionField> fieldList = fieldService.findByPartitionId(id);
+
+            return fieldList;
     }
 
 }

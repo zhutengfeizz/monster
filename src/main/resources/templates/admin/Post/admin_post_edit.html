@@ -2,7 +2,9 @@
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>帖子详情</title>
+    <title>帖子详情2</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+
     <link rel="stylesheet" href="../../../static/layui-v2.5.3/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
 
@@ -11,19 +13,19 @@
 <body>
 <div id="body" style="width: 1200px;margin: 0 auto;border: orange solid 3px;background-color:#F5F7FA">
 
-    <form class="layui-form" th:action="@{/post/save}"  enctype="multipart/form-data" method="post" style="width: 800px;text-align: center;margin: 0 auto;background-color: white;padding-right: 10px">
+    <form class="layui-form" th:action="@{/post/save}"  method="post" style="width: 800px;text-align: center;margin: 0 auto;background-color: white;padding-right: 10px">
         <div style="margin: 10px 0px 10px 0px;text-align: left">
             <button type="button" class="layui-btn">文章投稿</button>
         </div>
         <input type="hidden" name="uid" th:if="${session.loginUser.id!=null}" th:value="${session.loginUser.id}">
         <input type="hidden" name="id"  th:value="${post.id}">
-        <input type="hidden" name="file" id="img" value="">
+        <input type="hidden" name="img" id="img" value="">
         <div class="layui-form-item">
             <label class="layui-form-label" style="width: 110px">
                 <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿标题</B>
             </label>
             <div class="layui-input-block">
-                <input type="text"  th:value="${post.name}" name="title" lay-verify="title" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
+                <input type="text"  th:value="${post.name}" name="title" lay-verify="required" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="">
@@ -32,9 +34,9 @@
             </label>
             <div class="layui-input-block" style="">
                 <div class="layui-input-block"style="float: left">
-                    <input type="radio" name="type" title="原创">
-                    <input type="radio" name="type" title="转载">
-                    <input type="radio"  name="type" title="其他">
+                    <input type="radio" name="type" value="原创" title="原创">
+                    <input type="radio" name="type" value="转载" title="转载">
+                    <input type="radio"  name="type" value="其他" title="其他">
                 </div>
             </div>
         </div>
@@ -44,26 +46,14 @@
                 <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿分类</B>
             </label>
             <div class="layui-input-inline">
-                <select name="">
-                    <option th:each="pr :  ${partitionList}"
-                            th:value="${pr.id}"
-                            th:text="${pr.tname}"
-                            th:name="${pr.tname}"
-                            name="field"
-                            >
-                            分区
+                <select lay-filter="test" name="partition" id="partition" >
+                    <option  th:each="pr :  ${partitionList}" th:value="${pr.id}"  th:text="${pr.tname}">
                     </option>
                 </select>
             </div>
             <div class="layui-input-inline">
-                <select name="">
-                    <option th:each="pr : ${partitionFields}"
-                            th:value="${pr.id}"
-                            th:text="${pr.fname}"
-                           name="partition"
-                    >
-                            领域
-                    </option>
+                <select name="field" id="field" class="field">
+
                 </select>
             </div>
         </div>
@@ -115,6 +105,7 @@
         </div>
     </form>
 </div>
+
 </body>
 <script src="../../../static/js/jquery.js"></script>
 <script src="../../../static/layui-v2.5.3/layui/layui.all.js"></script>
@@ -130,15 +121,16 @@
             ,upload = layui.upload;
 
         //拖拽上传
-       var uploadInst = upload.render({
+        var uploadInst = upload.render({
             elem: '#test10'
-            ,url: '/upload/add/'
-             ,type: 'file'
+            ,url: 'http://119.23.52.230/SSM/uploads/'
+            ,type: 'file'
             ,method: 'post'
-              ,before: function(obj){
+            ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
                     $('#demo1').attr('src', result); //图片链接（base64）
+                    form.render();
                 });
             }
             ,done: function(res){
@@ -148,6 +140,7 @@
                 }else {
 
                     $("#img").val(res.data.src);
+
                     return layer.msg('上传成功');
                 }
                 //上传成功
@@ -163,6 +156,7 @@
             ,
         });
 
+
         //日期
         laydate.render({
             elem: '#date'
@@ -171,8 +165,37 @@
             elem: '#date1'
         });
 
+        layedit.set({
+            uploadImage: {
+                url: 'http://119.23.52.230/SSM/uploads/' //接口url
+                ,type: 'post' //默认post
+            }
+        });
         var editIndex = layedit.build('LAY_demo_editor');
+
+            $(document).ready(function () {
+                    form.on('select(test)',function(data){
+                        var id=data.value;
+                        $.post("/post/getField?id="+id,function (date,status) {
+                            var  str="";
+                            $.each(date,function(k,v){
+                                str+="<option value="+v.id+">"+v.fname+"</option>";
+                            });
+                            $("#field").html(str);
+                            form.render();
+                        });
+
+                    });
+
+                $('select[name="partition"]').next().find('.layui-anim-upbit').find('.layui-this').click();
+            });
+
+
     }();
+
+            //级联菜单
+
+
 
 </script>
 </html>

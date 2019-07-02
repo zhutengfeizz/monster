@@ -1,6 +1,9 @@
 package com.majorjava.monster.monster.controller;
 
+import com.majorjava.monster.monster.entity.user.User;
+import com.majorjava.monster.monster.service.User.UserServices;
 import com.majorjava.monster.monster.upload.UploadProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -28,7 +32,8 @@ public class UploadController {
 
     @Resource
     private UploadProperties uploadProperties;
-
+    @Autowired
+    private UserServices userServices;
     @Resource
     private ResourceLoader resourceLoader;
 
@@ -46,6 +51,21 @@ public class UploadController {
         System.out.println(map);
         return map;
 
+    }
+    @ResponseBody
+    @PostMapping("/updateHead")
+    public Map<String, Object> updateHead(@RequestParam("file") MultipartFile file, HttpSession session)throws IOException{
+        String imgName = uploadHeadshot(file);
+        User user = (User) session.getAttribute("loginUser");
+        Map<String,Object> map=new HashMap<>();
+        Map<String,Object> src=new HashMap<>();
+        User user1 = userServices.updateheadshot(user.getId(), imgName);
+        System.out.println(user1);
+        src.put("src",""+imgName);
+        map.put("code",0);
+        map.put("msg","ok");
+        map.put("data",src);
+        return map;
     }
 
 
