@@ -1,6 +1,8 @@
 package com.majorjava.monster.monster.controller;
 
+import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.User;
+import com.majorjava.monster.monster.service.Post.PostService;
 import com.majorjava.monster.monster.service.User.UserServices;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,9 +34,13 @@ import java.util.Map;
 public class IndexController {
     @Autowired
     private UserServices userServices;
+    @Autowired
+    private PostService postService;
 
     @GetMapping("index")
-    public String index(HttpSession session){
+    public String index(HttpSession session,Model model){
+        List<Post> postList = postService.postAll();
+        model.addAttribute("postList",postList);
         User loginUser = (User)session.getAttribute("loginUser");
         if(loginUser!=null){
             session.setAttribute("loginUser",userServices.finByid(loginUser.getId()));

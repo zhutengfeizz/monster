@@ -123,7 +123,7 @@
         //拖拽上传
         var uploadInst = upload.render({
             elem: '#test10'
-            ,url: 'http://119.23.52.230/SSM/uploads/'
+            ,url: '/upload/add'
             ,type: 'file'
             ,method: 'post'
             ,before: function(obj){
@@ -167,8 +167,9 @@
 
         layedit.set({
             uploadImage: {
-                url: 'http://119.23.52.230/SSM/uploads/' //接口url
-                ,type: 'post' //默认post
+                url: '/upload/add' //接口url
+                ,type: 'file'
+                ,method: 'post'
             }
         });
         var editIndex = layedit.build('LAY_demo_editor');

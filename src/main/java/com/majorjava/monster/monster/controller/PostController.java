@@ -48,6 +48,7 @@ public class PostController {
     public String allPost(Model model){
         List<Post> posts =(List<Post>) postService.postAll();
         model.addAttribute("allPost",posts);
+        System.out.println(posts);
         return "admin/post/admin_post_list";
     }
 
@@ -86,9 +87,10 @@ public class PostController {
     }
     @PostMapping("save")
     public String save(Integer id,String title,String type,
-                       String field,String introduction,
-                       String content,String partition,Integer uid,String img
+                       Integer field,String introduction,
+                       String content,Integer partition,Integer uid,String img
     ){
+        System.out.println("Img-------:"+img);
         Post p=null;
         if (id!=null){
             p=postService.finByid(id);
@@ -97,20 +99,24 @@ public class PostController {
             p.setContent(content);
             p.setImg(img);
             p.setIntroduction(introduction);
-            p.setSort(field);
-            p.setRegion(partition);
+            PartitionField field1 = fieldService.finByid(field);
+            p.setField(field1);
+            PostPartition postPartition = partitionService.finByid(partition);
+            p.setPartition(postPartition);
         }else {
             p =new Post();
             User user = userServices.finByid(uid);
+            p.setImg(img);
             p.setUser(user);
             p.setName(title);
             p.setType(type);
             p.setCreateTime(new Timestamp(System.currentTimeMillis()));
             p.setIntroduction(introduction);
             p.setContent(content);
-            p.setSort(field);
-            p.setRegion(partition);
-            p.setImg(img);
+            PartitionField field1 = fieldService.finByid(field);
+            p.setField(field1);
+            PostPartition postPartition = partitionService.finByid(partition);
+            p.setPartition(postPartition);
         }
         System.out.println(p);
         postService.save(p);
@@ -124,7 +130,7 @@ public class PostController {
     }
 
     @GetMapping("restore")
-    private String restore(Integer id){
+    public  String restore(Integer id){
         Post post = postService.finByid(id);
         post.setState(1);
        postService.save(post);
@@ -132,7 +138,7 @@ public class PostController {
     }
 
     @GetMapping("finalDelete")
-    private String finalDelete(Integer id){
+    public String finalDelete(Integer id){
         postService.finalDelete(id);
         return "redirect:/post/deleteList";
     }

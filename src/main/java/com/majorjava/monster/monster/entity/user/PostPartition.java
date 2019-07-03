@@ -14,7 +14,7 @@ import java.util.List;
  * @date : 2019-06-19 16:33
  **/
 @Entity
-@Table(name="t_postPartition")
+@Table(name="t_partition")
 public class PostPartition {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

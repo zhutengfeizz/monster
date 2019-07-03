@@ -40,7 +40,7 @@
         }
     </style>
 </head>
-<body>
+<body id="bigbg">
 <!--<audio controls>
     <source src="../static/music/宗次郎%20-%20いつも何度でも.mp3" type="audio/mpeg" style="width: 100px">
     Your browser does not support this audio format.
@@ -104,7 +104,7 @@
     </ul>
 </div>
 
-<div id="bigbg">
+<div id="">
     <div class="layui-container" style="background-color: white;padding: 0 1px;">
         <!--轮播图-->
         <div class="layui-carousel" id="test1" style="padding-top: 1px">
@@ -120,10 +120,8 @@
                 <div><img src="../static/images/xiari.jpg"style="height: 400px;width: 100%"></div>
             </div>
         </div>
-        <!--登录注册模态框-->
-
-
-        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin-top: 100px">
+        <!---->
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin-top: 100px;">
             <ul class="layui-tab-title">
                 <li class="layui-this">管理员推荐<img src="../static/images/热门.png"></li>
                 <li>最新 <img src="../static/images/new%20(2).png"></li>
@@ -131,57 +129,84 @@
                 <li>文章区热门<span class="layui-badge">99+</span></li></li>
                 <li>E3游戏展 <img src="../static/images/游戏.png" width="24px" height="20px"></li>
             </ul>
-            <div class="layui-tab-content">
+            <div class="layui-tab-content" style="">
                 <!--内容1-->
                 <i class="web-font" style="color: #FD4C5B">知识就像内-裤，看不见但很重要。</i>
                 <hr style="color: #E6E6E6; size: 4px;">
+                <!--分类-->
+                <div style="border: 2px chocolate;width:450px;float: right">
+                 <div>
+                     <h4>社区导航</h4>
+                     <hr style="color: silver">
+                     <div style="width: 200px;float: right">
+                         <input type="text" name="so" placeholder="您要找什么？"><img src="../static/images/放大镜.png">
+                     </div>
+                 </div>
+
+                    <label><a style="font-size: 16px;color: black">综合</a></label><br/>
+                    <span class="layui-breadcrumb" lay-separator="|">
+                      <a href="" >杂谈</a>
+                      <a href="">科技</a>
+                      <a href="" >影视</a>
+                      <a href="">体育</a>
+                    </span><br/><br/>
+
+
+                    <label><a style="font-size: 16px;color: black">生活情感</a></label><br/>
+                    <span class="layui-breadcrumb" lay-separator="|">
+                          <a href="" >吐槽</a>
+                          <a href="">情感</a>
+                          <a href="" >萌宠</a>
+                          <a href="">工作</a>
+                          <a href="">买买买！</a>
+                          <a href="">摄影游记</a>
+                    </span><br/><br/>
+
+                    <label><a style="font-size: 16px;color: black">游戏</a></label><br/>
+                    <span class="layui-breadcrumb" lay-separator="|">
+                          <a href="" >游戏杂谈</a>
+                          <a href="">次时代主机</a>
+                          <a href="" >CSGO</a>
+                    </span><br/><br/>
+
+                    <label><a style="font-size: 16px;color: black">动漫文化</a></label><br/>
+                    <span class="layui-breadcrumb" lay-separator="|">
+                          <a href="" >手办模玩</a>
+                          <a href="">漫画杂谈</a>
+                    </span><br/><br/>
+
+                    <label><a style="font-size: 16px;color: black">开车区</a></label><br/>
+                    <span class="layui-breadcrumb" lay-separator="|">
+                          <a href="" >步兵区</a>
+                          <a href="">欧美区</a>
+                          <a href="" >亚洲区</a>
+                          <a href="">质量骑兵区</a>
+                    </span><br/><br/>
+
+                </div>
                 <div class="layui-tab-item layui-show">
 
-                    <div style="border: #1b6d85 solid 2px;width: 670px;height: 90px;margin-top: 10px">
+                    <div style="border: #1b6d85 solid 2px;width: 670px;height: 90px;margin-top: 10px" th:each="post,postStat : ${postList}">
                         <div style="width: 60px;height: 40px;float: left;padding: 0px 10px 0px 10px;margin-top: 5px">
                             <div style="float: left"><i style="color:#FD4C5B;font-weight: bold;font-size: 15px">132&nbsp;</i></div><br>
                             <div style="float: left"><i style="color:grey;font-weight: bold;font-size: 15px">评论&nbsp;</i></div>
                         </div>
-                        <a href="#" style="color: #0C0C0C;font-size: 20px;font-family: SansSerif">美国记者5年采访上百中国剩女：她们太酷了，不该单身歧视</a>
-                        <div><i style="font-size: 13px;color:grey">2007年，教育部发布《中国语言生活状况报告》，第一次收录了“剩女”这个词，指那些......</i></div>
+                        <a href="#" style="color: #0C0C0C;font-size: 20px;font-family: SansSerif" th:text="${post.name}"></a>
+                        <div style="text-overflow: ellipsis;white-space : nowrap;overflow: hidden;">
+                            <i style="font-size: 13px;color:grey;text-overflow: ellipsis;white-space : nowrap;overflow: hidden;width: 100%" th:text="${post.introduction}">
+                            </i>
+                        </div>
                           <div style="color: grey;font-size: 14px;width: 670px;height: 21px;margin-top: 10px;padding: 0px 10px 0px 10px">
-                              <a href="#" style="float: left;margin-left: 5%">作者:zhuzhu</a>
-                              <p style="float: left;margin-left: 3%">2019年06月13日 15:43:28</p>
-                              <p style="float: right">来自：<a href="#">杂谈</a></p>
+                             <a href="#" style="float: left;margin-left: 5%" th:text="'Up:'+${post.user.username}"></a>
+                              <p style="float: left;margin-left: 3%" th:text="${post.createTime}"></p>
+                              <p style="float: right">
+                                  来自：<a href="#" th:text="${post.partition.getTname()}"></a>
+                                  -  <a href="#" th:text="${post.field.fname}"></a>
+                              </p>
                           </div>
                         <hr style="color: #E6E6E6; size: 4px;">
                     </div>
 
-
-                        <div style="border: #1b6d85 solid 2px;width: 670px;height: 90px;margin-top: 10px">
-                            <div style="width: 60px;height: 40px;float: left;padding: 0px 10px 0px 10px;margin-top: 5px">
-                                <div style="float: left"><i style="color:#FD4C5B;font-weight: bold;font-size: 15px;">2321&nbsp;</i></div><br>
-                                <div style="float: left"><i style="color:grey;font-weight: bold;font-size: 15px">评论&nbsp;</i></div>
-                            </div>
-                            <a href="#" style="color: #0C0C0C;font-size: 20px;font-family: SansSerif">E3公布《最终幻想7》重制的时候，为什么眼角真的有泪划过</a>
-                            <div><i style="font-size: 13px;color:grey">我都快记不清最终幻想7重制版爆出过多少次消息了，这次终于看到实际画面了……</i></div>
-                            <div style="color: grey;font-size: 14px;width: 670px;height: 21px;margin-top: 10px;padding: 0px 10px 0px 10px">
-                                <a href="#" style="float: left;margin-left: 5%">作者:E3游戏展实时更新</a>
-                                <p style="float: left;margin-left: 3%">2019年06月14日 03:50:28</p>
-                                <p style="float: right">来自：<a href="#">游戏</a></p>
-                            </div>
-                            <hr style="color: #E6E6E6; size: 4px;">
-                        </div>
-
-                    <div style="border: #1b6d85 solid 2px;width: 670px;height: 90px;margin-top: 10px">
-                        <div style="width: 60px;height: 40px;float: left;padding: 0px 10px 0px 10px;margin-top: 5px">
-                            <div style="float: left"><i style="color:#FD4C5B;font-weight: bold;font-size: 15px;">3211&nbsp;</i></div><br>
-                            <div style="float: left"><i style="color:grey;font-weight: bold;font-size: 15px">评论&nbsp;</i></div>
-                        </div>
-                        <a href="#" style="color: #0C0C0C;font-size: 20px;font-family: SansSerif">老师有纹身被家长联名辞退：委屈 但不能全怪家长</a>
-                        <div><i style="font-size: 13px;color:grey">转自凤凰网：http://news.ifeng.com/c/7nPvHIGwRrE大家知道最近很火……</i></div>
-                        <div style="color: grey;font-size: 14px;width: 670px;height: 21px;margin-top: 10px;padding: 0px 10px 0px 10px">
-                            <a href="#" style="float: left;margin-left: 5%">作者:吃葡萄不吐葡萄皮</a>
-                            <p style="float: left;margin-left: 3%">2019年06月14日 03:50:28</p>
-                            <p style="float: right">来自：<a href="#">杂谈</a></p>
-                        </div>
-                        <hr style="color: #E6E6E6; size: 4px;">
-                    </div>
 
                 </div>
                 <!--内容2-->
@@ -280,7 +305,10 @@
                 </div>
             </div>
         </div>
+
+
     </div>
+
 
 </div>
 <script src="../static/js/jquery.js"></script>
