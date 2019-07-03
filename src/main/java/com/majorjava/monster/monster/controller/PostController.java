@@ -90,7 +90,6 @@ public class PostController {
                        Integer field,String introduction,
                        String content,Integer partition,Integer uid,String img
     ){
-        System.out.println("Img-------:"+img);
         Post p=null;
         if (id!=null){
             p=postService.finByid(id);

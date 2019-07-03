@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/monster?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://www.majorjava.com/monster?useUnicode=true&characterEncoding=utf-8
     username: root
-    password: 123456
+    password: zhutengfei
     driver-class-name: com.mysql.jdbc.Driver
   resources:
     static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css,classpath:/user,
