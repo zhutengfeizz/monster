@@ -69,7 +69,7 @@ public class ShiroConfiguration {
         map.put("/uploads/sb/","anon");
         //登出
         map.put("/logout","logout");
- /*       map.put("/**","authc");*/
+        map.put("/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         return shiroFilterFactoryBean;

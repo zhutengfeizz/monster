@@ -17,4 +17,5 @@ import java.util.List;
 @Repository
 public interface PostDao extends CrudRepository<Post, Integer> {
     List<Post> findByStateOrderByCreateTimeDesc(int state);
+    List<Post>findByNameLikeAndStateOrderByCreateTimeDesc(String pname,int state);
 }
