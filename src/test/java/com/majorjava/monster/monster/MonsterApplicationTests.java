@@ -5,7 +5,9 @@ import com.majorjava.monster.monster.dao.FieldDao;
 import com.majorjava.monster.monster.dao.PartitionDao;
 import com.majorjava.monster.monster.dao.PostDao;
 import com.majorjava.monster.monster.entity.user.PartitionField;
+import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.PostPartition;
+import javafx.geometry.Pos;
 import org.hibernate.procedure.spi.ParameterRegistrationImplementor;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,12 +25,14 @@ public class MonsterApplicationTests {
     private PartitionDao partitionDao;
     @Autowired
     private FieldDao fieldDao;
+    @Autowired
+    private PostDao postDao;
 
     @Test
     public void contextLoads() {
-        List<PartitionField> byPartitionId = fieldDao.findByPartitionId(2);
-        for (PartitionField f:byPartitionId){
-            System.out.println(f.getFname());
+        List<Post> posts = postDao.findByFieldIdAndStateOrderByCreateTimeDesc(14, 1);
+        for (Post p :posts){
+            System.out.println(p.getName());
         }
     }
 

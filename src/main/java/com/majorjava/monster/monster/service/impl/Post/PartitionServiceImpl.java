@@ -54,4 +54,19 @@ public class PartitionServiceImpl implements PartitionService {
         return partition;
     }
 
+    @Override
+    public List<PostPartition> findByTnameLikeAndStateOrderByCreateTimeDesc(String tname, int state) {
+        return partitionDao.findByTnameLikeAndStateOrderByCreateTimeDesc(tname,state);
+    }
+
+    @Override
+    public PostPartition findByTname(String tname) {
+        return partitionDao.findByTname(tname);
+    }
+
+    @Override
+    public PostPartition findByTnameLike(String name) {
+        return partitionDao.findByTnameLike(name);
+    }
+
 }

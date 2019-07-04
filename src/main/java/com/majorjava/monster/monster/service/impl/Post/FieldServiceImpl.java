@@ -52,4 +52,19 @@ public class FieldServiceImpl implements FieldService {
     public List<PartitionField> findByPartitionId(int id) {
         return fieldDao.findByPartitionId(id);
     }
+
+    @Override
+    public List<PartitionField> findByFnameLikeAndStateOrderByCreateTimeDesc(String fname, int state) {
+        return fieldDao.findByFnameLikeAndStateOrderByCreateTimeDesc(fname,state);
+    }
+
+    @Override
+    public PartitionField findByFname(String fname) {
+        return fieldDao.findByFname(fname);
+    }
+
+    @Override
+    public PartitionField findByFnameLike(String fname) {
+        return fieldDao.findByFnameLike(fname);
+    }
 }

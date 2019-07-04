@@ -142,4 +142,14 @@ public class UserServicesImpl implements UserServices {
 
         return userDao.save(user);
     }
+
+    @Override
+    public List<User> findByUsernameLikeAndStateOrderByCreateTimeDesc(String username, int state) {
+        return userDao.findByUsernameLikeAndStateOrderByCreateTimeDesc(username,state);
+    }
+
+    @Override
+    public User findByUsernameLike(String username) {
+        return userDao.findByUsernameLike(username);
+    }
 }

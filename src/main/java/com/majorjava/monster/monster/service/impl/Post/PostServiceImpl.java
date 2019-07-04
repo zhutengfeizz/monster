@@ -58,5 +58,20 @@ public class PostServiceImpl implements PostService {
         return postDao.findByStateOrderByCreateTimeDesc(0);
     }
 
+    @Override
+    public List<Post> findByNameLikeAndStateOrderByCreateTimeDesc(String pname, int state) {
+        return postDao.findByNameLikeAndStateOrderByCreateTimeDesc(pname,state);
+    }
+
+    @Override
+    public Post findByName(String pname) {
+        return postDao.findByName(pname);
+    }
+
+    @Override
+    public Post findByNameLike(String pname) {
+        return postDao.findByNameLike(pname);
+    }
+
 
 }

@@ -29,13 +29,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${allpost!=null}" th:each="post : ${allPost}">
+        <tr th:each="post : ${allPost}">
             <td th:text="${post.id}"></td>
             <td th:text="${post.name}"></td>
             <td th:text="${post.img}"></td>
             <td th:text="${post.user.username}"></td>
-            <td th:text="${post.sort}"></td>
-            <td th:text="${post.region}"></td>
+            <td th:text="${post.partition.tname}"></td>
+            <td th:text="${post.field.fname}"></td>
             <td th:text="${post.createTime}"></td>
             <td th:text="${post.introduction}"></td>
            <td>

@@ -2,6 +2,7 @@ package com.majorjava.monster.monster.service.Post;
 
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.PostPartition;
+import com.majorjava.monster.monster.entity.user.User;
 
 import java.util.List;
 
@@ -17,4 +18,8 @@ public interface PartitionService {
     PostPartition save(PostPartition postPartition);
     void delete(Integer id);
     PostPartition finByid(Integer id);
+
+    List<PostPartition>findByTnameLikeAndStateOrderByCreateTimeDesc(String name, int state);
+    PostPartition findByTname(String name);
+    PostPartition findByTnameLike(String name);
 }

@@ -15,8 +15,6 @@ import java.util.Map;
 public interface UserServices {
     Map<String,Object> login (String username,String password);
     Map<String,Object> register(User user);
-
-
     User save(User user);
     void delete(Integer id);
     User finByid(Integer id);
@@ -26,4 +24,6 @@ public interface UserServices {
     List<User> findBydelete();
     void finalDelete(Integer id);
     User  updateheadshot(Integer uid,String headshot);
+    List<User>findByUsernameLikeAndStateOrderByCreateTimeDesc(String username, int state);
+    User findByUsernameLike(String username);
 }

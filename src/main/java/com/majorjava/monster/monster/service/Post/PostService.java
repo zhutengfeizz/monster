@@ -21,4 +21,8 @@ public interface PostService  {
     void finalDelete(Integer id);
     List<Post> findBydelete();
 
+    List<Post>findByNameLikeAndStateOrderByCreateTimeDesc(String pname,int state);
+    Post findByName(String pname);
+    Post findByNameLike(String pname);
+
 }

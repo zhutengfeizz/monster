@@ -16,6 +16,13 @@
         ul{
             margin-bottom: 1px;
         }
+        .a-font-color{
+            color: red;
+            font-size: 5px;
+        }
+        .map{
+            margin-top: 10px;
+        }
 
         @font-face {
             font-family: 'webfont';
@@ -121,7 +128,7 @@
             </div>
         </div>
         <!---->
-        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin-top: 100px;">
+        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief" style="margin-top: 10px;">
             <ul class="layui-tab-title">
                 <li class="layui-this">管理员推荐<img src="../static/images/热门.png"></li>
                 <li>最新 <img src="../static/images/new%20(2).png"></li>
@@ -131,24 +138,27 @@
             </ul>
             <div class="layui-tab-content" style="">
                 <!--内容1-->
-                <i class="web-font" style="color: #FD4C5B">知识就像内-裤，看不见但很重要。</i>
-                <hr style="color: #E6E6E6; size: 4px;float: left">
+                <div style="height: 50px">
+                    <i class="web-font" style="color: #FD4C5B;float: left;line-height: 50px">知识就像内-裤，看不见但很重要。</i>
+                    <img src="../static/images/hp.png" style="width: 140px;height: 50px;float: left;margin-left: 55%" alt="找不到图片">
+                </div>
+                <hr style="color: #E6E6E6; size: 4px;margin-top: 10px;margin-bottom: 10px">
                 <!--分类-->
-                <div style="border: 2px chocolate;width:450px;float: right">
-                 <div style="width: 450px;height: 50px">
+                <div style="width:410px;float: right;background-color: white;padding-left: 20px">
+                 <div style="width: 400px;height: 50px">
                      <h4 style="width: 100px;float: left">社区导航</h4>
                              <div style="width: 230px;height: 50px;float: right;margin-right: 30px">
                                  <input type="text" name="so" placeholder="您要找什么？" style="float: left;width: 180px;height: 40px" />
-                                 <img src="../static/images/放大镜.png" style="width: 40px;height: 40px;float: left;">
+                                 <img src="../static/images/放大镜.png" style="width: 40px;height: 40px;float: left;" id="baidu">
                              </div>
-                     <hr style="color: silver">
+                     <hr style="color: silver;width: 389px">
                  </div>
 
-                    <div style="margin-top: 10px">
+                    <div class="map">
                         <label><a style="font-size: 16px;color: black">综合</a></label><br/>
                         <span class="layui-breadcrumb" lay-separator="|">
                           <a href="" >杂谈</a>
-                          <a href="">科技</a>
+                          <a class="a-font-color" href="">科技</a>
                           <a href="" >影视</a>
                           <a href="">体育</a>
                         </span><br/><br/>
@@ -203,8 +213,11 @@
                           <div style="color: grey;font-size: 14px;width: 670px;height: 21px;margin-top: 10px;padding: 0px 10px 0px 10px">
                              <a href="#" style="float: left;margin-left: 5%" th:text="'Up:'+${post.user.username}"></a>
                               <p style="float: left;margin-left: 3%" th:text="${post.createTime}"></p>
+
+                                        <i class="glyphicon glyphicon-eye-open" style="margin-left: 40px"></i>
+                                        <span >99</span>
                               <p style="float: right">
-                                  来自：<a href="#" th:text="${post.partition.getTname()}"></a>
+                                  来自：<a href="#" th:text="${post.partition.tname}"></a>
                                   -  <a href="#" th:text="${post.field.fname}"></a>
                               </p>
                           </div>
@@ -248,8 +261,9 @@
                         <a href="#" style="float: left;margin-left: 5%">作者:沙雕</a>
                         <p style="float: left;margin-left: 3%">2019年06月14日 03:43:28</p>
                         <p style="float: right">来自：<a href="#">工作</a></p>
+
                     </div>
-                    <hr style="color: #E6E6E6; size: 4px;">
+
                 </div>
 
             </div>
@@ -353,8 +367,24 @@
             active[method] ? active[method].call(this, othis) : '';
         });
 
-        layer.msg('欢迎光临！尊敬的用户！');
+
     }();
+
+    var date=new Date();
+    var h=date.getHours();//获取当前时间
+    if(h>=0&& h<12){
+        layer.msg('早上好！');
+    }else if(h>=12 && h<18){
+        layer.msg('下午好！');
+    }else if(h>=18 && h<=24){
+        layer.msg('晚上好！');
+    }
+
+    $("#baidu").click(function(){
+
+        alert("您点击了放大镜");
+
+    });
 
 
 </script>

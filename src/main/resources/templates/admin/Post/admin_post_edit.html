@@ -25,7 +25,7 @@
                 <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿标题</B>
             </label>
             <div class="layui-input-block">
-                <input type="text"  th:value="${post.name}" name="title" lay-verify="required" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
+                <input type="text"  th:value="${post.name}" name="title" lay-verType="tips" lay-verify="required" lay-reqtext="标题不能为空哦！" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="">
@@ -34,7 +34,7 @@
             </label>
             <div class="layui-input-block" style="">
                 <div class="layui-input-block"style="float: left">
-                    <input type="radio" name="type" value="原创" title="原创">
+                    <input type="radio" name="type" value="原创" title="原创" checked>
                     <input type="radio" name="type" value="转载" title="转载">
                     <input type="radio"  name="type" value="其他" title="其他">
                 </div>
@@ -93,13 +93,13 @@
             </label>
             <div class="layui-input-block">
                 <div class="layui-form-item layui-form-text">
-                  <textarea class="layui-textarea layui-hide" name="content" lay-verify="content" id="LAY_demo_editor" th:if="${post!=null}" th:field="${post.content}"></textarea>
+                  <textarea class="layui-textarea layui-hide" lay-verType="tips"  lay-reqtext="内容不能为空哦！" name="content"  id="LAY_demo_editor" th:if="${post!=null}" th:field="${post.content}"></textarea>
                 </div>
             </div>
         </div>
 
         <div>
-            <button type="submit" class="layui-btn layui-btn-normal">提交</button>
+            <button lay-submit  class="layui-btn layui-btn-normal" lay-filter="demo1">提交</button>
             <button type="reset" class="layui-btn layui-btn-danger">取消</button>
 
         </div>
@@ -164,6 +164,21 @@
         laydate.render({
             elem: '#date1'
         });
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ]
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
 
         layedit.set({
             uploadImage: {
@@ -172,6 +187,7 @@
                 ,method: 'post'
             }
         });
+
         var editIndex = layedit.build('LAY_demo_editor');
 
             $(document).ready(function () {
