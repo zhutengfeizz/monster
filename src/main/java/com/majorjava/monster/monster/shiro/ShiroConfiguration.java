@@ -57,17 +57,18 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setUnauthorizedUrl("/error/403");//认证不通过跳转
 
         Map<String,String> map = new HashMap<String, String>();
-      /*  map.put("/index","anon");
+        map.put("/index","anon");
         map.put("/login","anon");
         map.put("/error/**","anon");
         map.put("/register","anon");
+        map.put("/register/","anon");
         map.put("/static/**","anon");
         map.put("/admin/**","anon");
         map.put("/uploads/sb/","anon");
         map.put("/upload/","anon");
         //登出
         map.put("/logout","logout");
-        map.put("/**","authc");*/
+        map.put("/**","authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         return shiroFilterFactoryBean;

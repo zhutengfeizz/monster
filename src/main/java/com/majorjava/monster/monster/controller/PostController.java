@@ -1,9 +1,7 @@
 package com.majorjava.monster.monster.controller;
 
-import com.majorjava.monster.monster.entity.user.PartitionField;
-import com.majorjava.monster.monster.entity.user.Post;
-import com.majorjava.monster.monster.entity.user.PostPartition;
-import com.majorjava.monster.monster.entity.user.User;
+import com.majorjava.monster.monster.entity.user.*;
+import com.majorjava.monster.monster.service.Post.CommentService;
 import com.majorjava.monster.monster.service.Post.FieldService;
 import com.majorjava.monster.monster.service.Post.PartitionService;
 import com.majorjava.monster.monster.service.Post.PostService;
@@ -33,6 +31,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/post")
 public class PostController {
+    @Autowired
+    private CommentService commentService;
     @Autowired
     private PostService postService;
     @Autowired
@@ -151,4 +151,13 @@ public class PostController {
             return fieldList;
     }
 
+    @GetMapping("postEdit")
+    public String postEdit(Model model,Integer id){
+        List<Post> posts = postService.postAll();
+        model.addAttribute("postList",posts);
+        Post post = postService.finByid(id);
+        model.addAttribute("post",post);
+
+        return "post/post_edit";
+    }
 }
