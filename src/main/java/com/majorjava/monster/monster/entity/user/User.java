@@ -58,6 +58,9 @@ public class User {
     private String verification;//验证是否实名
     private String phone;//手机号码
 
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Collection> collections;
+
 
     @Override
     public String toString() {
