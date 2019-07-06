@@ -30,12 +30,12 @@
         margin-top: 0;
         margin-bottom: 0;
     }
-</style>
+</style>9
 </head>
 <body>
 <div class="layui-container" style="padding: 5px">
 
-    <div class="layui-row" style="padding-top: 5px;">
+    <div class="layui-row" style="padding-top: 5px;" th:>
 
         <!--右边相关-->
         <div style="width: 29%;float:right;background-color: white;margin-left: 5px;padding-left: 5px;padding-top: 5px;margin-top: 36px;padding-right: 5px;">
@@ -45,13 +45,13 @@
                     <img src="../../static/images/ghost.ico" style="width: 60px;height: 60px;float: left">
                     <div style="float: left;margin-left: 10px;padding-top: 10px">
                         <!--UP:用户名-->
-                        <p class="fontColor" style="margin: 0px">
-                                正在偷窥你的内裤
+                    <!--    <p th:text="${post}" class="fontColor" style="margin: 0px">
+
                               </p>
-                        <!--UP：个性签名-->
-                        <p class="headertital" style="margin: 0px">
-                                 游戏行业从业者
-                             </p>
+                        &lt;!&ndash;UP：个性签名&ndash;&gt;
+                        <p th:text="${post}" class="headertital" style="margin: 0px">
+
+                             </p>-->
                     </div>
                 </div>
                 <hr  style="color: silver;width: 100%;"  class="hr">
@@ -88,17 +88,13 @@
                 </div>
                  <hr  style="color: silver;width: 330px" class="hr">
 
-                <div style="float: right;margin-top: 20px;margin-bottom: 10px">
-                    <h4 style="font-size: 15px">小米普通手机未找到，小米CC美图定制版对比11111111111111111111111</h4>
-                    <span>浏览数：6520</span>&nbsp;&nbsp;<span>回复数：350</span>
+            <!--帖子推荐-->
+                <div  style="float: right;margin-top: 20px;margin-bottom: 10px">
+                   <!-- <h4 style="font-size: 15px" th:text="${post.name}"></h4>-->
+                    <span ></span>&nbsp;&nbsp;<span>回复数：350</span>
                     <hr  style="color: silver;width: 330px" class="hr">
                 </div>
 
-                <div style="float: right;margin-top: 20px;margin-bottom: 10px">
-                    <h4 style="font-size: 15px">小米普通手机未找到，小米CC美图定制版对比</h4>
-                    <span>浏览数：6520</span>&nbsp;&nbsp;<span>回复数：350</span>
-                    <hr  style="color: silver;width: 330px" class="hr">
-                </div>
 
 
         </div>
@@ -107,15 +103,14 @@
             <!--头部标题-->
             <div style=";width: 100%;background-color: white;float: left">
                 <div style="height: 50px;">
-                    <p style="margin-right: 10px;margin-left: 10px;font-size: 25px;">小米说的普通手机尚未找到，小米cc美图定制版、小米9、一加7pro和苹果前置镜头自拍对比。</p
+                    <p style="margin-right: 10px;margin-left: 10px;font-size: 25px;"></p>
                 </div>
 
                 <div>
                     <div style="margin-left: 10px;">
-                        <a href="#" class="headertital">文章&nbsp;-&nbsp;</a>&nbsp;
-                        <a href="#" class="headertital">综合&nbsp;-&nbsp;</a>&nbsp;
-                        <a href="#" class="headertital">杂谈&nbsp;</a>&nbsp;&nbsp;&nbsp;
-                        <span class="headertital">阅读量：1024</span>&nbsp;&nbsp;&nbsp;
+                        <a href="#"  class="headertital">&nbsp;-&nbsp;</a>&nbsp;
+                        <a href="#"  class="headertital">&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                        <span class="headertital" ></span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital">评论：35</span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital">&nbsp;&nbsp;|&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;
                         <img class="headertital" src="../../static/images/收%20藏%20.svg" style="width: 20px;height: 20px;">&nbsp;
@@ -127,8 +122,8 @@
                     <div style="float: left">
                         <img src="../../static/images/ghost.ico" style="height: 70px;width: 70px;float: left">
                         <div style="margin-top: 10px;float: left">
-                            <span class="fontColor" style="float: left">正在偷窥你的内裤</span><br/>
-                            <span class="headertital" style="float: left">2019/7/5/02:03</span>
+                            <span class="fontColor" style="float: left" ></span><br/>
+                            <span class="headertital" style="float: left" ></span>
                         </div>
                     </div>
                     <div style="float: right;line-height: 60px;margin-right: 5%">
@@ -141,7 +136,7 @@
                 <div style="width:100%;box-sizing: border-box;font-size: 14px;font-family: PingFangSC-Regular;color: #333333;float: left;padding-left: 50px;margin-top: 20px">
                     <div style="margin:20px 0;width:100%;display:block;">
                         <img data-height="0" data-width="0" src="../../static/images/ghost.ico" style="max-width: 100%"></div>
-                    <div style="font-size: 14px;">这把ak是哪位老哥的？</div>
+                    <!--<div style="font-size: 14px;" th:href="${post.content}"></div>-->
                 </div>
             <!--评论区-->
             <div style="margin-top: 20px;float: left;padding: 0px">
@@ -172,14 +167,14 @@
                            <img src="../../static/images/ghost.ico" style="float: left;height: 60px;width: 70px">
                        </div>
                        <div style="height: 60px">
-                           <div style="width: 100%;height: 60px">
+                           <div style="width: 100%;height: 60px" >
                                <div>
-                                   <span style="margin-left: 10px">刚出狱的老司机</span>
-                                   <span class="headertital" style="font-size: 13px">发表于2019-7-5 16:24:44</span>
-                                   <span class="headertital" style="font-size: 10px;float: right">#1</span><br/>
+                                   <span style="margin-left: 10px" ></span>
+                                   <span class="headertital" style="font-size: 13px"></span>
+                                   <span class="headertital" style="font-size: 10px;float: right"></span><br/>
                                </div>
                                <div style="margin-top: 10px">
-                                   <span style="margin-top: 10px;margin-left: 10px;margin-bottom: 10px">垃圾直接开船丢太平洋公海上</span>
+                                   <span style="margin-top: 10px;margin-left: 10px;margin-bottom: 10px"></span>
                                </div>
                            </div>
                            <div style="width: 100%">

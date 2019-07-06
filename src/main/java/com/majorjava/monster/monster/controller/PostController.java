@@ -151,13 +151,24 @@ public class PostController {
             return fieldList;
     }
 
-    @GetMapping("postEdit")
-    public String postEdit(Model model,Integer id){
+    @GetMapping("postHome")
+    public String postHome(){
+       /* System.out.println("超链接传过来的ID是："+id);
+
         List<Post> posts = postService.postAll();
         model.addAttribute("postList",posts);
+
         Post post = postService.finByid(id);
+        System.out.println("用户名--------------"+post.getUser().getUsername());
+        System.out.println("用户ID--------------"+post.getUser().getId());
+        System.out.println("创建时间--------------"+post.getUser().getCreateTime());
         model.addAttribute("post",post);
 
+        List<Comment> comments = commentService.findByPostIdAndStateOrderByCreationTimeDesc(id, 1);
+        model.addAttribute("commentList",comments);
+        for (Comment c:comments){
+            System.out.println("回复的内容"+c.getCont());
+        }*/
         return "post/post_edit";
     }
 }
