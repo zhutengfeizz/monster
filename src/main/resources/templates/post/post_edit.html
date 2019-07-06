@@ -4,70 +4,78 @@
     <meta charset="UTF-8">
     <title>详情</title>
     <link rel="stylesheet" href="../../static/layui-v2.5.3/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <style>
+        .headertital{
+            color: #999999;
+            margin-left: 10px;
+        }
+        .fontColor{
+            font-size: 16px;
+            color: #333333;
+            margin-left: 10px;
+        }
+        .bt{
+            width: 110px;
+            height: 38px;
+        }
+        .cunt{
+            font-weight: bold;
+        }
+        .type{
+            color: #999999;
+        }
+        .hr{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .up{
+            width: 44px;
+            height: 22px;
+            font-size: 12px;
+            line-height: 22px;
+            background-color: #4a8eff;
+            text-align: center;
+            border-radius: 4px;
+            color: #fff;
+            float: left;
+            margin-left: 40px;
+        }
 
-<style>
-    .headertital{
-        color: #999999;
-        margin-left: 10px;
-    }
-    .fontColor{
-        font-size: 16px;
-        color: #333333;
-        margin-left: 10px;
-    }
-    .bt{
-        width: 110px;
-        height: 38px;
-    }
-    .cunt{
-        font-weight: bold;
-    }
-    .type{
-        color: #999999;
-    }
-    .hr{
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-</style>9
+    </style>
 </head>
 <body>
 <div class="layui-container" style="padding: 5px">
 
-    <div class="layui-row" style="padding-top: 5px;" th:>
+    <div class="layui-row" style="padding-top: 5px;">
 
         <!--右边相关-->
-        <div style="width: 29%;float:right;background-color: white;margin-left: 5px;padding-left: 5px;padding-top: 5px;margin-top: 36px;padding-right: 5px;">
+        <div style="width: 340px;float:right;background-color: white;margin-left: 5px;padding-left: 5px;padding-top: 5px;margin-top: 36px;padding-right: 5px;">
             <!--UP主信息-->
-            <div style="width: 97%;background-color: #FAFAFA;margin-left: 5px">
+            <div style="width: 330px;background-color: #FAFAFA;margin-left: 5px;height: 185px">
                 <div style="padding: 10px">
-                    <img src="../../static/images/ghost.ico" style="width: 60px;height: 60px;float: left">
-                    <div style="float: left;margin-left: 10px;padding-top: 10px">
+                    <img src="#" th:src="${post.user.headshot}" style="width: 60px;height: 60px;float: left;margin-bottom: 5px">
+                    <div style="float: left;margin-left: 20px;padding-top: 10px">
                         <!--UP:用户名-->
-                    <!--    <p th:text="${post}" class="fontColor" style="margin: 0px">
-
-                              </p>
-                        &lt;!&ndash;UP：个性签名&ndash;&gt;
-                        <p th:text="${post}" class="headertital" style="margin: 0px">
-
-                             </p>-->
+                        <p th:text="${post.user.username}" class="fontColor" style="margin: 0"></p>
+                            <!--UP：个性签名-->
+                        <p th:text="${post.user.signature}" class="headertital" style="margin: 0;padding-top: 5px"></p>
                     </div>
+                    <hr  style="color: silver;width: 100%;"  class="hr">
                 </div>
-                <hr  style="color: silver;width: 100%;"  class="hr">
+
                 <div>
                     <!--关注、投稿、粉丝-->
                     <div style="width: 90%;text-align: center;margin:0px auto;">
                         <ul style="padding: 10px;text-align: center">
-                            <li style="float: left;padding-left: 30px;padding-right: 30px">
+                            <li style="float: left;padding-left: 47px;padding-right: 20px">
                                 <div class="cunt">287</div>
                                 <div class="type">投稿</div>
                             </li>
-                            <li style="float: left;padding-left: 30px;padding-right: 30px">
+                            <li style="float: left;padding-left: 30px;padding-right: 20px">
                                 <div class="cunt">158</div>
                                 <div class="type">关注</div>
                             </li>
-                            <li style="float: left;padding-left: 30px;padding-right: 30px">
+                            <li style="float: left;padding-left: 30px;padding-right: 20px">
                                 <div class="cunt">739</div>
                                 <div class="type">粉丝</div>
                             </li>
@@ -75,69 +83,71 @@
                     </div>
                 </div>
                 <!--关注、私信-->
-                <div style="padding:30px;width: 100%;text-align: center">
-                    <button type="button" class="layui-btn layui-btn-radius bt" style="width: 45%">关注</button>
-                    <button type="button" class="layui-btn layui-btn-radius layui-btn-warm bt" style="width: 45%;">私信</button>
+                <div style="margin-top: 5px;margin-bottom: 10px;width: 100%;text-align: center">
+                    <button type="button" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
+                    <button type="button" class="layui-btn layui-btn-radius layui-btn-warm bt" style="width: 110px;margin-top: 5px">私信</button>
                 </div>
             </div>
 
 
-                <div style="height: 26px;margin-top: 20px;margin-bottom: 10px">
-                    <h3 style="float: left;margin: 0px;font-size: 19px;line-height: 26px">最新投稿</h3>
-                    <a class="fontColor" style="float: right;margin-right: 30px;line-height: 26px;font-size: 15px">全部</a>
-                </div>
-                 <hr  style="color: silver;width: 330px" class="hr">
+            <div style="height: 26px;margin-top: 40px;margin-bottom: 10px;margin-left: 5px">
+                <h3 style="float: left;margin: 0px;font-size: 19px;line-height: 26px">最新投稿</h3>
+                <a class="fontColor" style="float: right;margin-right: 30px;line-height: 26px;font-size: 15px">全部</a>
+            </div>
+            <hr  style="color: silver;width: 330px" class="hr">
 
             <!--帖子推荐-->
-                <div  style="float: right;margin-top: 20px;margin-bottom: 10px">
-                   <!-- <h4 style="font-size: 15px" th:text="${post.name}"></h4>-->
-                    <span ></span>&nbsp;&nbsp;<span>回复数：350</span>
-                    <hr  style="color: silver;width: 330px" class="hr">
-                </div>
-
-
-
+            <div  style="float: right;margin-top: 20px;margin-bottom: 10px" th:each="posts : ${postList}">
+                <a th:href="@{/post/postHome(id=${posts.id})}" style="font-size: 15px" th:text="${posts.name}"></a><br/>
+                <span th:text="阅读量+${posts.views}"></span>
+                <span>评论：30</span>
+                <hr  style="color: silver;width: 330px" class="hr">
+            </div>
         </div>
 
-        <div style="width: 70%;float: left;">
+        <div style="width: 800px;float: left;">
             <!--头部标题-->
-            <div style=";width: 100%;background-color: white;float: left">
+            <div style=";width: 800px;background-color: white;float: left">
                 <div style="height: 50px;">
-                    <p style="margin-right: 10px;margin-left: 10px;font-size: 25px;"></p>
+                    <p style="margin-right: 10px;margin-left: 10px;font-size: 25px;" th:text="${post.name}"></p>
                 </div>
 
                 <div>
                     <div style="margin-left: 10px;">
-                        <a href="#"  class="headertital">&nbsp;-&nbsp;</a>&nbsp;
-                        <a href="#"  class="headertital">&nbsp;</a>&nbsp;&nbsp;&nbsp;
-                        <span class="headertital" ></span>&nbsp;&nbsp;&nbsp;
+                        <a href="#" th:text="${post.partition.tname}" style="margin-left: 0px" class="headertital"></a>
+                        <span class="headertital">-</span>
+                        <a href="#" th:text="${post.field.fname}" class="headertital">&nbsp;</a>&nbsp;&nbsp;&nbsp;
+                        <span class="headertital" th:text="阅读量+${post.views}" ></span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital">评论：35</span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital">&nbsp;&nbsp;|&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img class="headertital" src="../../static/images/收%20藏%20.svg" style="width: 20px;height: 20px;">&nbsp;
+                        <img class="headertital" src="../../static/images/土豆.png" style="width: 20px;height: 20px;">&nbsp;
                         <span class="headertital">360</span>&nbsp;
                     </div>
                 </div>
-                    <hr style="color: silver; font-size: 3px;margin-top: 10px;margin-bottom: 10px" >
-                <div style="width: 100%;height: 60px;margin-top: 10px;margin-left: 10px;margin-bottom: 10px">
+                <hr style="color: silver; font-size: 3px;margin-top: 10px;margin-bottom: 10px" >
+                <div style="width: 100%;height: 60px;margin-top: 10px;margin-bottom: 10px">
                     <div style="float: left">
-                        <img src="../../static/images/ghost.ico" style="height: 70px;width: 70px;float: left">
-                        <div style="margin-top: 10px;float: left">
-                            <span class="fontColor" style="float: left" ></span><br/>
-                            <span class="headertital" style="float: left" ></span>
+                        <img src="#" th:src="${post.user.headshot}" style="height: 70px;width: 70px;float: left">
+                        <div style="margin-top: 10px;float: left;margin-left: 10px">
+                            <span class="fontColor" style="float: left;" th:text="${post.user.username}"></span>
+                            <div class="up">楼主</div>
+                                <br/>
+                            <span class="headertital" style="float: left;margin-top: 10px" th:text="${post.createTime}"></span>
                         </div>
                     </div>
+
                     <div style="float: right;line-height: 60px;margin-right: 5%">
-                        <a href="#" class="">回复</a>
-                        <a href="#" class="">举报</a>
+                        <a href="#" style="color: #4a8eff">回复</a>
+                        <a href="#" style="color: #4a8eff">举报</a>
                     </div>
                 </div>
             </div>
             <!--文章主体内容-->
-                <div style="width:100%;box-sizing: border-box;font-size: 14px;font-family: PingFangSC-Regular;color: #333333;float: left;padding-left: 50px;margin-top: 20px">
-                    <div style="margin:20px 0;width:100%;display:block;">
-                        <img data-height="0" data-width="0" src="../../static/images/ghost.ico" style="max-width: 100%"></div>
-                    <!--<div style="font-size: 14px;" th:href="${post.content}"></div>-->
-                </div>
+            <div style="width:100%;box-sizing: border-box;font-size: 14px;font-family: PingFangSC-Regular;color: #333333;float: left;padding-left: 50px;margin-top: 20px">
+                <div style="margin:20px 0;width:100%;display:block;">
+                    <img data-height="0" data-width="0" src="../../static/images/ghost.ico" style="max-width: 100%"></div>
+                    <div style="font-size: 14px;" th:href="${post.content}"></div>
+            </div>
             <!--评论区-->
             <div style="margin-top: 20px;float: left;padding: 0px">
                 <div style="padding: 10px">
@@ -150,47 +160,48 @@
                     <legend>评论区<span class="headertital" style="font-size: 16px">3</span></legend>
                 </fieldset>
             </div>
-                <!--文本框-->
-            <div style="margin-top: 30px;width: 100%;float: left">
-                <div style="; width: 100%;">
+            <!--文本框-->
+            <div style="margin-top: 30px;width: 100%;height:200px;float: left">
+                <div style=" width: 100%;height: 100%">
                     <textarea class="layui-textarea" id="LAY_demo2" style="display: none;"></textarea>
                 </div>
-                <div style="float: left;height: 50px;width: 100%;border: 1px solid #E6E6E6">
+                <div style="float: left;height: 50px;width: 100%;border-bottom-color: #E6E6E6">
                     <button style="float: right;margin-right: 10px;margin-top: 5px;margin-bottom: 5px"class="layui-btn layui-btn-danger" >提交</button>
                 </div>
             </div>
             <!--用户评论集合遍历-->
             <div style="margin-top: 30px;width: 100%;float: left;padding: 10px">
                 <div style="height: 97px;width: 100%">
-                   <div style="float: left;height: 70px;width: 100%">
-                       <div style="float: left;height: 70px">
-                           <img src="../../static/images/ghost.ico" style="float: left;height: 60px;width: 70px">
-                       </div>
-                       <div style="height: 60px">
-                           <div style="width: 100%;height: 60px" >
-                               <div>
-                                   <span style="margin-left: 10px" ></span>
-                                   <span class="headertital" style="font-size: 13px"></span>
-                                   <span class="headertital" style="font-size: 10px;float: right"></span><br/>
-                               </div>
-                               <div style="margin-top: 10px">
-                                   <span style="margin-top: 10px;margin-left: 10px;margin-bottom: 10px"></span>
-                               </div>
-                           </div>
-                           <div style="width: 100%">
-                               <span class="headertital"style="font-size: 13px">赞</span>
-                               <span class="headertital"style="font-size: 13px">回复</span>
-                               <span class="headertital"style="font-size: 13px">来自：网页端</span>
-                           </div>
-                           <hr color="#C1C1C1">
-                       </div>
+                    <div style="float: left;height: 70px;width: 100%" th:each="comm : ${commentList}">
+                        <div style="float: left;height: 70px">
+                            <img src="#" th:src="${comm.user.headshot}"  style="float: left;height: 60px;width: 70px">
+                        </div>
+                        <div style="height: 60px">
+                            <div style="width: 100%;height: 60px" >
+                                <div>
+                                    <span style="margin-left: 10px" th:text="${comm.user.username}"></span>
+                                    <span class="headertital" style="font-size: 13px" th:text="${comm.createTime}"></span>
+                                    <span class="headertital" style="font-size: 10px;float: right" th:text="No.+${comm.id}"></span><br/>
+                                </div>
+                                <div style="margin-top: 10px">
+                                    <span style="margin-top: 10px;margin-left: 10px;margin-bottom: 10px" th:text="${comm.cont}">
+                                    </span>
+                                </div>
+                            </div>
+                            <div style="width: 100%">
+                                <span class="headertital"style="font-size: 13px">赞</span>
+                                <span class="headertital"style="font-size: 13px">回复</span>
+                                <span class="headertital"style="font-size: 13px">来自：网页端</span>
+                            </div>
+                            <hr color="#C1C1C1">
+                        </div>
 
-                   </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
- </div>
+</div>
 
 <div style="background-color: chocolate;width:100%;height: 200px;float: left;margin-bottom: 50px;margin-top: 50px">
 
@@ -199,7 +210,6 @@
 </body>
 <script src="../../static/js/jquery.js"></script>
 <script src="../../static/layui-v2.5.3/layui/layui.all.js"></script>
-<script src="../../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script>
     //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
     ;!function(){
@@ -209,33 +219,6 @@
             ,layedit = layui.layedit
             ,laydate = layui.laydate
             ,upload = layui.upload;
-
-        //拖拽上传
-        var uploadInst = upload.render({
-            elem: '#test10'
-            ,url: 'post/upload/'
-            ,before: function(obj){
-                //预读本地文件示例，不支持ie8
-                obj.preview(function(index, file, result){
-                    $('#demo1').attr('src', result); //图片链接（base64）
-                });
-            }
-            ,done: function(res){
-                //如果上传失败
-                if(res.code > 0){
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-            }
-            ,error: function(){
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function(){
-                    uploadInst.upload()
-                });
-            }
-        });
 
         //日期
         laydate.render({

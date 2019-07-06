@@ -65,7 +65,7 @@
                 <dd><a href="../static/game/Mario/index.html">马里奥</a></dd>
                 <dd><a href="adminIndex">管理员</a></dd>
                 <dd><a href="/post/save">发帖</a></dd>
-                <dd><a href="/post/goToPost">帖子主页</a></dd>
+                <dd><a href="/post/postHome">帖子主页</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item"><a href="">论坛</a></li>
@@ -206,7 +206,7 @@
                             <div style="float: left"><i style="color:#FD4C5B;font-weight: bold;font-size: 15px">132&nbsp;</i></div><br>
                             <div style="float: left"><i style="color:grey;font-weight: bold;font-size: 15px">评论&nbsp;</i></div>
                         </div>
-                        <a href="/post/post_edit.html" style="color: #0C0C0C;font-size: 20px;font-family: SansSerif" th:text="${post.name}"></a>
+                        <a href="#" th:href="@{/post/postHome(id=${post.id})}" style="color: #0C0C0C;font-size: 20px;font-family: SansSerif" th:text="${post.name}"></a>
                         <div style="text-overflow: ellipsis;white-space : nowrap;overflow: hidden;">
                             <i style="font-size: 13px;color:grey;text-overflow: ellipsis;white-space : nowrap;overflow: hidden;width: 100%" th:text="${post.introduction}">
                             </i>
@@ -216,7 +216,7 @@
                               <p style="float: left;margin-left: 3%" th:text="${post.createTime}"></p>
 
                                         <i class="glyphicon glyphicon-eye-open" style="margin-left: 40px"></i>
-                                        <span >99</span>
+                                        <span th:text="+${post.views}"></span>
                               <p style="float: right">
                                   来自：<a href="#" th:text="${post.partition.tname}"></a>
                                   -  <a href="#" th:text="${post.field.fname}"></a>
@@ -239,7 +239,8 @@
                             <div style="color: grey;font-size: 14px;width: 670px;height: 21px;margin-top: 10px;padding: 0px 10px 0px 10px">
                                 <a href="#" style="float: left;margin-left: 5%">作者:某网友</a>
                                 <p style="float: left;margin-left: 3%">2019年06月14日 03:43:28</p>
-                                <p style="float: right">来自：<a href="#">吐槽</a></p>
+                                <p style="">来自：<a href="#">吐槽</a></p>
+                                    <img src="../static/images/ghost.ico" style="height: 60px;width: 60px;float: right">
                             </div>
 
                         </div>

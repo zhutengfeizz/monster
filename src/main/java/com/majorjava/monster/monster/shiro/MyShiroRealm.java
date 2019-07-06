@@ -32,6 +32,7 @@ public class MyShiroRealm extends AuthorizingRealm {
         //获取用户信息
         String username = authenticationToken.getPrincipal().toString();
         User user = userService.findByUsername(username);
+        System.out.println("登陆的用户"+user.getUsername());
         if (user == null) {
             //这里返回后会报出对应异常
             return null;

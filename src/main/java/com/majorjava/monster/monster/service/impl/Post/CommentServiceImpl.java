@@ -1,5 +1,4 @@
 package com.majorjava.monster.monster.service.impl.Post;
-
 import com.majorjava.monster.monster.dao.CommentDao;
 import com.majorjava.monster.monster.entity.user.Comment;
 import com.majorjava.monster.monster.entity.user.Post;
@@ -9,11 +8,9 @@ import com.majorjava.monster.monster.service.Post.PostService;
 import com.majorjava.monster.monster.service.User.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * <h3>monster</h3>

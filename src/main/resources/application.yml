@@ -25,7 +25,7 @@ server:
 #上传文件
 upload:
     location:
-      windows: D:\uploads\sb\
+      windows: E:\uploads\sb\
       linux: /usr/etc/uploads/
 
 

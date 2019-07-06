@@ -3,16 +3,12 @@ package com.majorjava.monster.monster.shiro;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
-import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
-import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 
 import java.util.HashMap;
@@ -65,11 +61,11 @@ public class ShiroConfiguration {
         map.put("/static/**","anon");
         map.put("/admin/**","anon");
         map.put("/uploads/sb/","anon");
-        map.put("/upload/","anon");
         map.put("/post/**","anon");
+        map.put("/post/postHome","anon");
         //登出
         map.put("/logout","logout");
-        map.put("/**","authc");
+       /* map.put("/**","authc");*/
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         return shiroFilterFactoryBean;

@@ -59,9 +59,6 @@ public class User {
     private String phone;//手机号码
 
 
-
-
-
     @Override
     public String toString() {
         return "User{" +
@@ -75,7 +72,20 @@ public class User {
                 ", createTime=" + createTime +
                 ", age=" + age +
                 ", salt='" + salt + '\'' +
-                ", state=" + state+
+                ", state=" + state +
+                ", roles=" + roles +
+                ", replyList=" + replyList +
+                ", postList=" + postList +
+                ", commentList=" + commentList +
+                ", followSize=" + followSize +
+                ", fanSize=" + fanSize +
+                ", isFriend=" + isFriend +
+                ", svip=" + svip +
+                ", signIn=" + signIn +
+                ", signature='" + signature + '\'' +
+                ", verification='" + verification + '\'' +
+                ", phone='" + phone + '\'' +
                 '}';
     }
+
 }

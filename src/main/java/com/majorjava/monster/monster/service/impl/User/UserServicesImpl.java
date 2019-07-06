@@ -121,6 +121,7 @@ public class UserServicesImpl implements UserServices {
     @Override
     public User findByUsername(String username) {
         User user = userDao.findByUsername(username);
+        System.out.println("UserServiceImpl"+user.getUsername());
         return user;
     }
 
