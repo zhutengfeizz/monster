@@ -45,6 +45,8 @@ public class User {
     private List<Post> postList;
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Comment> commentList;
+  /*  @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Collection> collectionList;//收藏*/
     @Column(name = "follow_size",insertable = false,columnDefinition = "int default 0")
     private Integer followSize=0;//关注数
     @Column(name = "fan_size",insertable = false,columnDefinition = "int default 0")

@@ -36,14 +36,18 @@ public class Post {
     private String img;//投稿封面
     @Column(insertable = false,columnDefinition = "int default 1")
     private int state;//状态
-    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-    private List<Comment> commentList; //评论的集合（一个帖子有多个评论）
+/*    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Comment> commentList; //评论的集合（一个帖子有多个评论）*/
+    @OneToMany(mappedBy  = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY )
+    private List<Collection> collectionList;
     @OneToOne
     @JsonIgnore
     @JoinColumn(name="field_id")
     private PartitionField field;//分区
     private Integer views;//访问量
     private Integer awesome;//点赞
+    @JoinColumn(name="collection_id")
+    private Collection collection;
 
     public Integer getId() {
         return id;
@@ -125,13 +129,13 @@ public class Post {
         this.state = state;
     }
 
-    public List<Comment> getCommentList() {
+   /* public List<Comment> getCommentList() {
         return commentList;
     }
 
     public void setCommentList(List<Comment> commentList) {
         this.commentList = commentList;
-    }
+    }*/
 
     public PartitionField getField() {
         return field;

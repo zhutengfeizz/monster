@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * <h3>monster</h3>
@@ -19,10 +20,11 @@ public class Collection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="user_id")
     private User user;
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
-    @JoinColumn(name="post_id")
-    private Post post;
+
+    @OneToMany(mappedBy = "collection",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Post> postList;
 }
