@@ -45,8 +45,8 @@ public class User {
     private List<Post> postList;
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Comment> commentList;
-  /*  @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-    private List<Collection> collectionList;//收藏*/
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Collections> collectionsList;//收藏
     @Column(name = "follow_size",insertable = false,columnDefinition = "int default 0")
     private Integer followSize=0;//关注数
     @Column(name = "fan_size",insertable = false,columnDefinition = "int default 0")
@@ -59,9 +59,6 @@ public class User {
     private String signature;//个性签名
     private String verification;//验证是否实名
     private String phone;//手机号码
-
-    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-    private List<Collection> collections;
 
 
     @Override
