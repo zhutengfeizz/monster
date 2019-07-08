@@ -216,7 +216,7 @@
                               <p style="float: left;margin-left: 3%" th:text="${post.createTime}"></p>
 
                                         <i class="glyphicon glyphicon-eye-open" style="margin-left: 40px"></i>
-                                        <span th:text="+${post.views}"></span>
+                                        <span th:text="阅读量+${post.views}"></span>
                               <p style="float: right">
                                   来自：<a href="#" th:text="${post.partition.tname}"></a>
                                   -  <a href="#" th:text="${post.field.fname}"></a>

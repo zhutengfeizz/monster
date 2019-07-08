@@ -13,8 +13,8 @@ import java.util.List;
  * @date : 2019-07-05 17:11
  **/
 public interface CommentDao extends CrudRepository<Comment, Integer> {
-    List<Comment> findByUserIdAndStateOrderByCreationTime(int id,int state);
+    List<Comment> findByUserIdAndStateOrderByCreateTimeDesc(int id,int state);
     Comment findByIdAndState(int id,int state);
-    List<Comment> findByPostIdAndStateOrderByCreationTimeDesc(int pid,int state);
+    List<Comment> findByPostIdAndStateOrderByCreateTimeDesc(int pid,int state);
 
 }

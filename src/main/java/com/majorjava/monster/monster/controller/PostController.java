@@ -162,18 +162,23 @@ public class PostController {
         model.addAttribute("postList",posts);
 
         Post post = postService.finByid(id);
+        System.out.println("post:"+post);
        int sun= post.getViews();
         sun++;
         post.setViews(sun);
         Post save = postService.save(post);
-        System.out.println(save.getViews());
+        System.out.println("访问量"+save.getViews());
         model.addAttribute("post",save);
 
-        List<Comment> comments = commentService.findByPostIdAndStateOrderByCreationTimeDesc(id, 1);
-        for (Comment c:comments){
-            System.out.println("内容"+c.getCont()+"======"+"用户为"+c.getUser().getUsername());
-        }
+        List<Comment> comments = commentService.findByPostIdAndStateOrderByCreateTimeDesc(id, 1);
         model.addAttribute("commentList",comments);
+           for (Comment c : comments){
+                if (c.getId()==null){
+                    System.out.println("没有回复");
+                }else {
+                    System.out.println("有回复");
+                }
+        }
         return "/post/post_edit";
     }
 }

@@ -15,7 +15,6 @@ import java.util.*;
  **/
 @Table(name = "t_user")
 @Entity
-@Data
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,6 +59,197 @@ public class User {
     private String verification;//验证是否实名
     private String phone;//手机号码
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getHeadshot() {
+        return headshot;
+    }
+
+    public void setHeadshot(String headshot) {
+        this.headshot = headshot;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Reply> getReplyList() {
+        return replyList;
+    }
+
+    public void setReplyList(List<Reply> replyList) {
+        this.replyList = replyList;
+    }
+
+    public List<Post> getPostList() {
+        return postList;
+    }
+
+    public void setPostList(List<Post> postList) {
+        this.postList = postList;
+    }
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public List<Collections> getCollectionsList() {
+        return collectionsList;
+    }
+
+    public void setCollectionsList(List<Collections> collectionsList) {
+        this.collectionsList = collectionsList;
+    }
+
+    public Integer getFollowSize() {
+        return followSize;
+    }
+
+    public void setFollowSize(Integer followSize) {
+        this.followSize = followSize;
+    }
+
+    public Integer getFanSize() {
+        return fanSize;
+    }
+
+    public void setFanSize(Integer fanSize) {
+        this.fanSize = fanSize;
+    }
+
+    public Integer getIsFriend() {
+        return isFriend;
+    }
+
+    public void setIsFriend(Integer isFriend) {
+        this.isFriend = isFriend;
+    }
+
+    public Integer getSvip() {
+        return svip;
+    }
+
+    public void setSvip(Integer svip) {
+        this.svip = svip;
+    }
+
+    public boolean isSignIn() {
+        return signIn;
+    }
+
+    public void setSignIn(boolean signIn) {
+        this.signIn = signIn;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
+    }
+
+    public String getVerification() {
+        return verification;
+    }
+
+    public void setVerification(String verification) {
+        this.verification = verification;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 
     @Override
     public String toString() {
@@ -75,10 +265,6 @@ public class User {
                 ", age=" + age +
                 ", salt='" + salt + '\'' +
                 ", state=" + state +
-                ", roles=" + roles +
-                ", replyList=" + replyList +
-                ", postList=" + postList +
-                ", commentList=" + commentList +
                 ", followSize=" + followSize +
                 ", fanSize=" + fanSize +
                 ", isFriend=" + isFriend +

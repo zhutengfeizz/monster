@@ -30,13 +30,13 @@ public class CommentServiceImpl implements CommentService {
     private UserServices userServices;
 
     @Override
-    public List<Comment> findByPostIdAndStateOrderByCreationTimeDesc(int pid, int state) {
-        return commentDao.findByPostIdAndStateOrderByCreationTimeDesc(pid,1);
+    public List<Comment> findByPostIdAndStateOrderByCreateTimeDesc(int pid, int state) {
+        return commentDao.findByPostIdAndStateOrderByCreateTimeDesc(pid,1);
     }
 
     @Override
-    public List<Comment> findByUserIdAndStateOrderByCreationTime(int id, int state) {
-        return commentDao.findByUserIdAndStateOrderByCreationTime(id,state);
+    public List<Comment> findByUserIdAndStateOrderByCreateTime(int id, int state) {
+        return commentDao.findByUserIdAndStateOrderByCreateTimeDesc(id,state);
     }
 
     @Override
@@ -50,10 +50,11 @@ public class CommentServiceImpl implements CommentService {
         User user = userServices.finByid(uid);
         Comment comment=new Comment();
         comment.setState(1);
-        comment.setCreationTime(new Date());
+        comment.setCreateTime(new Date());
         comment.setUser(user);
         comment.setPost(post);
         comment.setCont(cont);
+        comment.setNiceComment(1);
         return commentDao.save(comment);
     }
 
