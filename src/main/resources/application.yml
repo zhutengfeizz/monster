@@ -20,7 +20,7 @@ spring:
     show-sql: true
     database: mysql
 server:
-  port: 996
+  port: 9966
 
 
 #上传文件

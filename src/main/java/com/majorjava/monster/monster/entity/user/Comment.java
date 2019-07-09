@@ -31,6 +31,7 @@ public class Comment {
     private int state;
     @Column(name = "niceComment")
     private int niceComment;
+    private String ip;
 
 
     public int getNiceComment() {

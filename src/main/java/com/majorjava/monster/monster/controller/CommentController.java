@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,31 +33,36 @@ public class CommentController {
     @Autowired
     private PostService postService;
 
-    @GetMapping("edit")
-    private Map<String,Object> comment(Integer uid, String content, Integer pid, String systemName, Integer cid){
+    @ResponseBody
+    @GetMapping("add")
+    private Map<String,Object> comment(Integer uid, String content, Integer pid,String address){
+        System.out.println("ajax传过来的uid:"+uid+",帖子id："+pid+"评论的内容"+content);
         User user = userServices.finByid(uid);
         Post post = postService.finByid(pid);
         Map<String,Object> map=new HashMap<>();
         Model model=null;
-        switch (systemName){
-            case "add" :
                 Comment save = commentService.save(uid, pid, content);
                 if (save!=null){
                     map.put("state","评论成功");
+                    map.put("code",1);
                 }else {
                     map.put("state","评论失败");
+                    map.put("code",0);
                 }
-                break;
-            case "delete" :
-                int delete = commentService.delete(cid);
-                 if (delete==0){
-                     map.put("state","删除成功");
-                 }else{
-                     map.put("state","删除失败");
-                 }
-                     break;
-            default:
-        }
+        System.out.println(map);
          return map;
+    }
+
+    @ResponseBody
+    @GetMapping("delete")
+    public Map<String,Object> deleteComm(Integer cid){
+        Map<String,Object>map=new HashMap<>();
+        int delete = commentService.delete(cid);
+        if (delete==0){
+            map.put("state","删除成功");
+        }else{
+            map.put("state","删除失败");
+        }
+        return map;
     }
 }

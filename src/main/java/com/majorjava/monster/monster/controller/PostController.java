@@ -172,7 +172,9 @@ public class PostController {
 
         List<Comment> comments = commentService.findByPostIdAndStateOrderByCreateTimeDesc(id, 1);
         model.addAttribute("commentList",comments);
-           for (Comment c : comments){
+        Long count = commentService.countByPostId(id);
+        model.addAttribute("count",count);
+        for (Comment c : comments){
                 if (c.getId()==null){
                     System.out.println("没有回复");
                 }else {

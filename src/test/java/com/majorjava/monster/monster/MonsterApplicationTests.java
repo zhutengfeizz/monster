@@ -1,9 +1,6 @@
 package com.majorjava.monster.monster;
 
-import com.majorjava.monster.monster.dao.CollectionsDao;
-import com.majorjava.monster.monster.dao.FieldDao;
-import com.majorjava.monster.monster.dao.PartitionDao;
-import com.majorjava.monster.monster.dao.PostDao;
+import com.majorjava.monster.monster.dao.*;
 import com.majorjava.monster.monster.entity.user.*;
 import com.majorjava.monster.monster.service.Post.CommentService;
 import com.majorjava.monster.monster.service.Post.PostService;
@@ -35,8 +32,12 @@ public class MonsterApplicationTests {
     private UserServices userServices;
     @Autowired
     private PostService postService;
+    @Autowired
+    private CommentDao commentDao;
 
     @Test
     public void contextLoads() {
+        Long id = commentDao.countByPostId(15);
+        System.out.println(id);
     }
 }

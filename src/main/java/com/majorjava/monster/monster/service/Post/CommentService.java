@@ -18,4 +18,5 @@ public interface CommentService {
     Comment findByIdAndState(int cid,int state);
     Comment save(Integer uid,Integer pid,String cont);
     int delete(Integer cid);
+    Long countByPostId(Integer pid);
 }

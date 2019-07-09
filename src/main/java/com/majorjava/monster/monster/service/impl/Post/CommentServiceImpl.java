@@ -55,6 +55,7 @@ public class CommentServiceImpl implements CommentService {
         comment.setPost(post);
         comment.setCont(cont);
         comment.setNiceComment(1);
+        System.out.println("这是在Impl输出的：post"+post.getName()+",user:"+user.getUsername());
         return commentDao.save(comment);
     }
 
@@ -65,6 +66,11 @@ public class CommentServiceImpl implements CommentService {
         Comment save = commentDao.save(comment);
         int state = save.getState();
         return state;
+    }
+
+    @Override
+    public Long countByPostId(Integer pid) {
+        return commentDao.countByPostId(pid);
     }
 
 
