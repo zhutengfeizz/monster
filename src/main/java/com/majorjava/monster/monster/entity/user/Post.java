@@ -44,7 +44,15 @@ public class Post {
     private PartitionField field;//分区
     private Integer views;//访问量
     private Integer awesome;//点赞
+    private Long cunt;//评论的数量
 
+    public Long getCunt() {
+        return cunt;
+    }
+
+    public void setCunt(Long cunt) {
+        this.cunt = cunt;
+    }
 
     public Integer getId() {
         return id;

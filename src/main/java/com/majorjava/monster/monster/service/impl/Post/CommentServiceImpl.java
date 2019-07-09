@@ -48,6 +48,12 @@ public class CommentServiceImpl implements CommentService {
     public Comment save(Integer uid,Integer pid,String cont) {
         Post post = postService.finByid(pid);
         User user = userServices.finByid(uid);
+        Long aLong = commentDao.countByPostId(pid);
+        System.out.println("当前帖子的评论数量："+aLong);
+        aLong++;
+        post.setCunt(aLong);
+        Post save = postService.save(post);
+        System.out.println("当前帖子的最新评论数量:"+save.getCunt());
         Comment comment=new Comment();
         comment.setState(1);
         comment.setCreateTime(new Date());

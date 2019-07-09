@@ -5,13 +5,11 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   resources:
-    static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css,classpath:/D:/uploads/sb/,classpath:/D:/uploads/sb,
+    static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css,classpath:/D:/uploads/sb/,classpath:/D:/uploads/sb,classpath:/static/font-awesome-4.7.0/css/font-awesome.min.css,classpath:/META-INF/resources/webjars/
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5Dialect
-        resources:
-          static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css,classpath:/D:/uploads/sb/,classpath:/D:/uploads/sb,
     hibernate:
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
@@ -20,7 +18,7 @@ spring:
     show-sql: true
     database: mysql
 server:
-  port: 9966
+  port: 996
 
 
 #上传文件

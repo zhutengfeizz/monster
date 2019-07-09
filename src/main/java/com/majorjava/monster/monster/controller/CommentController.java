@@ -38,7 +38,7 @@ public class CommentController {
     private Map<String,Object> comment(Integer uid, String content, Integer pid,String address){
         System.out.println("ajax传过来的uid:"+uid+",帖子id："+pid+"评论的内容"+content);
         User user = userServices.finByid(uid);
-        Post post = postService.finByid(pid);
+/*        Post post = postService.finByid(pid);*/
         Map<String,Object> map=new HashMap<>();
         Model model=null;
                 Comment save = commentService.save(uid, pid, content);

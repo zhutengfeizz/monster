@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>详情</title>
     <link rel="stylesheet" href="../../static/layui-v2.5.3/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
     <style>
         .headertital{
             color: #999999;
@@ -104,10 +105,13 @@
             <hr  style="color: silver;width: 330px" class="hr">
 
             <!--帖子推荐-->
+            <li><i class="fa-li fa fa-spinner fa-spin"></i>as bullets</li>
             <div  style="float: right;margin-top: 20px;margin-bottom: 10px" th:each="posts : ${postList}">
                 <a th:href="@{/post/postHome(id=${posts.id})}" style="font-size: 15px" th:text="${posts.name}"></a><br/>
-                <span th:text="阅读量+${posts.views}"></span>
-                <span>评论：30</span>
+
+                <span th:text="${posts.views}"></span>
+
+                <span th:text="${post.cunt}"></span>
                 <hr  style="color: silver;width: 330px" class="hr">
             </div>
         </div>

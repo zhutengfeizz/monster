@@ -6,6 +6,10 @@
     <link rel="icon" type="image/x-icon" href="../static/images/gun.ico" />
     <link rel="stylesheet" href="../static/layui-v2.5.3/layui/css/layui.css" media="all">
     <link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.9.0/css/fontawesome.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/layui/2.4.5/css/layui.css}">-->
 
     <style>
         #bigbg{
@@ -203,8 +207,8 @@
 
                     <div style="border: #1b6d85 solid 2px;width: 670px;height: 90px;margin-top: 10px" th:each="post,postStat : ${postList}">
                         <div style="width: 60px;height: 40px;float: left;padding: 0px 10px 0px 10px;margin-top: 5px">
-                            <div style="float: left"><i style="color:#FD4C5B;font-weight: bold;font-size: 15px">132&nbsp;</i></div><br>
-                            <div style="float: left"><i style="color:grey;font-weight: bold;font-size: 15px">评论&nbsp;</i></div>
+                            <div style="float: left"><span style="color:#FD4C5B;font-weight: bold;font-size: 15px" th:text="${post.cunt}"></span></div><br>
+                            <div style="float: left"><span style="color:grey;font-weight: bold;font-size: 15px">评论&nbsp;</span></div>
                         </div>
                         <a href="#" th:href="@{/post/postHome(id=${post.id})}" style="color: #0C0C0C;font-size: 20px;font-family: SansSerif" th:text="${post.name}"></a>
                         <div style="text-overflow: ellipsis;white-space : nowrap;overflow: hidden;">
