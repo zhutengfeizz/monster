@@ -1,8 +1,6 @@
 package com.majorjava.monster.monster.service.Post;
 
 import com.majorjava.monster.monster.entity.user.Post;
-import com.majorjava.monster.monster.entity.user.User;
-import javafx.geometry.Pos;
 
 import java.util.List;
 
@@ -24,5 +22,4 @@ public interface PostService  {
     List<Post>findByNameLikeAndStateOrderByCreateTimeDesc(String pname,int state);
     Post findByName(String pname);
     Post findByNameLike(String pname);
-
 }
