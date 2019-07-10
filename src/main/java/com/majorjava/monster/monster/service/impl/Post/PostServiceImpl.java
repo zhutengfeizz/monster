@@ -4,8 +4,10 @@ import com.majorjava.monster.monster.dao.PostDao;
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.service.Post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
 import java.util.List;
 
 /**
@@ -20,7 +22,6 @@ import java.util.List;
 public class PostServiceImpl implements PostService {
     @Autowired
     private PostDao postDao;
-
 
 
     @Override

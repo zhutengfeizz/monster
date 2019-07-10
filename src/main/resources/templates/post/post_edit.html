@@ -105,15 +105,21 @@
             <hr  style="color: silver;width: 330px" class="hr">
 
             <!--帖子推荐-->
-            <li><i class="fa-li fa fa-spinner fa-spin"></i>as bullets</li>
             <div  style="float: right;margin-top: 20px;margin-bottom: 10px" th:each="posts : ${postList}">
-                <a th:href="@{/post/postHome(id=${posts.id})}" style="font-size: 15px" th:text="${posts.name}"></a><br/>
-
-                <span th:text="${posts.views}"></span>
-
-                <span th:text="${post.cunt}"></span>
+                <div>
+                    <a th:href="@{/post/postHome(id=${posts.id})}" style="font-size: 15px" th:text="${posts.name}"></a><br/>
+                </div>
+                <div style="margin-top: 10px">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    <span th:text="${posts.views}"></span>
+                    <i class="fa fa-commenting-o" style="margin-left: 10px" aria-hidden="true"></i>
+                    <span th:text="${posts.cunt}"></span>
+                </div>
                 <hr  style="color: silver;width: 330px" class="hr">
             </div>
+            <!--layui分页-->
+            <div id="demo6"></div>
+
         </div>
 
         <div style="width: 800px;float: left;">
@@ -182,12 +188,12 @@
             <input type="hidden" name="pid" id="pid" th:value="${post.id}">
             <div>
                 <div style="float: left;height: 60px;width: 100%;border-bottom-color: #E6E6E6">
-                    <button style="float: right;margin-right: 10px;margin-top: 5px;margin-bottom: 5px" class="site-demo-layedit" data-type="content" id="sm">提交</button>
+                    <button style="float: right;margin-right: 10px;margin-top: 5px;margin-bottom: 5px" class="site-demo-layedit layui-btn layui-btn-danger" data-type="content" id="sm">提交</button>
                 </div>
             </div>
             <!--用户评论集合遍历-->
             <div style="margin-top: 30px;width: 778px;float: left;padding: 10px">
-                <div style="height: 97px;width: 100%;margin-top: 30px;margin-bottom: 30px" th:each="comm : ${commentList}">
+                <div style="height: 97px;width: 700px;margin-top: 30px;margin-bottom: 30px" th:each="comm : ${commentList}">
                     <div style="float: left;height: 70px;width: 100%">
                         <!--<div style="float: left;height: 70px">
                             <img src="#" th:src="${comm.user.headshot}"  style="float: left;height: 60px;width: 70px">
@@ -197,10 +203,22 @@
                         </div>
                         <div style="height: 60px">
                             <div style="width: 100%;height: 60px" >
-                                <div>
-                                    <span style="margin-left: 10px" th:text="${comm.user.username}"></span>
-                                    <span class="headertital" style="font-size: 13px" th:text="${comm.createTime}"></span>
-                                    <span class="headertital" style="font-size: 10px;float: right" th:text="No.+${comm.id}"></span><br/>
+                                <div style="width: 100%;height: 30px">
+                                    <div style="float: left">
+                                        <span style="margin-left: 10px" th:text="${comm.user.username}"></span>
+                                    </div>
+
+                                    <div style="width: 80px;float: left">
+                                        <div th:if="${comm.user.id}==${post.user.id}" style="margin-left: 17px" class="up">楼主</div>
+                                    </div>
+
+                                    <div style="width: 200px;float: left">
+                                        <span class="headertital" style="font-size: 13px" th:text="${comm.createTime}"></span>
+                                    </div>
+
+                                    <div style="width: 60px;float: right">
+                                        <span class="headertital" style="font-size: 10px;float: right" th:text="No.+${comm.id}"></span><br/>
+                                    </div>
                                 </div>
                                 <div style="margin-top: 10px;float: left">
                                     <div th:utext="${comm.cont}" style="margin-left: 10px" >
@@ -208,25 +226,29 @@
                                     <div style="width: 100%;margin-top: 15px;float: left;margin-left: 10px">
                                         <i class="layui-icon" style="margin-left: 10px;">&#xe6c6; <a class="afont" href="#"th:text="'赞:'+${comm.niceComment}"></a></i>
                                         <i class="layui-icon" style="margin-left: 10px;">&#xe611; <a class="afont" href="#">回复</a></i>
-                                        <span class="headertital"style="font-size: 13px">来自：<span id="p"></span></span>
+                                        <span class="headertital"style="font-size: 13px">来自：<span id="ci" th:text="${comm.ip}"></span></span>
                                     </div>
                                 </div>
                             </div>
                             <hr color="#C1C1C1">
                         </div>
-
                     </div>
                 </div>
+                <div th:if="${commentList.size()==0}" style="background-color: #1b6d85;align-content: center;height: 70px;width: 100%">
+                        <h4>快！抢沙发。</h4>
+                </div>
+                <div id="demo3"></div>
             </div>
         </div>
     </div>
 </div>
+    <input type="hidden" id="city" name="city">
     <div style="width: 100%;height: 100px;background-color: #8c8c8c">
         <div id="ip">
 
         </div>
 
-        <div id="city">
+        <div id="">
 
         </div>
     </div>
@@ -242,7 +264,31 @@
             ,carousel = layui.carousel
             ,layedit = layui.layedit
             ,laydate = layui.laydate
+            ,laypage = layui.laypage
             ,upload = layui.upload;
+
+
+
+        //只显示上一页、下一页
+        laypage.render({
+            elem: 'demo6'
+            ,count: 50
+            ,layout: ['prev', 'next']
+            ,jump: function(obj, first){
+                if(!first){
+                    layer.msg('第 '+ obj.curr +' 页');
+                }
+            }
+        });
+        //自定义首页、尾页、上一页、下一页文本
+        laypage.render({
+            elem: 'demo3'
+            ,count: 100
+            ,first: '首页'
+            ,last: '尾页'
+            ,prev: '<em>上一页</em>'
+            ,next: '<em>下一页</em>'
+        });
 
         //日期
         laydate.render({
@@ -273,13 +319,53 @@
         $("button#sm").click(function(){
            alert((layedit.getContent(index))+uid+pid)
         });*/
+
+        $(document).ready(function(){
+            //获取城市ajax
+            $.ajax({
+                url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
+                type: 'POST',
+                dataType: 'jsonp',
+                success: function (data) {
+                    console.log(JSON.stringify(data.content.address_detail.province + "," + data.content.address_detail.city));
+                    $('#city').val(JSON.stringify(data.content.address_detail.province + "," + data.content.address_detail.city))
+                }
+            });
+            //获取IP地址
+            var ip = "1.2.3.4";
+            var options = {
+                type: 'GET',
+                dataType: "json",
+                //async: false, //jquery3中可以直接使用回调函数，不用再指定async
+                url: "https://api.ipify.org/?format=json"
+            };
+            $.ajax(options)
+                .done(function(data, textStatus, jqXHR) {
+                    if(textStatus == "success") {
+                        try {
+                            ip = data.ip;
+                            $('#ip').html(ip)
+                        } catch (e) {
+                            ip = "1.2.3.4";
+                            if(window.console){
+                                console.log(e.message);
+                            }
+                        }
+                    } else {
+                        ip = "1.2.3.4";
+                    }
+                });
+
+        });
+
+
         //ajax回复帖子功能
         //ajax评论
         $(document).ready(function(){
             var str = window.location.href;
-
             var uid=$("#uid").val();
             var pid=$("#pid").val();
+            var city=$("input:hidden[name='city']").val();
             var sta = str.lastIndexOf("/");
             var end = str.lastIndexOf(".");
             var artid = str.substring(sta+1,end);//返回url中的artid的值
@@ -296,17 +382,17 @@
                         layer.alert('评论内容不能为空！', {icon: 2});
                         return false;
                     }else{
+                        var city=$("#city").val();
                         $.ajax({
                             type:"get",
                             dataType:"json",
-                            data:{"content":cont,"pid":pid,"uid":uid},
+                            data:{"content":cont,"pid":pid,"uid":uid,"ip":city},
                             url:"/comment/add",
                             success:function(date){
                                /* alert(date.code)*/
                                 if(date.code==1){
                                     /*$('#context').text('');*/
                                     layer.msg('评论成功！');
-                                    $(window.frames["index"].document).find('body').html('');
                                 }else{
                                     layer.msg('评论失败！');
                                     return false;
@@ -398,43 +484,7 @@
         });
     }();
 
-    $(function() {
-        //获取城市ajax
-        $.ajax({
-            url: 'http://api.map.baidu.com/location/ip?ak=ia6HfFL660Bvh43exmH9LrI6',
-            type: 'POST',
-            dataType: 'jsonp',
-            success: function (data) {
-                console.log(JSON.stringify(data.content.address_detail.province + "," + data.content.address_detail.city));
-                $('#city').html(JSON.stringify(data.content.address_detail.province + "," + data.content.address_detail.city))
-            }
-        });
 
-    });
-    //获取IP地址
-        var ip = "1.2.3.4";
-        var options = {
-            type: 'GET',
-            dataType: "json",
-            //async: false, //jquery3中可以直接使用回调函数，不用再指定async
-            url: "https://api.ipify.org/?format=json"
-        };
-        $.ajax(options)
-            .done(function(data, textStatus, jqXHR) {
-                if(textStatus == "success") {
-                    try {
-                        ip = data.ip;
-                        $('#ip').html(ip)
-                    } catch (e) {
-                        ip = "1.2.3.4";
-                        if(window.console){
-                            console.log(e.message);
-                        }
-                    }
-                } else {
-                    ip = "1.2.3.4";
-                }
-            });
 
 
 </script>

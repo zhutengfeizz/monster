@@ -16,7 +16,7 @@ public interface CommentService {
     List<Comment> findByPostIdAndStateOrderByCreateTimeDesc(int pid,int state);
     List<Comment> findByUserIdAndStateOrderByCreateTime(int uid, int state);
     Comment findByIdAndState(int cid,int state);
-    Comment save(Integer uid,Integer pid,String cont);
+    Comment save(Integer uid,Integer pid,String cont,String ip);
     int delete(Integer cid);
     Long countByPostId(Integer pid);
 }

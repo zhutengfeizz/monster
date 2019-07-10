@@ -45,7 +45,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Comment save(Integer uid,Integer pid,String cont) {
+    public Comment save(Integer uid,Integer pid,String cont,String ip) {
         Post post = postService.finByid(pid);
         User user = userServices.finByid(uid);
         Long aLong = commentDao.countByPostId(pid);
@@ -55,6 +55,7 @@ public class CommentServiceImpl implements CommentService {
         Post save = postService.save(post);
         System.out.println("当前帖子的最新评论数量:"+save.getCunt());
         Comment comment=new Comment();
+        comment.setIp(ip);
         comment.setState(1);
         comment.setCreateTime(new Date());
         comment.setUser(user);
