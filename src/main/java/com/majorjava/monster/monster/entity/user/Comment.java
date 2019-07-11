@@ -32,6 +32,15 @@ public class Comment {
     @Column(name = "niceComment")
     private int niceComment;
     private String ip;
+    private int number;//第几楼
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
 
     public String getIp() {
         return ip;

@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>帖子详情2</title>
-    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
-
-    <link rel="stylesheet" href="../../../static/layui-v2.5.3/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-
-
-</head>
-<body>
-<div id="body" style="width: 1200px;margin: 0 auto;border: orange solid 3px;background-color:#F5F7FA">
-
+<head th:replace="comm/index_head :: commonHeader('用户编辑')">
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin" >
+    <!--头部导航栏-->
+    <div class="layui-header" th:include="comm/admin_head :: adminNav"></div>
+    <!--右边导航栏-->
+    <div class="layui-side layui-bg-black" th:include="comm/admin_head :: r"></div>
+    <!--内容主体-->
+    <div class="layui-body">
+        <div style="margin-left: 10px;margin-top: 10px">
+            <span class="layui-breadcrumb" lay-separator="-">
+              <a href="/adminIndex">首页</a>
+              <a href="">帖子管理</a>
+              <a><cite>帖子编辑</cite></a>
+            </span>
+        </div>
     <form class="layui-form" th:action="@{/post/save}"  method="post" style="width: 800px;text-align: center;margin: 0 auto;background-color: white;padding-right: 10px">
         <div style="margin: 10px 0px 10px 0px;text-align: left">
             <button type="button" class="layui-btn">文章投稿</button>
@@ -105,7 +108,7 @@
         </div>
     </form>
 </div>
-
+</div>
 </body>
 <script src="../../../static/js/jquery.js"></script>
 <script src="../../../static/layui-v2.5.3/layui/layui.all.js"></script>

@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../../../static/layui-v2.5.3/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-</head>
-<body>
+<head th:replace="comm/index_head :: commonHeader('Monster后台首页')"></head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin" >
+    <!--头部导航栏-->
+    <div class="layui-header" th:include="comm/admin_head :: adminNav"></div>
+    <!--右边导航栏-->
+    <div class="layui-side layui-bg-black" th:include="comm/admin_head :: r"></div>
+    <!--内容主体-->
+    <div class="layui-body">
+        <div style="margin-left: 10px;margin-top: 10px">
+            <span class="layui-breadcrumb" lay-separator="-">
+           <a href="/adminIndex">首页</a>
+              <a href="">帖子管理</a>
+              <a><cite>所有的帖子</cite></a>
+            </span>
+        </div>
 <div class="layui-form">
     <table class="layui-table">
         <colgroup>
@@ -24,7 +33,7 @@
             <th>分类</th>
             <th>投稿类型</th>
             <th>发布时间</th>
-            <th>简介</th>
+            <th style="width: 100px">简介</th>
             <th>操作</th>
         </tr>
         </thead>
@@ -47,6 +56,8 @@
         </tr>
         </tbody>
     </table>
+</div>
+    </div>
 </div>
 </body>
 <script src="../../../static/js/jquery.js"></script>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,14 +56,21 @@ public class CommentController {
 
     @ResponseBody
     @GetMapping("delete")
-    public Map<String,Object> deleteComm(Integer cid){
+    public Map<String,Object> deleteComm(Integer cid, HttpSession session){
+        User user = (User)session.getAttribute("loginUser");
         Map<String,Object>map=new HashMap<>();
-        int delete = commentService.delete(cid);
-        if (delete==0){
-            map.put("state","删除成功");
-        }else{
-            map.put("state","删除失败");
+        Comment comment = commentService.findByIdAndState(cid, 1);
+        if (user.getId().equals(comment.getUser().getId())){
+            int delete = commentService.delete(cid);
+            if (delete==0){
+                map.put("state","删除成功");
+            }else{
+                map.put("state","删除失败");
+            }
+        }else {
+            map.put("state","权限不足");
         }
+
         return map;
     }
 }

@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Monster</title>
-    <link rel="icon" type="image/x-icon" href="../static/images/gun.ico" />
-    <link rel="stylesheet" href="../static/layui-v2.5.3/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../static/font-awesome-4.7.0/css/font-awesome.min.css">
+<head th:replace="comm/index_head :: commonHeader('Monster')">
+
+
 <!--    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.9.0/css/fontawesome.min.css}">
     <link rel="stylesheet" th:href="@{/webjars/layui/2.4.5/css/layui.css}">-->
 
     <style>
         #bigbg{
-            background:url("../static/images/涂鸦.jpg") no-repeat ;
+            background:url("../static/images/bgc.jpg") no-repeat ;
             background-size: 100% 100%;
             height: 1000px;
         }
@@ -51,70 +47,12 @@
         }
     </style>
 </head>
-<body id="bigbg">
+<body id="bigbg" style="background:url('../static/images/bgc.jpg') no-repeat">
 <!--<audio controls>
     <source src="../static/music/宗次郎%20-%20いつも何度でも.mp3" type="audio/mpeg" style="width: 100px">
     Your browser does not support this audio format.
 </audio>-->
-<div>
-    <ul class="layui-nav">
-        <img src="../static/images/g2.png" width="60px" height="60px"><li class="layui-nav-item">Monster</li>
-        <li class="layui-nav-item"><a href="/index">首页</a></li>
-        <li class="layui-nav-item layui-this">
-            <a href="javascript:;">宝库</a>
-            <dl class="layui-nav-child">
-                <dd><a href="">CSGO</a></dd>
-                <dd><a href="">游戏商城</a></dd>
-                <dd><a href="../static/game/fk.html">切方块</a></dd>
-                <dd><a href="../static/game/Mario/index.html">马里奥</a></dd>
-                <dd><a href="adminIndex">管理员</a></dd>
-                <dd><a href="/post/save">发帖</a></dd>
-                <dd><a href="/post/postHome">帖子主页</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item"><a href="">论坛</a></li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">更多</a>
-            <dl class="layui-nav-child">
-                <dd><a href="">BUG反馈</a></dd>
-                <dd><a href="">意见和建议</a></dd>
-                <dd class="layui-this"><a href="">加入我们！</a></dd>
-                <dd><a href="">商务合作</a></dd>
-         <!--           <span  style="color: red" th:if="${loginUser!=null}" th:text="${loginUser.username}"></span>-->
-            </dl>
-        </li>
-
-
-        <ul class="layui-nav layui-layout-right" th:if="${session.loginUser==null}">
-            <li class="layui-nav-item" style="float: right" >
-                <a href="/login">登录</a>
-            </li>
-            <li class="layui-nav-item"  style="float: right" >
-                <a href="/register/">注册</a>
-            </li>
-        </ul>
-
-        <ul class="layui-nav layui-layout-right" th:if="${session.loginUser!=null}">
-               <li class="layui-nav-item">
-                    <a href="javascript:;">
-                        <img  th:src="${session.loginUser.headshot}" class="layui-nav-img">
-                         <span th:text="${session.loginUser.username}"></span>
-                    </a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="#"  th:href="@{/user/edit(id=${session.loginUser.id})}">基本资料</a></dd>
-                        <dd><a href="#" th:href="@{/user/postList(id=${session.loginUser.id})}">我的帖子</a></dd>
-                        <dd><a href="">我的收藏</a></dd>
-                        <dd><a href="">我的关注</a></dd>
-                        <dd><a href="">修改密码</a></dd>
-                        <dd><a href="#" th:href="@{/myHome(id=${session.loginUser.id})}">个人中心</a> </dd>
-                        <dd><a href="">我的投稿</a></dd>
-                        <dd><a href="#" th:if="user.svip==3" th:href="/adminIndex">管理员入口</a></dd>
-                    </dl>
-                <li class="layui-nav-item"><a href="/logout">注销</a></li>
-        </ul>
-
-    </ul>
-</div>
+<div th:include="comm/index_head :: commonNav"></div>
 
 <div id="">
     <div class="layui-container" style="background-color: white;padding: 0 1px;">
@@ -335,9 +273,7 @@
 
 
 </div>
-<script src="../static/js/jquery.js"></script>
-<script src="../static/layui-v2.5.3/layui/layui.all.js"></script>
-<script src="../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<div th:include="comm/index_head :: commonFooter"></div>
 <script>
     //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
     ;!function(){

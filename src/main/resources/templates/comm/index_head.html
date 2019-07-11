@@ -1,20 +1,107 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="commonHeader(title)">
+    <title th:text="${title}"></title>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" th:href="@{/static/images/gun.ico}"/>
+  <!--  <link rel="icon" type="image/x-icon" href="../static/images/gun.ico" />
+    <link rel="stylesheet" href="../static/layui-v2.5.3/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">-->
+    <link rel="stylesheet" th:href="@{/static/font-awesome-4.7.0/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/static/layui-v2.5.3/layui/css/layui.css}" media="all">
+    <link rel="stylesheet" th:href="@{/static/bootstrap-3.3.7-dist/css/bootstrap.min.css}">
+    <style>
+        .headertital{
+            color: #999999;
+            margin-left: 10px;
+        }
+        .fontColor{
+            font-size: 16px;
+            color: #333333;
+            margin-left: 10px;
+        }
+        .bt{
+            width: 110px;
+            height: 38px;
+        }
+        .cunt{
+            font-weight: bold;
+        }
+        .type{
+            color: #999999;
+        }
+        .hr{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .up{
+            width: 44px;
+            height: 22px;
+            font-size: 12px;
+            line-height: 22px;
+            background-color: #4a8eff;
+            text-align: center;
+            border-radius: 4px;
+            color: #fff;
+            float: left;
+            margin-left: 40px;
+        }
+        .afont{
+            color: #999999;
+            font-size: 13px;
+        }
+        #bigbg{
+            background-size: 100% 100%;
+            height: 1000px;
+        }
+        ul{
+            margin-bottom: 1px;
+        }
+        .a-font-color{
+            color: red;
+            font-size: 5px;
+        }
+        .map{
+            margin-top: 10px;
+        }
+
+        @font-face {
+            font-family: 'webfont';
+            font-display: swap;
+            src: url('//at.alicdn.com/t/webfont_1mszht3zjt1.eot'); /* IE9*/
+            src: url('//at.alicdn.com/t/webfont_1mszht3zjt1.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('//at.alicdn.com/t/webfont_1mszht3zjt1.woff2') format('woff2'),
+            url('//at.alicdn.com/t/webfont_1mszht3zjt1.woff') format('woff'), /* chrome、firefox */
+            url('//at.alicdn.com/t/webfont_1mszht3zjt1.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+            url('//at.alicdn.com/t/webfont_1mszht3zjt1.svg#AlibabaPuHuiTiH') format('svg'); /* iOS 4.1- */
+        }
+
+        .web-font{
+            font-family:"webfont" !important;
+            font-size:16px;font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        body{
+
+        }
+    </style>
 </head>
 <body>
-<div>
+<div th:fragment="commonNav">
     <ul class="layui-nav">
-        <img src="../static/images/g2.png" width="60px" height="60px"><li class="layui-nav-item">Monster</li>
+        <img th:src="@{/static/images/g2.png}" width="60px" height="60px"><li class="layui-nav-item">Monster</li>
         <li class="layui-nav-item"><a href="/index">首页</a></li>
         <li class="layui-nav-item layui-this">
             <a href="javascript:;">宝库</a>
             <dl class="layui-nav-child">
                 <dd><a href="">CSGO</a></dd>
                 <dd><a href="">游戏商城</a></dd>
-                <dd><a href="../static/game/fk.html">游戏中心</a></dd>
+                <dd><a th:href="@{/static/game/fk.html}">切方块</a></dd>
+                <dd><a th:href="@{/static/game/Mario/index.html}">马里奥</a></dd>
                 <dd><a href="adminIndex">管理员</a></dd>
-                <dd><a href="/post/edit">发帖</a></dd>
+                <dd><a href="/post/save">发帖</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item"><a href="">论坛</a></li>
@@ -42,22 +129,28 @@
         <ul class="layui-nav layui-layout-right" th:if="${session.loginUser!=null}">
             <li class="layui-nav-item">
                 <a href="javascript:;">
-                    <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+                    <img  th:src="${session.loginUser.headshot}" class="layui-nav-img">
                     <span th:text="${session.loginUser.username}"></span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="#"  th:href="@{/user/edit(id=${session.loginUser.id})}">基本资料</a></dd>
+                    <dd><a href="#" th:href="@{/user/postList(id=${session.loginUser.id})}">我的帖子</a></dd>
                     <dd><a href="">我的收藏</a></dd>
                     <dd><a href="">我的关注</a></dd>
                     <dd><a href="">修改密码</a></dd>
                     <dd><a href="#" th:href="@{/myHome(id=${session.loginUser.id})}">个人中心</a> </dd>
                     <dd><a href="">我的投稿</a></dd>
-                    <dd><a href="/adminIndex">管理员入口</a></dd>
+                    <dd><a href="#" th:if="user.svip==3" th:href="/adminIndex">管理员入口</a></dd>
                 </dl>
             <li class="layui-nav-item"><a href="/logout">注销</a></li>
         </ul>
 
     </ul>
 </div>
+<footer th:fragment="commonFooter">
+    <script th:src="@{/static/js/jquery.js}"></script>
+    <script th:src="@{/static/layui-v2.5.3/layui/layui.all.js}"></script>
+    <script th:src="@{/static/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>
+</footer>
 </body>
 </html>

@@ -1,61 +1,71 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../../../static/layui-v2.5.3/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../../static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
-</head>
-<body>
-<div class="layui-form">
-    <table class="layui-table">
-        <colgroup>
-            <col width="150">
-            <col width="150">
-            <col width="200">
-            <col>
-        </colgroup>
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>用户名</th>
-            <th>头像</th>
-            <th>年龄</th>
-            <th>邮箱</th>
-            <th>性别</th>
-            <th>生日</th>
-            <th>注册时间</th>
-            <th>用户类型</th>
-            <th>操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr  th:each="user,userStat : ${userList}">
-            <td th:text="${user.id}"></td>
-            <td th:text="${user.username}"></td>
-            <td><img th:src="${user.headshot}" style="width: 50px;height: 50px"></td>
-            <td th:text="${user.age}"></td>
-            <td th:text="${user.email}"></td>
-            <td th:text="${user.sex}"></td>
-            <td th:text="${user.birthday}"></td>
-            <td th:text="${user.createTime}"></td>
-            <td th:if="${user.svip}==0" th:text="普通会员"></td>
-            <td th:if="${user.svip}==1" th:text="超级会员"></td>
-            <td><a th:if="${user.state==1}" th:href="@{/user/delete(id=${user.id})}" href="#" onclick="return confirm('确认删除此记录吗？')">删除</a> <a th:if="${user.state==1}" th:href="@{/user/edit(id=${user.id})}" href="#">修改</a>
-                <a href="" th:if="${user.state==0}" th:text="恢复用户" th:href="@{/user/restore(id=${user.id})}" onclick="return confirm('确认要恢复吗？')"></a>
-                <a href="" th:if="${user.state==0}" th:text="彻底删除用户" onclick="return confirm('确认删除此记录吗？')" th:href="@{/user/finalDelete(id=${user.id})}"></a>
-            </td>
-        </tr>
-        </tbody>
-        <span style="color: red" th:text="${message}">
+<head th:replace="comm/index_head :: commonHeader('Monster后台首页')"></head>
+    <body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin" >
+        <!--头部导航栏-->
+        <div class="layui-header" th:include="comm/admin_head :: adminNav"></div>
+        <!--右边导航栏-->
+        <div class="layui-side layui-bg-black" th:include="comm/admin_head :: r"></div>
+        <!--内容主体-->
+        <div class="layui-body">
+            <div style="margin-left: 10px;margin-top: 10px">
+                 <span class="layui-breadcrumb" lay-separator="-">
+              <a href="/adminIndex">首页</a>
+              <a href="">用户管理</a>
+              <a><cite>所有的用户</cite></a>
+            </span>
+            </div>
+
+            <div class="layui-form">
+                <table class="layui-table">
+                    <colgroup>
+                        <col width="150">
+                        <col width="150">
+                        <col width="200">
+                        <col>
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>用户名</th>
+                        <th>头像</th>
+                        <th>年龄</th>
+                        <th>邮箱</th>
+                        <th>性别</th>
+                        <th>生日</th>
+                        <th>注册时间</th>
+                        <th>用户类型</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr  th:each="user,userStat : ${userList}">
+                        <td th:text="${user.id}"></td>
+                        <td th:text="${user.username}"></td>
+                        <td><img th:src="${user.headshot}" style="width: 50px;height: 50px"></td>
+                        <td th:text="${user.age}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.sex}"></td>
+                        <td th:text="${user.birthday}"></td>
+                        <td th:text="${user.createTime}"></td>
+                        <td th:if="${user.svip}==0" th:text="普通会员"></td>
+                        <td th:if="${user.svip}==1" th:text="超级会员"></td>
+                        <td><a th:if="${user.state==1}" th:href="@{/user/delete(id=${user.id})}" href="#" onclick="return confirm('确认删除此记录吗？')">删除</a> <a th:if="${user.state==1}" th:href="@{/user/edit(id=${user.id})}" href="#">修改</a>
+                            <a href="" th:if="${user.state==0}" th:text="恢复用户" th:href="@{/user/restore(id=${user.id})}" onclick="return confirm('确认要恢复吗？')"></a>
+                            <a href="" th:if="${user.state==0}" th:text="彻底删除用户" onclick="return confirm('确认删除此记录吗？')" th:href="@{/user/finalDelete(id=${user.id})}"></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <span style="color: red" th:text="${message}">
 
               </span>
-    </table>
-</div>
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
-<script src="../../../static/js/jquery.js"></script>
-<script src="../../../static/layui-v2.5.3/layui/layui.all.js"></script>
-<script src="../../../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+<div th:include="comm/index_head :: commonFooter"></div>
 <script>
 
 </script>

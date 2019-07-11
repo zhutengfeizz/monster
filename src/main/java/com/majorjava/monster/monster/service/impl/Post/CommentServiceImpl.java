@@ -29,6 +29,7 @@ public class CommentServiceImpl implements CommentService {
     @Autowired
     private UserServices userServices;
 
+
     @Override
     public List<Comment> findByPostIdAndStateOrderByCreateTimeDesc(int pid, int state) {
         return commentDao.findByPostIdAndStateOrderByCreateTimeDesc(pid,1);
@@ -52,9 +53,12 @@ public class CommentServiceImpl implements CommentService {
         System.out.println("当前帖子的评论数量："+aLong);
         aLong++;
         post.setCunt(aLong);
+
         Post save = postService.save(post);
         System.out.println("当前帖子的最新评论数量:"+save.getCunt());
         Comment comment=new Comment();
+      /*  number++;
+        comment.setNumber(number);*/
         comment.setIp(ip);
         comment.setState(1);
         comment.setCreateTime(new Date());

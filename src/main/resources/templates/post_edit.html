@@ -1,54 +1,11 @@
 
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>详情</title>
-    <link rel="stylesheet" href="../../static/layui-v2.5.3/layui/css/layui.css" media="all">
-    <link rel="stylesheet" href="../../static/font-awesome-4.7.0/css/font-awesome.min.css">
-    <style>
-        .headertital{
-            color: #999999;
-            margin-left: 10px;
-        }
-        .fontColor{
-            font-size: 16px;
-            color: #333333;
-            margin-left: 10px;
-        }
-        .bt{
-            width: 110px;
-            height: 38px;
-        }
-        .cunt{
-            font-weight: bold;
-        }
-        .type{
-            color: #999999;
-        }
-        .hr{
-            margin-top: 0;
-            margin-bottom: 0;
-        }
-        .up{
-            width: 44px;
-            height: 22px;
-            font-size: 12px;
-            line-height: 22px;
-            background-color: #4a8eff;
-            text-align: center;
-            border-radius: 4px;
-            color: #fff;
-            float: left;
-            margin-left: 40px;
-        }
-        .afont{
-            color: #999999;
-            font-size: 13px;
-        }
+<head th:replace="comm/index_head :: commonHeader('Monster')">
 
-    </style>
 </head>
+
 <body>
+<div th:include="comm/index_head :: commonNav"></div>
 <div class="layui-container" style="padding: 5px">
 
     <div class="layui-row" style="padding-top: 5px;">
@@ -137,7 +94,7 @@
                         <span class="headertital" th:text="阅读量+${post.views}" ></span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital"th:text="评论：+${count}"></span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital">&nbsp;&nbsp;|&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img class="headertital" src="../../static/images/土豆.png" style="width: 20px;height: 20px;">&nbsp;
+                        <img class="headertital" src="../static/images/土豆.png" style="width: 20px;height: 20px;">&nbsp;
                         <span class="headertital">360</span>&nbsp;
                     </div>
                 </div>
@@ -217,7 +174,7 @@
                                     </div>
 
                                     <div style="width: 60px;float: right">
-                                        <span class="headertital" style="font-size: 10px;float: right" th:text="No.+${comm.id}"></span><br/>
+                                        <span class="headertital" style="font-size: 10px;float: right"  id="number"  th:text="${commStat.size}"></span><br/>
                                     </div>
                                 </div>
                                 <div style="margin-top: 10px;float: left">
@@ -234,28 +191,27 @@
                         </div>
                     </div>
                 </div>
-                <div th:if="${commentList.size()==0}" style="background-color: #1b6d85;align-content: center;height: 70px;width: 100%">
-                        <h4>快！抢沙发。</h4>
+                <div th:if="${commentList.size()==0}" style="background-color: #FAFAFA;align-content: center;height: 70px;width: 700px;margin: 0px auto">
+                        <h4>快！暂时还没有人评论赶紧抢沙发！</h4>
                 </div>
                 <div id="demo3"></div>
             </div>
         </div>
     </div>
 </div>
-    <input type="hidden" id="city" name="city">
-    <div style="width: 100%;height: 100px;background-color: #8c8c8c">
-        <div id="ip">
+        <input type="hidden" id="city" name="city">
+            <div style="width: 100%;height: 100px;background-color: #8c8c8c">
+                <div id="ip">
 
-        </div>
+                </div>
 
-        <div id="">
+                <div id="">
 
-        </div>
-    </div>
+                </div>
+             </div>
 </div>
-</body>
-<script src="../../static/js/jquery.js"></script>
-<script src="../../static/layui-v2.5.3/layui/layui.all.js"></script>
+<div th:include="comm/index_head :: commonFooter"></div>
+<script th></script>
 <script>
     //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
     ;!function(){
@@ -305,20 +261,20 @@
             }
         });
 
-    /* layedit.build('LAY_demo_editor');*/
+        /* layedit.build('LAY_demo_editor');*/
 
         //自定义工具栏
-    var index=  layedit.build('LAY_demo2', {
+        var index=  layedit.build('LAY_demo2', {
             tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
             ,height: 150
         });
 
-       /*     //获取富文本框的值
-            var uid=$("#uid").val();
-            var pid=$("#pid").val();
-        $("button#sm").click(function(){
-           alert((layedit.getContent(index))+uid+pid)
-        });*/
+        /*     //获取富文本框的值
+             var uid=$("#uid").val();
+             var pid=$("#pid").val();
+         $("button#sm").click(function(){
+            alert((layedit.getContent(index))+uid+pid)
+         });*/
 
         $(document).ready(function(){
             //获取城市ajax
@@ -378,6 +334,7 @@
                     return false;
                 }else{
                     var  cont=layedit.getContent((index));
+                    alert(number);
                     if(cont==null||cont==""){
                         layer.alert('评论内容不能为空！', {icon: 2});
                         return false;
@@ -386,10 +343,10 @@
                         $.ajax({
                             type:"get",
                             dataType:"json",
-                            data:{"content":cont,"pid":pid,"uid":uid,"ip":city},
+                            data:{"content":cont,"pid":pid,"uid":uid,"ip":city,"number":number},
                             url:"/comment/add",
                             success:function(date){
-                               /* alert(date.code)*/
+                                /* alert(date.code)*/
                                 if(date.code==1){
                                     /*$('#context').text('');*/
                                     layer.msg('评论成功！');
@@ -488,4 +445,5 @@
 
 
 </script>
+</body>
 </html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/layui-v2.5.3/layui/css/layui.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin" >
+    <div class="layui-header" th:fragment="adminNav">
+        <div class="layui-logo">Monster</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a href="/adminIndex">控制台</a></li>
+            <li class="layui-nav-item"><a href="/index">前台首页</a></li>
+            <li class="layui-nav-item"><a href="">商品管理</a></li>
+            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">其它系统</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;" th:if="${session.loginUser!=null}">
+                    <img src="#" th:src="${session.loginUser.headshot}" class="layui-nav-img">
+                    <span th:text="${session.loginUser.username}"></span>
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">修改密码</a></dd>
+                    <dd><a href="">找回密码</a></dd>
+                </dl>
+            </li>
+            <li class="layui-nav-item"><a href="/logout">注销</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side layui-bg-black" th:fragment="r">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="javascript:;">用户管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/user/duserList">查看已注销的用户</a></dd>
+                        <dd> <a href="/user/userList">查看所有用户</a></dd>
+                        <dd><a  href="/register">添加用户</a></dd>
+                        <dd><a href="">超链接</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">帖子管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/post/postList">查看所有帖子</a></dd>
+                        <dd><a href="/post/deleteList">查看已删除的帖子</a></dd>
+                        <dd><a href="/post/save">添加帖子</a></dd>
+                        <dd><a href="">分类</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">帖子分类管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/post/postList">查看所有的分类</a></dd>
+                        <dd><a href="javascript:;">查看所有的领域</a></dd>
+                        <dd><a href="/post/add">添加分类帖子</a></dd>
+                        <dd><a href="">分类</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">帖子回复管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/post/postList">查看所有的分类</a></dd>
+                        <dd><a href="javascript:;">查看所有的领域</a></dd>
+                        <dd><a href="/post/add">添加分类帖子</a></dd>
+                        <dd><a href="">分类</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">权限管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/post/postList">查看所有的角色</a></dd>
+                        <dd><a href="javascript:;">查看所有的用户</a></dd>
+                        <dd><a href="/post/add">添加角色</a></dd>
+                        <dd><a href="">权限</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">VIP分区管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/post/postList">查看所有的VIP</a></dd>
+                        <dd><a href="javascript:;">查看所有的VIP帖子</a></dd>
+                        <dd><a href="/post/add">关闭VIP区</a></dd>
+                        <dd><a href="">open</a></dd>
+                    </dl>
+                </li>
+
+                <li class="layui-nav-item">
+                    <a href="javascript:;">Monster首页管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/post/postList">背景图</a></dd>
+                        <dd><a href="javascript:;">轮播图</a></dd>
+                        <dd><a href="/post/add">游戏</a></dd>
+                        <dd><a href="">分类</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 15px;">内容主体区域</div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        <i class="web-font" style="color: #FD4C5B">知识就像内-裤，看不见但很重要。</i>
+        © layui.com - 底部固定区域
+    </div>
+</div>
+
+</body>
+<script src="../../static/layui-v2.5.3/layui/layui.js"></script>
+</html>
