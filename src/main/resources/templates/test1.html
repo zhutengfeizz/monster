@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="comm/index_head :: commonHeader('Monster')">
+</head>
+<body>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>帖子名</th>
+        <th>类型</th>
+        <th>作者</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="obj : ${allPost}">
+        <td th:text="${obj.id}">${obj.id}</td>
+        <td th:text="${obj.name}">${obj.name}</td>
+      <!--  <td th:text="${obj.type}">${obj.type}</td>
+        <td th:text="${obj.user.username}">${obj.user.username}</td>-->
+    </tr>
+    </tbody>
+</table>
+<div th:include="page :: pager" th:remove="tag"></div>
+<div th:include="comm/index_head :: commonFooter"></div>
+</body>
+</html>

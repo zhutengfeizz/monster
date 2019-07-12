@@ -1,6 +1,11 @@
 package com.majorjava.monster.monster.service.Post;
 
 import com.majorjava.monster.monster.entity.user.Post;
+import javafx.geometry.Pos;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
@@ -22,4 +27,10 @@ public interface PostService  {
     List<Post>findByNameLikeAndStateOrderByCreateTimeDesc(String pname,int state);
     Post findByName(String pname);
     Post findByNameLike(String pname);
+
+    /*分页无条件*/
+    List<Post> findPostNoCriteria(Integer page, Integer size);
+    /*分页带条件*/
+    Page<Post>findPostCriteria(Integer page, Integer size, Post post);
+
 }

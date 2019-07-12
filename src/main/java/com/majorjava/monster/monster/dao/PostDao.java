@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,7 @@ import java.util.List;
  * @date : 2019-06-17 16:32
  **/
 @Repository
-public interface PostDao extends CrudRepository<Post, Integer>, JpaRepository<Post, Integer> {
+public interface PostDao extends CrudRepository<Post, Integer>, JpaRepository<Post, Integer>, JpaSpecificationExecutor<Post> {
   /**
    * 2019/7/10
    * 没有分页查询

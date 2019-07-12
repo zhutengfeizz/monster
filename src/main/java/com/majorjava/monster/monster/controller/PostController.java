@@ -8,12 +8,11 @@ import com.majorjava.monster.monster.service.Post.PostService;
 import com.majorjava.monster.monster.service.User.UserServices;
 import com.majorjava.monster.monster.upload.UploadProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -44,6 +43,22 @@ public class PostController {
     private UploadProperties uploadProperties;
     @Autowired
     private UserServices userServices;
+    /*没有条件的分页查询*/
+    @GetMapping("/findPostNoQuery")
+    public String findPostNoQuery(ModelMap modelMap, Integer page,Integer size){
+        List<Post> datas = postService.findPostNoCriteria(1, 3);
+        modelMap.addAttribute("allPost",datas);
+        System.out.println("请求了无条件分页查询的Controller");
+        return "test1";
+    }
+    /*有条件的分页查询*/
+    @RequestMapping(value = "/findPostQuery",method = {RequestMethod.POST,RequestMethod.GET})
+    public String findPostQuery(ModelMap modelMap,Integer size,Integer page,Post post){
+        Page<Post> postCriteria = postService.findPostCriteria(size, page, post);
+        modelMap.addAttribute("allPost",postCriteria);
+        System.out.println("请求了有条件分页查询的Controller");
+        return "test2";
+    }
 
     @GetMapping("postList")
     public String allPost(Model model){
@@ -169,6 +184,7 @@ public class PostController {
         Post save = postService.save(post);
         System.out.println("访问量"+save.getViews());
         model.addAttribute("post",save);
+        System.out.println("帖子名字："+save.getName()+"，楼主："+save.getUser().getUsername());
 
         List<Comment> comments = commentService.findByPostIdAndStateOrderByCreateTimeDesc(id, 1);
         model.addAttribute("commentList",comments);

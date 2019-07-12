@@ -4,7 +4,6 @@
 
 </head>
 
-<body>
 <div th:include="comm/index_head :: commonNav"></div>
 <div class="layui-container" style="padding: 5px">
 
@@ -79,7 +78,7 @@
 
         </div>
 
-        <div style="width: 800px;float: left;">
+        <div style="width: 800px;float: left;background-color: white;">
             <!--头部标题-->
             <div style=";width: 800px;background-color: white;float: left">
                 <div style="height: 50px;">
@@ -94,7 +93,7 @@
                         <span class="headertital" th:text="阅读量+${post.views}" ></span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital"th:text="评论：+${count}"></span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital">&nbsp;&nbsp;|&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img class="headertital" src="../static/images/土豆.png" style="width: 20px;height: 20px;">&nbsp;
+                        <img class="headertital" src="../../static/images/土豆.png" style="width: 20px;height: 20px;">&nbsp;
                         <span class="headertital">360</span>&nbsp;
                     </div>
                 </div>
@@ -141,8 +140,8 @@
                         <textarea class="layui-textarea" id="LAY_demo2" style="display: none;"></textarea>
                 </div>
             </div>
-            <input type="hidden" name="uid" id="uid" th:value="${session.loginUser.Id}">
-            <input type="hidden" name="pid" id="pid" th:value="${post.id}">
+            <input type="hidden" name="uid" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.Id}">
+            <input type="hidden" name="pid" id="pid" th:if="${post!=null}" th:value="${post.id}">
             <div>
                 <div style="float: left;height: 60px;width: 100%;border-bottom-color: #E6E6E6">
                     <button style="float: right;margin-right: 10px;margin-top: 5px;margin-bottom: 5px" class="site-demo-layedit layui-btn layui-btn-danger" data-type="content" id="sm">提交</button>
@@ -150,7 +149,7 @@
             </div>
             <!--用户评论集合遍历-->
             <div style="margin-top: 30px;width: 778px;float: left;padding: 10px">
-                <div style="height: 97px;width: 700px;margin-top: 30px;margin-bottom: 30px" th:each="comm : ${commentList}">
+                <div style="height: 97px;width: 700px;margin-top: 30px;margin-bottom: 30px" th:if="${commentList!=null}" th:each="comm : ${commentList}">
                     <div style="float: left;height: 70px;width: 100%">
                         <!--<div style="float: left;height: 70px">
                             <img src="#" th:src="${comm.user.headshot}"  style="float: left;height: 60px;width: 70px">
@@ -174,14 +173,14 @@
                                     </div>
 
                                     <div style="width: 60px;float: right">
-                                        <span class="headertital" style="font-size: 10px;float: right"  id="number"  th:text="${commStat.size}"></span><br/>
+                                        <span class="headertital" style="font-size: 10px;float: right"  id="number"  th:text="${comm.id}"></span><br/>
                                     </div>
                                 </div>
                                 <div style="margin-top: 10px;float: left">
                                     <div th:utext="${comm.cont}" style="margin-left: 10px" >
                                     </div>
                                     <div style="width: 100%;margin-top: 15px;float: left;margin-left: 10px">
-                                        <i class="layui-icon" style="margin-left: 10px;">&#xe6c6; <a class="afont" href="#"th:text="'赞:'+${comm.niceComment}"></a></i>
+                                        <i class="layui-icon" style="margin-left: 10px;">&#xe6c6; <a class="afont" href="#" th:text="'赞:'+${comm.niceComment}"></a></i>
                                         <i class="layui-icon" style="margin-left: 10px;">&#xe611; <a class="afont" href="#">回复</a></i>
                                         <span class="headertital"style="font-size: 13px">来自：<span id="ci" th:text="${comm.ip}"></span></span>
                                     </div>
@@ -192,7 +191,9 @@
                     </div>
                 </div>
                 <div th:if="${commentList.size()==0}" style="background-color: #FAFAFA;align-content: center;height: 70px;width: 700px;margin: 0px auto">
-                        <h4>快！暂时还没有人评论赶紧抢沙发！</h4>
+                       <div style="width: 290px;margin: 0 auto;height: 70px;">
+                           <h4 style="line-height: 70px">快！暂时还没有人评论赶紧抢沙发！</h4>
+                       </div>
                 </div>
                 <div id="demo3"></div>
             </div>
