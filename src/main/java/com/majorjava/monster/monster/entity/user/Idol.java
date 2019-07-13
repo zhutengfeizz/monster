@@ -20,10 +20,10 @@ public class Idol {
     private Integer id;
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="user_id")
-    private User userId;//用户的ID
+    private User user;//用户的ID
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="toUser_id")
-    private User beUserId;//被关注者的ID
+    private User beUser;//被关注者的ID
     private Date createTime;
 
     public Integer getId() {
@@ -34,20 +34,20 @@ public class Idol {
         this.id = id;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public User getBeUserId() {
-        return beUserId;
+    public User getBeUser() {
+        return beUser;
     }
 
-    public void setBeUserId(User beUserId) {
-        this.beUserId = beUserId;
+    public void setBeUser(User beUser) {
+        this.beUser = beUser;
     }
 
     public Date getCreateTime() {

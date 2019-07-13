@@ -25,8 +25,7 @@ public class IdolImpl implements IdolServices {
     @Autowired
     private UserServices userServices;
     @Override
-    public void delete(Integer id) {
-        Idol idol = idolDao.findById(id).get();
+    public void delete(Idol idol) {
         idolDao.delete(idol);
     }
 
@@ -34,9 +33,11 @@ public class IdolImpl implements IdolServices {
     public Idol add(Integer userId, Integer beUserId) {
         Idol idol=new Idol();
         User user = userServices.finByid(userId);
-        User user1 = userServices.finByid(beUserId);
-        idol.setUserId(user);
-        idol.setBeUserId(user1);
+        System.out.println("创建关注对象传过来的user"+user.getUsername());
+        User beUser = userServices.finByid(beUserId);
+        System.out.println("创建关注对象传过来被关注的user"+user.getUsername());
+        idol.setUser(user);
+        idol.setBeUser(beUser);
         idol.setCreateTime(new Date());
         Idol save = idolDao.save(idol);
         return save;
@@ -44,12 +45,32 @@ public class IdolImpl implements IdolServices {
 
     @Override
     public List<Idol> findByUserIdOrderByCreateTime(Integer userid) {
-
-        return idolDao.findByUserIdOrderByCreateTime(userid);
+        List<Idol> byUserIdOrderByCreateTime = idolDao.findByUserIdOrderByCreateTime(userid);
+        System.out.println(byUserIdOrderByCreateTime.size());
+        return byUserIdOrderByCreateTime;
     }
+
 
     @Override
     public List<Idol> findByBeUserIdOrderByCreateTime(Integer beUserid) {
-        return idolDao.findByBeUserIdOrderByCreateTime(beUserid);
+        List<Idol> byBeUserIdOrderByCreateTime = idolDao.findByBeUserIdOrderByCreateTime(beUserid);
+        System.out.println(byBeUserIdOrderByCreateTime.size());
+        return byBeUserIdOrderByCreateTime;
+    }
+
+    @Override
+    public Idol findByBeUserIdAndUserId(Integer beUserId, Integer userId) {
+        Idol byBeUserIdAndUserId = idolDao.findByBeUserIdAndUserId(beUserId, userId);
+        return byBeUserIdAndUserId;
+    }
+
+    @Override
+    public Idol findById(Integer id) {
+        return idolDao.findById(id).get();
+    }
+
+    @Override
+    public Long countByBeUserId(Integer beUserId) {
+        return idolDao.countByBeUserId(beUserId);
     }
 }

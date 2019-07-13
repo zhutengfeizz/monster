@@ -17,7 +17,10 @@ import java.util.List;
  **/
 public interface IdolDao extends CrudRepository<Idol, Integer>, JpaRepository<Idol, Integer>, JpaSpecificationExecutor<Idol> {
     //我关注的
-    List<Idol> findByUserIdOrderByCreateTime(Integer userid);
+    List<Idol> findByUserIdOrderByCreateTime(Integer userId);
     //关注我的
-    List<Idol>findByBeUserIdOrderByCreateTime(Integer beUserid);
+    List<Idol>findByBeUserIdOrderByCreateTime(Integer beUserId);
+    //根据被关注的用户和当前用户查找关注对象
+    Idol findByBeUserIdAndUserId(Integer beUserId,Integer userId);
+    Long countByBeUserId(Integer beUserId);
 }

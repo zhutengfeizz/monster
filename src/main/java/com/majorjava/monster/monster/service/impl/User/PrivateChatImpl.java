@@ -31,8 +31,8 @@ public class PrivateChatImpl implements PrivateChatServices {
         User thisUser = userServices.finByid(thisUserId);
         User ToUser = userServices.finByid(toUserId);
         PrivateChat privateChat = new PrivateChat();
-        privateChat.setThisUserId(thisUser);
-        privateChat.setToUserId(ToUser);
+        privateChat.setThisUser(thisUser);
+        privateChat.setToUser(ToUser);
         privateChat.setCont(cont);
         privateChat.setCreateTime(new Date());
         PrivateChat save = privateChatDao.save(privateChat);

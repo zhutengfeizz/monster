@@ -18,10 +18,10 @@ public class PrivateChat {
     private Integer id;
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="thisUser_id")
-    private User  thisUserId;//当前用户的ID
+    private User  thisUser;//当前用户的ID
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="toUser_id")
-    private User toUserId;//留言给这个ID
+    private User toUser;//留言给这个ID
     private String cont;//内容、
     private Date createTime;//留言的时间
 
@@ -33,20 +33,20 @@ public class PrivateChat {
         this.id = id;
     }
 
-    public User getThisUserId() {
-        return thisUserId;
+    public User getThisUser() {
+        return thisUser;
     }
 
-    public void setThisUserId(User thisUserId) {
-        this.thisUserId = thisUserId;
+    public void setThisUser(User thisUser) {
+        this.thisUser = thisUser;
     }
 
-    public User getToUserId() {
-        return toUserId;
+    public User getToUser() {
+        return toUser;
     }
 
-    public void setToUserId(User toUserId) {
-        this.toUserId = toUserId;
+    public void setToUser(User toUser) {
+        this.toUser = toUser;
     }
 
     public String getCont() {

@@ -12,10 +12,14 @@ import java.util.List;
  * @date : 2019-07-13 17:46
  **/
 public interface IdolServices {
-    void delete(Integer id);
+    void delete(Idol idol);
     Idol add(Integer userId,Integer beUserId);
     //我关注的
     List<Idol> findByUserIdOrderByCreateTime(Integer userid);
     //关注我的
     List<Idol>findByBeUserIdOrderByCreateTime(Integer beUserid);
+    //根据被关注的用户和当前用户查找关注对象
+    Idol findByBeUserIdAndUserId(Integer beUserId,Integer userId);
+    Idol findById(Integer id);
+    Long countByBeUserId(Integer beUserId);
 }

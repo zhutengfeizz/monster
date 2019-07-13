@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * <h3>monster</h3>
@@ -29,6 +30,8 @@ public class Comment {
     private Date createTime;
     @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
+    @OneToMany(mappedBy = "comment",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<ResponsesInResponses> responsesInResponsesList;
     @Column(name = "niceComment")
     private int niceComment;
     private String ip;

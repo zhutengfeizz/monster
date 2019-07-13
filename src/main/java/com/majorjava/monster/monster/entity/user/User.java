@@ -46,10 +46,12 @@ public class User {
     private List<Comment> commentList;
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Collections> collectionsList;//收藏
-    @OneToMany(mappedBy = "thisUserId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "thisUser",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<PrivateChat> privateChatList;//私信
-    @OneToMany(mappedBy = "userId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Idol> IdolList;//关注
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<ResponsesInResponses> responsesInResponsesList;//关注
     @Column(name = "follow_size",insertable = false,columnDefinition = "int default 0")
     private Integer followSize=0;//关注数
     @Column(name = "fan_size",insertable = false,columnDefinition = "int default 0")
@@ -62,6 +64,22 @@ public class User {
     private String signature;//个性签名
     private String verification;//验证是否实名
     private String phone;//手机号码
+
+    public List<PrivateChat> getPrivateChatList() {
+        return privateChatList;
+    }
+
+    public void setPrivateChatList(List<PrivateChat> privateChatList) {
+        this.privateChatList = privateChatList;
+    }
+
+    public List<Idol> getIdolList() {
+        return IdolList;
+    }
+
+    public void setIdolList(List<Idol> idolList) {
+        IdolList = idolList;
+    }
 
     public Integer getId() {
         return id;
