@@ -46,6 +46,10 @@ public class User {
     private List<Comment> commentList;
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Collections> collectionsList;//收藏
+    @OneToMany(mappedBy = "thisUserId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<PrivateChat> privateChatList;//私信
+    @OneToMany(mappedBy = "userId",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+    private List<Idol> IdolList;//关注
     @Column(name = "follow_size",insertable = false,columnDefinition = "int default 0")
     private Integer followSize=0;//关注数
     @Column(name = "fan_size",insertable = false,columnDefinition = "int default 0")

@@ -74,6 +74,19 @@ public class UserServicesImpl implements UserServices {
             user2.setSalt(salt);
             user2.setCreateTime(new Timestamp(System.currentTimeMillis()));
             user2.setState(1);
+            user2.setAge(18);
+            String nurl="/user/"+"a4d244e8-550c-4875-908f-fea99cce8f54.png";
+            String nvrl="/user/"+"e0406002-b9c4-45b5-ba66-10e2e6d4ea06.png";
+            if (user2.getSex()=="男"||user.getSex().equals("男")){
+                System.out.println("男");
+                user2.setHeadshot(nurl);
+                System.out.println("设置头像："+nurl);
+            }
+            if (user2.getSex()=="女"||user.getSex().equals("女")){
+                System.out.println("女");
+                user2.setHeadshot(nvrl);
+            }
+
             User save = userDao.save(user2);
             if (save!=null){
                 map.put("ok",true);

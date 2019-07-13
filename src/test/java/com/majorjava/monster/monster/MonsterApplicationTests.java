@@ -2,9 +2,12 @@ package com.majorjava.monster.monster;
 
 import com.majorjava.monster.monster.dao.*;
 import com.majorjava.monster.monster.entity.user.Post;
+import com.majorjava.monster.monster.entity.user.PrivateChat;
 import com.majorjava.monster.monster.service.Post.CommentService;
 import com.majorjava.monster.monster.service.Post.PostService;
 import com.majorjava.monster.monster.service.User.CollectionsServices;
+import com.majorjava.monster.monster.service.User.IdolServices;
+import com.majorjava.monster.monster.service.User.PrivateChatServices;
 import com.majorjava.monster.monster.service.User.UserServices;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,14 +41,16 @@ public class MonsterApplicationTests {
     private PostService postService;
     @Autowired
     private CommentDao commentDao;
+    @Autowired
+    private IdolServices idolServices;
+    @Autowired
+    private PrivateChatServices privateChatServices;
 
     @Test
     public void contextLoads() {
-        PageRequest pageRequest=PageRequest.of(2,3, Sort.Direction.ASC,"createTime");
-        Page<Post> page=postDao.findAll(pageRequest);
-        List<Post> posts=page.getContent();
-        for (Post t:posts){
-            System.out.println(t.getName());
-        }
+        String cont="测试一下留言";
+        PrivateChat privateChat = privateChatServices.addPrivateChat(29, 28, cont);
+        System.out.println("这个逼留言："+privateChat.getThisUserId().getUsername()+",给这个逼："+privateChat.getToUserId().getUsername()+",内容"+privateChat.getCont());
+        List<PrivateChat> desc = privateChatServices.findByToUserIdOrderByCreateTimeDesc(28);
     }
 }

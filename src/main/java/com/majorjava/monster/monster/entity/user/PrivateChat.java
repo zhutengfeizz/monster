@@ -1,30 +1,29 @@
 package com.majorjava.monster.monster.entity.user;
 
-import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Date;
 
 /**
  * <h3>monster</h3>
- * <p>${description}</p>
- *偶像类（用户的关注）
+ * <p>私聊</p>
+ *
  * @author : ztf
- * @date : 2019-06-26 09:41
+ * @date : 2019-07-13 16:02
  **/
-@Table(name = "t_idol")
 @Entity
-public class Idol {
+@Table(name = "t_privateChat")
+public class PrivateChat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
-    @JoinColumn(name="user_id")
-    private User userId;//用户的ID
+    @JoinColumn(name="thisUser_id")
+    private User  thisUserId;//当前用户的ID
     @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},optional=false)
     @JoinColumn(name="toUser_id")
-    private User beUserId;//被关注者的ID
-    private Date createTime;
+    private User toUserId;//留言给这个ID
+    private String cont;//内容、
+    private Date createTime;//留言的时间
 
     public Integer getId() {
         return id;
@@ -34,20 +33,28 @@ public class Idol {
         this.id = id;
     }
 
-    public User getUserId() {
-        return userId;
+    public User getThisUserId() {
+        return thisUserId;
     }
 
-    public void setUserId(User userId) {
-        this.userId = userId;
+    public void setThisUserId(User thisUserId) {
+        this.thisUserId = thisUserId;
     }
 
-    public User getBeUserId() {
-        return beUserId;
+    public User getToUserId() {
+        return toUserId;
     }
 
-    public void setBeUserId(User beUserId) {
-        this.beUserId = beUserId;
+    public void setToUserId(User toUserId) {
+        this.toUserId = toUserId;
+    }
+
+    public String getCont() {
+        return cont;
+    }
+
+    public void setCont(String cont) {
+        this.cont = cont;
     }
 
     public Date getCreateTime() {
@@ -60,8 +67,9 @@ public class Idol {
 
     @Override
     public String toString() {
-        return "Idol{" +
+        return "PrivateChat{" +
                 "id=" + id +
+                ", cont='" + cont + '\'' +
                 ", createTime=" + createTime +
                 '}';
     }
