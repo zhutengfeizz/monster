@@ -29,7 +29,7 @@ public interface PostService  {
     Post findByNameLike(String pname);
 
     /*分页无条件*/
-    List<Post> findPostNoCriteria(Integer page, Integer size);
+    Page<Post>findPostNoCriteria(Integer page, Integer size);
     /*分页带条件*/
     Page<Post>findPostCriteria(Integer page, Integer size, Post post);
 

@@ -31,17 +31,17 @@ public class CommentServiceImpl implements CommentService {
 
 
     @Override
-    public List<Comment> findByPostIdAndStateOrderByCreateTimeDesc(int pid, int state) {
+    public List<Comment> findByPostIdAndStateOrderByCreateTimeDesc(Integer pid, Integer state) {
         return commentDao.findByPostIdAndStateOrderByCreateTimeDesc(pid,1);
     }
 
     @Override
-    public List<Comment> findByUserIdAndStateOrderByCreateTime(int id, int state) {
+    public List<Comment> findByUserIdAndStateOrderByCreateTime(Integer id, Integer state) {
         return commentDao.findByUserIdAndStateOrderByCreateTimeDesc(id,state);
     }
 
     @Override
-    public Comment findByIdAndState(int id, int state) {
+    public Comment findByIdAndState(Integer id, Integer state) {
         return commentDao.findByIdAndState(id,state);
     }
 

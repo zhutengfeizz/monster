@@ -29,7 +29,7 @@ public class Comment {
     @Column(name = "create_time", nullable = false)
     private Date createTime;
     @Column(insertable = false,columnDefinition = "int default 1")
-    private int state;
+    private Integer state;
     @OneToMany(mappedBy = "comment",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<ResponsesInResponses> responsesInResponsesList;
     @Column(name = "niceComment")

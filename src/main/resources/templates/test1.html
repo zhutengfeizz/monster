@@ -16,8 +16,8 @@
     <tr th:each="obj : ${allPost}">
         <td th:text="${obj.id}">${obj.id}</td>
         <td th:text="${obj.name}">${obj.name}</td>
-      <!--  <td th:text="${obj.type}">${obj.type}</td>
-        <td th:text="${obj.user.username}">${obj.user.username}</td>-->
+        <td th:text="${obj.type}">${obj.type}</td>
+        <td th:text="${obj.user.username}">${obj.user.username}</td>
     </tr>
     </tbody>
 </table>

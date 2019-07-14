@@ -8,6 +8,7 @@ import com.majorjava.monster.monster.service.User.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
  * @date : 2019-07-13 17:55
  **/
 @Service
+@Transactional
 public class IdolImpl implements IdolServices {
     @Autowired
     private IdolDao idolDao;

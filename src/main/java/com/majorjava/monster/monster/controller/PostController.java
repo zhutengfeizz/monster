@@ -46,8 +46,9 @@ public class PostController {
     /*没有条件的分页查询*/
     @GetMapping("/findPostNoQuery")
     public String findPostNoQuery(ModelMap modelMap, Integer page,Integer size){
-        List<Post> datas = postService.findPostNoCriteria(1, 3);
-        modelMap.addAttribute("allPost",datas);
+        Page<Post> postNoCriteria = postService.findPostNoCriteria(2, 5);
+        System.out.println(postNoCriteria.getNumber());
+        modelMap.addAttribute("allPost",postNoCriteria);
         System.out.println("请求了无条件分页查询的Controller");
         return "test1";
     }
@@ -56,6 +57,7 @@ public class PostController {
     public String findPostQuery(ModelMap modelMap,Integer size,Integer page,Post post){
         Page<Post> postCriteria = postService.findPostCriteria(size, page, post);
         modelMap.addAttribute("allPost",postCriteria);
+        System.out.println(postCriteria.getNumber());
         System.out.println("请求了有条件分页查询的Controller");
         return "test2";
     }

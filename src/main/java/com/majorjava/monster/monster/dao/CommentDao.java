@@ -13,9 +13,9 @@ import java.util.List;
  * @date : 2019-07-05 17:11
  **/
 public interface CommentDao extends CrudRepository<Comment, Integer> {
-    List<Comment> findByUserIdAndStateOrderByCreateTimeDesc(int id,int state);
-    Comment findByIdAndState(int id,int state);
-    List<Comment> findByPostIdAndStateOrderByCreateTimeDesc(int pid,int state);
+    List<Comment> findByUserIdAndStateOrderByCreateTimeDesc(Integer id,Integer state);
+    Comment findByIdAndState(Integer id,Integer state);
+    List<Comment> findByPostIdAndStateOrderByCreateTimeDesc(Integer pid,Integer state);
     Long countByPostId(Integer pid);
 
 }

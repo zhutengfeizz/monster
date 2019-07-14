@@ -22,4 +22,36 @@ public class ResponsesInResponses {
     @JoinColumn(name="user_id")
     private User user;
     private String cont;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getCont() {
+        return cont;
+    }
+
+    public void setCont(String cont) {
+        this.cont = cont;
+    }
 }

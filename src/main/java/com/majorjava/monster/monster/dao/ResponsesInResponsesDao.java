@@ -13,7 +13,6 @@ import org.springframework.data.repository.CrudRepository;
  * @date : 2019-07-14 07:33
  **/
 public interface ResponsesInResponsesDao extends CrudRepository<ResponsesInResponses, Integer>, JpaRepository<ResponsesInResponses, Integer>, JpaSpecificationExecutor<ResponsesInResponses> {
-    ResponsesInResponses save(Integer cid,Integer uid,String cont);
     ResponsesInResponses findByCommentId(Integer cid);
 
 
