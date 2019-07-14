@@ -40,7 +40,7 @@ public class UploadController {
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public Map<String, Object> addImg(@RequestParam("file") MultipartFile file)throws IOException{
-        String imgName = uploadHeadshot(file);
+        String imgName = "/user/"+uploadHeadshot(file);
         System.out.println("上传的图片是："+imgName);
         Map<String,Object> map=new HashMap<>();
         Map<String,Object> src=new HashMap<>();

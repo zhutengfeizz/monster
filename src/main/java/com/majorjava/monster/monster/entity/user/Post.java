@@ -44,7 +44,24 @@ public class Post {
     private PartitionField field;//分区
     private Integer views;//访问量
     private Integer awesome;//点赞
-    private Long cunt;//评论的数量
+    @Column(name = "cunt", nullable = false)
+    private Long cunt=0L;//评论的数量
+
+    public List<Comment> getCommentList() {
+        return commentList;
+    }
+
+    public void setCommentList(List<Comment> commentList) {
+        this.commentList = commentList;
+    }
+
+    public List<Collections> getCollectionsList() {
+        return collectionsList;
+    }
+
+    public void setCollectionsList(List<Collections> collectionsList) {
+        this.collectionsList = collectionsList;
+    }
 
     public Long getCunt() {
         return cunt;

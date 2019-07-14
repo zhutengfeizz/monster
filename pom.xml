@@ -69,8 +69,6 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>2.0.1</version>
             </dependency>
-            <!-- spring-data-jpa -->
-            <!-- shiro-all -->
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-all</artifactId>
@@ -83,19 +81,16 @@
                 </exclusions>
                 <type>pom</type>
             </dependency>
-            <!-- shiro-spring -->
             <dependency>
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring</artifactId>
                 <version>1.4.1</version>
             </dependency>
-            <!-- email -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
                 <version>${spring.version}</version>
             </dependency>
-            <!-- javax.mail -->
             <dependency>
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
@@ -106,13 +101,11 @@
                 <artifactId>quartz</artifactId>
                 <version>2.3.1</version>
             </dependency>
-            <!-- druid 阿里巴巴的连接池依赖 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>1.1.16</version>
             </dependency>
-            <!--对jsp的处理-->
             <dependency>
                 <groupId>org.apache.tomcat.embed</groupId>
                 <artifactId>tomcat-embed-jasper</artifactId>
@@ -130,7 +123,6 @@
                 <artifactId>thymeleaf-extras-shiro</artifactId>
                 <version>1.2.1</version>
             </dependency>
-            <!--前端资源管理器-->
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>webjars-locator</artifactId>
@@ -161,6 +153,17 @@
                 <artifactId>vue</artifactId>
                 <version>2.6.10</version>
             </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-core</artifactId>
+                <version>4.4.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.aliyun</groupId>
+                <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
+                <version>1.1.0</version>
+            </dependency>
+
         </dependencies>
         <build>
             <plugins>

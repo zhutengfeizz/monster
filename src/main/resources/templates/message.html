@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="comm/index_head :: commonHeader('短信测试')">
+<body>
+
+<div style="width: 500px;height: auto;margin: auto">
+    <div style="text-align: center;margin: 30px"><h3>发送验证码</h3></div>
+    <div>
+        <div class="form-group">
+            <label for="Number">填写手机号码</label>
+            <div>
+                <input style="float: left;width: 80%" type="text" class="form-control" id="Number" >
+                <button style="float: right;width: 20%" type="button" th:onclick="'javascript:send()'" class="btn btn-default" >Send</button>
+            </div>
+        </div>
+        <div id="returnstr" style="margin: 50px auto;">
+        </div>
+    </div>
+</div>
+</div>
+<div th:include="comm/index_head :: commonFooter"></div>
+<script type="text/javascript">
+    send = function () {
+        $('#returnstr').html("");
+        jQuery.ajax({
+            type: "POST",
+            url: "sendcode",
+            data: {"number":jQuery("#Number").val()},
+            success: function (data) {
+                console.log(data)
+                jQuery("#returnstr").append(" </br><span style='margin:10px auto;border:-1px;background:#00FFFF;border-color:#00f' type='text'  >" + data + "</span>");
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+            }
+        });
+        jQuery("#Number").val("")
+    }
+
+</script>
+</body>
+</html>

@@ -5,6 +5,7 @@ import com.majorjava.monster.monster.service.Post.CommentService;
 import com.majorjava.monster.monster.service.Post.FieldService;
 import com.majorjava.monster.monster.service.Post.PartitionService;
 import com.majorjava.monster.monster.service.Post.PostService;
+import com.majorjava.monster.monster.service.User.IdolServices;
 import com.majorjava.monster.monster.service.User.UserServices;
 import com.majorjava.monster.monster.upload.UploadProperties;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,8 @@ public class PostController {
     private UploadProperties uploadProperties;
     @Autowired
     private UserServices userServices;
+    @Autowired
+    private IdolServices idolServices;
     /*没有条件的分页查询*/
     @GetMapping("/findPostNoQuery")
     public String findPostNoQuery(ModelMap modelMap, Integer page,Integer size){
@@ -55,6 +58,12 @@ public class PostController {
     /*有条件的分页查询*/
     @RequestMapping(value = "/findPostQuery",method = {RequestMethod.POST,RequestMethod.GET})
     public String findPostQuery(ModelMap modelMap,Integer size,Integer page,Post post){
+        if(page == null){
+            page = 0;
+        }
+        if(size == null){
+            size = 10;
+        }
         Page<Post> postCriteria = postService.findPostCriteria(size, page, post);
         modelMap.addAttribute("allPost",postCriteria);
         System.out.println(postCriteria.getNumber());
@@ -79,6 +88,18 @@ public class PostController {
 
     @GetMapping("save")
     public String addPost(Model model){
+        Post post =new Post();
+        model.addAttribute(post);
+        //获取分区列表
+        List<PostPartition> partitionList=partitionService.postPartitionAll();
+        model.addAttribute("partitionList",partitionList);
+        //获取领域列表
+        List<PartitionField> partitionFields = fieldService.partitionFieldAll();
+        model.addAttribute("partitionFields",partitionFields);
+        return "/post/post_add";
+    }
+    @GetMapping("adminSave")
+    public String addPost1(Model model){
         Post post =new Post();
         model.addAttribute(post);
         //获取分区列表
@@ -124,6 +145,7 @@ public class PostController {
         }else {
             p =new Post();
             User user = userServices.finByid(uid);
+            user.setPostSize(user.getPostSize()+1);
             p.setImg(img);
             p.setUser(user);
             p.setName(title);
@@ -136,6 +158,7 @@ public class PostController {
             PostPartition postPartition = partitionService.finByid(partition);
             p.setPartition(postPartition);
             p.setViews(0);
+            p.setCunt(0L);
         }
         System.out.println(p);
         postService.save(p);
@@ -187,6 +210,12 @@ public class PostController {
         System.out.println("访问量"+save.getViews());
         model.addAttribute("post",save);
         System.out.println("帖子名字："+save.getName()+"，楼主："+save.getUser().getUsername());
+
+        List<Idol> order = idolServices.findByBeUserIdOrderByCreateTime(post.getUser().getId());
+        Long aLong = idolServices.countByBeUserId(post.getUser().getId());
+        User user = userServices.finByid(post.getUser().getId());
+        user.setFanSize(aLong);
+        userServices.save(user);
 
         List<Comment> comments = commentService.findByPostIdAndStateOrderByCreateTimeDesc(id, 1);
         model.addAttribute("commentList",comments);

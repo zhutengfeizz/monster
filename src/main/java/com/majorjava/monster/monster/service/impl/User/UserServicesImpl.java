@@ -75,6 +75,7 @@ public class UserServicesImpl implements UserServices {
             user2.setCreateTime(new Timestamp(System.currentTimeMillis()));
             user2.setState(1);
             user2.setAge(18);
+            user2.setFollowSize(1);
             String nurl="/user/"+"a4d244e8-550c-4875-908f-fea99cce8f54.png";
             String nvrl="/user/"+"e0406002-b9c4-45b5-ba66-10e2e6d4ea06.png";
             if (user2.getSex()=="男"||user.getSex().equals("男")){

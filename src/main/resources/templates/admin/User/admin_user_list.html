@@ -51,7 +51,7 @@
                         <td th:text="${user.createTime}"></td>
                         <td th:if="${user.svip}==0" th:text="普通会员"></td>
                         <td th:if="${user.svip}==1" th:text="超级会员"></td>
-                        <td><a th:if="${user.state==1}" th:href="@{/user/delete(id=${user.id})}" href="#" onclick="return confirm('确认删除此记录吗？')">删除</a> <a th:if="${user.state==1}" th:href="@{/user/edit(id=${user.id})}" href="#">修改</a>
+                        <td><a th:if="${user.state==1}" th:href="@{/user/delete(id=${user.id})}" href="#" onclick="return confirm('确认删除此记录吗？')">删除</a> <a th:if="${user.state==1}" th:href="@{/user/adminEdit(id=${user.id})}" href="#">修改</a>
                             <a href="" th:if="${user.state==0}" th:text="恢复用户" th:href="@{/user/restore(id=${user.id})}" onclick="return confirm('确认要恢复吗？')"></a>
                             <a href="" th:if="${user.state==0}" th:text="彻底删除用户" onclick="return confirm('确认删除此记录吗？')" th:href="@{/user/finalDelete(id=${user.id})}"></a>
                         </td>

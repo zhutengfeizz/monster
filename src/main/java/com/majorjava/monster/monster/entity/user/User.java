@@ -52,10 +52,12 @@ public class User {
     private List<Idol> IdolList;//关注
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<ResponsesInResponses> responsesInResponsesList;//关注
-    @Column(name = "follow_size",insertable = false,columnDefinition = "int default 0")
-    private Integer followSize=0;//关注数
-    @Column(name = "fan_size",insertable = false,columnDefinition = "int default 0")
-    private Integer fanSize=0;//粉丝数
+    @Column(name = "follow_size")
+    private long followSize=0;//关注数
+    @Column(name = "fan_size")
+    private long fanSize=0;//粉丝数
+    @Column(name = "post_size")
+    private long postSize=0;//投稿数量
     @Transient
     private Integer isFriend = 0;//关系，0表示没有关系，2表示互相关注
     @Column(name = "svip",insertable = false,columnDefinition = "int default 0")
@@ -64,6 +66,18 @@ public class User {
     private String signature;//个性签名
     private String verification;//验证是否实名
     private String phone;//手机号码
+
+    public void setFanSize(long fanSize) {
+        this.fanSize = fanSize;
+    }
+
+    public long getPostSize() {
+        return postSize;
+    }
+
+    public void setPostSize(long postSize) {
+        this.postSize = postSize;
+    }
 
     public List<PrivateChat> getPrivateChatList() {
         return privateChatList;
@@ -209,19 +223,27 @@ public class User {
         this.collectionsList = collectionsList;
     }
 
-    public Integer getFollowSize() {
+    public List<ResponsesInResponses> getResponsesInResponsesList() {
+        return responsesInResponsesList;
+    }
+
+    public void setResponsesInResponsesList(List<ResponsesInResponses> responsesInResponsesList) {
+        this.responsesInResponsesList = responsesInResponsesList;
+    }
+
+    public long getFollowSize() {
         return followSize;
     }
 
-    public void setFollowSize(Integer followSize) {
+    public void setFollowSize(long followSize) {
         this.followSize = followSize;
     }
 
-    public Integer getFanSize() {
+    public Long getFanSize() {
         return fanSize;
     }
 
-    public void setFanSize(Integer fanSize) {
+    public void setFanSize(Long fanSize) {
         this.fanSize = fanSize;
     }
 

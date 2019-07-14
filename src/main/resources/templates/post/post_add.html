@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head th:replace="comm/index_head :: commonHeader('发表帖子')">
+
+</head>
+<body style="background:url('../../static/images/js.jpg')">
+<div th:include="comm/index_head :: commonNav"></div>
+ <div>
+    <div class="layui-container" style="margin-bottom: 40px" >
+        <!--内容主体-->
+        <div class="layui-row" style="margin-bottom: 30px">
+            <form class="layui-form" th:action="@{/post/save}"  method="post" style="width: 800px;text-align: center;margin: 0 auto;background-color: white;padding-right: 10px">
+                <div style="margin: 10px 0px 10px 0px;text-align: left">
+                    <button type="button" class="layui-btn">文章投稿</button>
+                </div>
+                <input type="hidden" name="uid" th:if="${session.loginUser.id!=null}" th:value="${session.loginUser.id}">
+                <input type="hidden" name="id"  th:value="${post.id}">
+                <input type="hidden" name="img" id="img" value="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 110px">
+                        <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿标题</B>
+                    </label>
+                    <div class="layui-input-block">
+                        <input type="text"  th:value="${post.name}" name="title" lay-verType="tips" lay-verify="required" lay-reqtext="标题不能为空哦！" autocomplete="off" placeholder="一个好的标题能够提供更高的访问量" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item" style="">
+                    <label class="layui-form-label" style="width: 110px">
+                        <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿类型</B>
+                    </label>
+                    <div class="layui-input-block" style="">
+                        <div class="layui-input-block"style="float: left">
+                            <input type="radio" name="type" value="原创" title="原创" checked>
+                            <input type="radio" name="type" value="转载" title="转载">
+                            <input type="radio"  name="type" value="其他" title="其他">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="width: 110px">
+                        <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿分类</B>
+                    </label>
+                    <div class="layui-input-inline">
+                        <select lay-filter="test" name="partition" id="partition" >
+                            <option  th:each="pr :  ${partitionList}" th:value="${pr.id}"  th:text="${pr.tname}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="layui-input-inline">
+                        <select name="field" id="field" class="field">
+
+                        </select>
+                    </div>
+                </div>
+
+
+                <div  class="layui-form-item" style="padding-left: 0px;">
+                    <label class="layui-form-label" style="width: 110px">
+                        <B style="font-size: 15px;color:grey">投稿封面</B>
+                    </label>
+                    <div class="layui-upload" style="padding-left: 10px;float: left;">
+                        <div class="layui-upload-drag" id="test10" name="file" style="width: 300px">
+                            <i class="layui-icon"></i>
+                            <p>
+                                点击上传，或将文件拖拽到此处(ps:支持10MB以下jpg、jpeg、png)。
+                            </p>
+                        </div>
+                        <b style="">预览图：</b>
+                        <div class="layui-upload-list" style="float: right;padding-left: 20px;margin: 0px">
+                            <img class="layui-upload-img" name="img" style="width: 200px;max-height: 183px" id="demo1">
+                            <p id="demoText"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div  class="layui-form-item">
+                    <label class="layui-form-label" style="width: 110px">
+                        <B style="font-size: 15px;color:grey">投稿简介</B>
+                    </label>
+                    <div class="layui-input-block">
+                        <textarea placeholder="请输入内容"  th:field="${post.introduction}" name="introduction" class="layui-textarea"></textarea>
+                    </div>
+                </div>
+
+                <div  class="layui-form-item">
+                    <label class="layui-form-label" style="width: 110px">
+                        <i style="color: red;font-size: 18px">* </i><B style="font-size: 15px;color:grey">投稿正文</B>
+                    </label>
+                    <div class="layui-input-block">
+                        <div class="layui-form-item layui-form-text">
+                            <textarea class="layui-textarea layui-hide" lay-verType="tips"  lay-reqtext="内容不能为空哦！" name="content"  id="LAY_demo_editor" th:if="${post!=null}" th:field="${post.content}"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 30px">
+                    <button lay-submit  class="layui-btn layui-btn-normal" lay-filter="demo1">提交</button>
+                    <button type="reset" class="layui-btn layui-btn-danger">取消</button>
+                </div>
+            </form>
+        </div>
+    </div>
+     <div style="text-align: center;background-color: #FFFFFF;" th:include="comm/index_head :: foot"></div>
+ </div>
+<div th:include="comm/index_head :: commonFooter"></div>
+<script>
+    //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
+    ;!function(){
+        var layer = layui.layer
+            ,form = layui.form
+            ,carousel = layui.carousel
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate
+            ,upload = layui.upload;
+
+        //拖拽上传
+        var uploadInst = upload.render({
+            elem: '#test10'
+            ,url: '/upload/add'
+            ,type: 'file'
+            ,method: 'post'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo1').attr('src', result); //图片链接（base64）
+                    form.render();
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }else {
+
+                    $("#img").val(res.data.src);
+
+                    return layer.msg('上传成功');
+                }
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload()
+                });
+            }
+            ,
+        });
+
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 5){
+                    return '标题至少得5个字符啊';
+                }
+            }
+            ,pass: [
+                /^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'
+            ]
+            ,content: function(value){
+                layedit.sync(editIndex);
+            }
+        });
+
+        layedit.set({
+            uploadImage: {
+                url: '/upload/add'
+                ,type: 'file'
+                ,method: 'post'
+            }
+        });
+
+        var editIndex = layedit.build('LAY_demo_editor');
+
+        $(document).ready(function () {
+            form.on('select(test)',function(data){
+                var id=data.value;
+                $.post("/post/getField?id="+id,function (date,status) {
+                    var  str="";
+                    $.each(date,function(k,v){
+                        str+="<option value="+v.id+">"+v.fname+"</option>";
+                    });
+                    $("#field").html(str);
+                    form.render();
+                });
+
+            });
+
+            $('select[name="partition"]').next().find('.layui-anim-upbit').find('.layui-this').click();
+        });
+
+
+    }();
+
+    //级联菜单
+
+
+
+</script>
+</body>
+<!--<script src="" th:src="@{/static/js/jquery.js}"></script>
+<script src="" th:src="@{/static/layui-v2.5.3/latui/latui.all.js}"></script>
+<script src="" th:src="@{/static/bootstrap-3.3.7-dist/js/bootstrap.min.js}"></script>-->
+</html>

@@ -63,6 +63,18 @@ public class UserController {
             user=userServices.finByid(id);
         }
         model.addAttribute("user",user);
+        return "user/user_edit";
+    }
+
+    @GetMapping("/adminEdit")
+    public String edit2(Integer id,Model model){
+        User user=null;
+        if (id==null){
+            user=new User();
+        }else {
+            user=userServices.finByid(id);
+        }
+        model.addAttribute("user",user);
         return "admin/user/admin_user_edit";
     }
 

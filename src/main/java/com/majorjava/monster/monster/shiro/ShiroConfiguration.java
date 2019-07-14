@@ -62,6 +62,8 @@ public class ShiroConfiguration {
         map.put("/uploads/sb/","anon");
         map.put("/webjars/","anon");
         map.put("/templates","anon");
+        map.put("/sendcode","anon");
+        map.put("/static/images","anon");
         //登出
         map.put("/logout","logout");
         map.put("/**","authc");

@@ -42,7 +42,7 @@
         }
     </style>
 </head>
-<body id="bigbg" style="background:url('../static/images/330724-140H312054133.jpg')">
+<body id="bigbg" style="background:url('../static/images/330724-140H312054133.jpg') ">
 <!--<audio controls>
     <source src="../static/music/宗次郎%20-%20いつも何度でも.mp3" type="audio/mpeg" style="width: 100px">
     Your browser does not support this audio format.
@@ -154,7 +154,7 @@
 
                                         <i class="glyphicon glyphicon-eye-open" style="margin-left: 40px"></i>
                                         <span th:text="阅读量+${post.views}"></span>
-                              <p style="float: right">
+                              <p style="float: right;margin-right: 20px">
                                   来自：<a href="#" th:text="${post.partition.tname}"></a>
                                   -  <a href="#" th:text="${post.field.fname}"></a>
                               </p>
@@ -263,10 +263,8 @@
             </div>
         </div>
 
-
     </div>
-
-
+    <div style="text-align: center;background-color: #FFFFFF;" th:include="comm/index_head :: foot"></div>
 </div>
 <div th:include="comm/index_head :: commonFooter"></div>
 <script>
@@ -306,6 +304,13 @@
 
 
     }();
+
+    $(document).ready(function(){
+        $("#lx").click(function () {
+            alert("QQ:1427439556;  "+"微信：ztfs666  "+";QQ群：708198644")
+        })
+    });
+
 
     var date=new Date();
     var h=date.getHours();//获取当前时间

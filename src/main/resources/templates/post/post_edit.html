@@ -1,7 +1,9 @@
 
 <html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head th:replace="comm/index_head :: commonHeader('Monster')">
+  <style>
 
+  </style>
 </head>
 
 <div th:include="comm/index_head :: commonNav"></div>
@@ -32,16 +34,16 @@
                     <div style="width: 90%;text-align: center;margin:0px auto;">
                         <ul style="padding: 10px;text-align: center">
                             <li style="float: left;padding-left: 47px;padding-right: 20px">
-                                <div class="cunt">287</div>
+                                <div class="cunt" th:text="${post.user.postSize}"></div>
                                 <div class="type">投稿</div>
                             </li>
                             <li style="float: left;padding-left: 30px;padding-right: 20px">
-                                <div class="cunt">158</div>
-                                <div class="type">关注</div>
+                                <div class="cunt" th:text="${post.user.followSize}"></div>
+                                <div class="type" id="gz">关注</div>
                             </li>
                             <li style="float: left;padding-left: 30px;padding-right: 20px">
-                                <div class="cunt">739</div>
-                                <div class="type">粉丝</div>
+                                <div class="cunt" th:text="${post.user.fanSize}"></div>
+                                <div class="type" >粉丝</div>
                             </li>
                         </ul>
                     </div>
@@ -120,7 +122,7 @@
             <!--文章主体内容-->
             <div style="width:100%;box-sizing: border-box;font-size: 14px;font-family: PingFangSC-Regular;color: #333333;float: left;padding-left: 50px;margin-top: 20px">
                 <div style="margin:20px 0;width:100%;display:block;">
-                    <div style="font-size: 20px;" th:utext="${post.content}"></div>
+                    <div  id="cont" style="font-size: 20px;" th:utext="${post.content}"></div>
             </div>
             <!--评论区-->
             <div style="margin-top: 20px;float: left;padding: 0px;width: 100%">
@@ -142,6 +144,7 @@
             </div>
             <input type="hidden" name="uid" id="uid" th:if="${session.loginUser!=null}" th:value="${session.loginUser.Id}">
             <input type="hidden" name="pid" id="pid" th:if="${post!=null}" th:value="${post.id}">
+             <input type="hidden" name="byUid" id="byUid" th:if="${post.user.id!=null}" th:value="${post.user.id}">
             <div>
                 <div style="float: left;height: 60px;width: 100%;border-bottom-color: #E6E6E6">
                     <button style="float: right;margin-right: 10px;margin-top: 5px;margin-bottom: 5px" class="site-demo-layedit layui-btn layui-btn-danger" data-type="content" id="sm">提交</button>
@@ -192,6 +195,9 @@
                 </div>
                 <div th:if="${commentList.size()==0}" style="background-color: #FAFAFA;align-content: center;height: 70px;width: 700px;margin: 0px auto">
                        <div style="width: 290px;margin: 0 auto;height: 70px;">
+                           <div th:if="${session.loginUser==null}">
+                               <button>点我登陆！</button>
+                           </div>
                            <h4 style="line-height: 70px">快！暂时还没有人评论赶紧抢沙发！</h4>
                        </div>
                 </div>
@@ -200,17 +206,8 @@
         </div>
     </div>
 </div>
-        <input type="hidden" id="city" name="city">
-            <div style="width: 100%;height: 100px;background-color: #8c8c8c">
-                <div id="ip">
-
-                </div>
-
-                <div id="">
-
-                </div>
-             </div>
 </div>
+<div th:include="comm/index_head :: foot"></div>
 <div th:include="comm/index_head :: commonFooter"></div>
 <script th></script>
 <script>
@@ -366,6 +363,44 @@
                     }
                 }
 
+            });
+        });
+        //关注
+        $(document).ready(function(){
+            var uid=$("#uid").val();
+            var pid=$("#pid").val();
+            var byUid=$("byUid").val();
+            $('#gz').click(function(){
+                if(uid==''||uid==0){
+                    layer.alert('你还没有登录！', {icon: 5,offset:'50%'});
+                    return false;
+                }else{
+                        $.ajax({
+                            type:"get",
+                            dataType:"json",
+                            data:{"byUid":byUid,"uid":uid},
+                            url:"/idol/addIdol",
+                            success:function(date){
+                                /* alert(date.code)*/
+                                if(date.error.eq("评论成功！")){
+                                    /*$('#context').text('');*/
+                                    layer.msg('评论成功',{
+                                        offset:'50%'
+
+                                    });
+                                    setTimeout(function(){
+                                        window.location.reload();//刷新当前页面.
+                                    },1000)
+                                }else{
+
+                                    layer.msg('评论失败！',{
+                                        offset:'50%'
+                                    });
+                                    return false;
+                                }
+                            }
+                        });
+                }
             });
         });
     }();

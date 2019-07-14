@@ -10,6 +10,8 @@ package com.majorjava.monster.monster.util;
 
 import com.aliyuncs.DefaultAcsClient;
 import com.aliyuncs.IAcsClient;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsRequest;
+import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
@@ -26,8 +28,8 @@ import com.aliyuncs.profile.IClientProfile;
         static final String domain = "dysmsapi.aliyuncs.com";
 
         // TODO 此处需要替换成开发者自己的AK(在阿里云访问控制台寻找)
-        static final String accessKeyId = "yourAccessKeyId";  // TODO 修改成自己的
-        static final String accessKeySecret = "yourAccessKeySecret";   // TODO 修改成自己的
+        static final String accessKeyId = "LTAICglg0BnakHr7";  // TODO 修改成自己的
+        static final String accessKeySecret = "E0q8hwV3MdXXvsukEJauZP1w5ExGS7";   // TODO 修改成自己的
 
         public static SendSmsResponse sendSms(String telephone, String code) throws ClientException {
             //可自助调整超时时间
@@ -42,9 +44,9 @@ import com.aliyuncs.profile.IClientProfile;
             //必填:待发送手机号
             request.setPhoneNumbers(telephone);
             //必填:短信签名-可在短信控制台中找到
-            request.setSignName("xxx");    // TODO 修改成自己的
+            request.setSignName("Monster论坛");    // TODO 修改成自己的
             //必填:短信模板-可在短信控制台中找到
-            request.setTemplateCode("SMS_xxx");    // TODO 修改成自己的
+            request.setTemplateCode("SMS_170348131");    // TODO 修改成自己的
             //可选:模板中的变量替换JSON串,如模板内容为"亲爱的${name},您的验证码为${code}"时,此处的值为
 //        request.setTemplateParam("{\"name\":\"Tom\", \"code\":\"123\"}");
             request.setTemplateParam("{\"code\":\"" + code + "\"}");
@@ -104,7 +106,7 @@ import com.aliyuncs.profile.IClientProfile;
             String code = Integer.toString(getNewcode());
             System.out.println("发送的验证码为："+code);
             //发短信
-            SendSmsResponse response =sendSms("xxx",code); // TODO 填写你需要测试的手机号码
+            SendSmsResponse response =sendSms("13978985055",code); // TODO 填写你需要测试的手机号码
             System.out.println("短信接口返回的数据----------------");
             System.out.println("Code=" + response.getCode());
             System.out.println("Message=" + response.getMessage());
