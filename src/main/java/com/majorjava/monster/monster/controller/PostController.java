@@ -211,6 +211,9 @@ public class PostController {
         model.addAttribute("post",save);
         System.out.println("帖子名字："+save.getName()+"，楼主："+save.getUser().getUsername());
 
+        List<Idol> beIdol = idolServices.findByBeUserIdOrderByCreateTime(save.getUser().getId());
+        model.addAttribute("beIdol",beIdol);
+
         List<Idol> order = idolServices.findByBeUserIdOrderByCreateTime(post.getUser().getId());
         Long aLong = idolServices.countByBeUserId(post.getUser().getId());
         User user = userServices.finByid(post.getUser().getId());

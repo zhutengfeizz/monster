@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="comm/index_head :: commonHeader('Monster')">
+</head>
+<body>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            <div th:include="comm/index_head :: commonNav"></div>
+        </div>
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md4">
+            div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">网站设置</li>
+                <li>用户管理</li>
+                <li>权限分配</li>
+                <li>商品管理</li>
+                <li>订单管理</li>
+            </ul>
+            <div class="layui-tab-content"></div>
+        </div>
+    </div>
+        <div class="layui-col-xs4 layui-col-sm12 layui-col-md4">
+            移动：4/12 | 平板：12/12 | 桌面：4/12
+        </div>
+        <div class="layui-col-xs4 layui-col-sm7 layui-col-md8">
+            移动：4/12 | 平板：7/12 | 桌面：8/12
+        </div>
+        <div class="layui-col-xs4 layui-col-sm5 layui-col-md4">
+            移动：4/12 | 平板：5/12 | 桌面：4/12
+        </div>
+    </div>
+</div>
+<div style="text-align: center;background-color: #FFFFFF;" th:include="comm/index_head :: foot"></div>
+<div th:include="comm/index_head :: commonFooter"></div>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>

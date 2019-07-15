@@ -6,7 +6,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-parent</artifactId>
             <version>2.1.5.RELEASE</version>
-            <relativePath/><!-- lookup parent from repository -->
+            <relativePath/>
         </parent>
         <groupId>com.majorjava.monster</groupId>
         <artifactId>monster</artifactId>
@@ -15,20 +15,6 @@
         <description>Demo project for Spring Boot</description>
         <properties>
             <java.version>1.8</java.version>
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-                <filtering>true</filtering>
-                <excludes>
-                    <exclude>static/fonts/**</exclude>
-                </excludes>
-            </resource>
-            <resource>
-                <directory>${project.basedir}/src/main/resources</directory>
-                <filtering>false</filtering>
-                <includes>
-                    <include>static/fonts/**</include>
-                </includes>
-            </resource>
         </properties>
         <dependencies>
             <dependency>
@@ -85,16 +71,6 @@
                 <groupId>org.apache.shiro</groupId>
                 <artifactId>shiro-spring</artifactId>
                 <version>1.4.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context-support</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>javax.mail</groupId>
-                <artifactId>mail</artifactId>
-                <version>1.4.7</version>
             </dependency>
             <dependency>
                 <groupId>org.quartz-scheduler</groupId>

@@ -50,7 +50,8 @@
                 </div>
                 <!--关注、私信-->
                 <div style="margin-top: 5px;margin-bottom: 10px;width: 100%;text-align: center">
-                    <button type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
+                    <button  th:if="${beIdol.user.id}!=${session.loginUser.id}" type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
+                    <button th:if="${beIdol.user.id}==${session.loginUser.id}" type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">已关注</button>
                     <button type="button" class="layui-btn layui-btn-radius layui-btn-warm bt" style="width: 110px;margin-top: 5px">私信</button>
                 </div>
             </div>
