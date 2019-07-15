@@ -35,30 +35,31 @@ public class IdoIController {
         Map<String,Object>map=new HashMap<>();
         Idol idol=null;
         Idol idol1 = idolServices.findByBeUserIdAndUserId(beUid, uid);
+        System.out.println("idol1:----------------------------------------------------"+idol1.getId());
         if (idol1==null){
             if (uid!=null||beUid!=null){
-                idol = idolServices.add(uid, beUid);
                 User user = userServices.finByid(beUid);
                 user.setFanSize(user.getFanSize()+1);
                 userServices.save(user);
                 User user1 = userServices.finByid(uid);
                 user1.setFollowSize(user1.getFollowSize()+1);
                 userServices.save(user1);
+                idol = idolServices.add(uid, beUid);
+                if (idol==null){
+                    System.out.println(idol.getUser().getUsername()+",这个逼刚才关注了"+idol.getBeUser().getUsername());
+                    model.addAttribute("error",0);
+                }else {
+                    System.out.println(idol.getUser().getUsername()+",这个逼刚才关注了"+idol.getBeUser().getUsername());
+                    model.addAttribute("error",1);
+                }
             }else {
-                model.addAttribute("error","关注失败！");
+                model.addAttribute("error",0);
                 System.out.println("关注失败");
-            }
-            if (idol.equals("")||idol==null){
-                model.addAttribute("error","关注失败!");
-                System.out.println("关注失败");
-            }else {
-                model.addAttribute("error","关注成功！");
-                System.out.println("关注成功");
             }
             return map;
         }else {
             idolServices.delete(idol1);
-            model.addAttribute("error","取消关注成功!");
+            model.addAttribute("error",2);
             System.out.println("取消关注成功！");
             User user = userServices.finByid(beUid);
              user.setFanSize(user.getFanSize()-1);

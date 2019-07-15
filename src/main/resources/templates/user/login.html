@@ -13,46 +13,38 @@
     </style>
 </head>
 <body id="bg">
+<div th:include="comm/index_head :: commonNav"></div>
+    <div class="layui-container" style="height: 650px">
+        <div class="layui-row" style="height: 300px;width: 300px;margin: 0 auto;background-color: #C2C9DA;border-radius:5px;">
+            <form  class="layui-form" style="height: 300px;width: 200px;text-align: center;margin: 0 auto" action="/login" method="post">
+                <div style="margin-top: 90px;">
+                    <p style="color: #009688;font-size: 30px;margin: 0 auto"><b>用户登录</b></p>
+                    <div style="margin-top: 10px">
+                        账号：<input type="text" name="username" placeholder="请输入账号"></br>
+                    </div>
+                    <div style="margin-top: 10px">
+                        密码：<input type="password" name="password" placeholder="请输入密码"></br>
+                    </div>
 
-<div style="height: 300px;width: 300px;margin: 0 auto;background-color: #C2C9DA;border-radius:5px;">
-    <form  class="layui-form" style="height: 300px;width: 200px;text-align: center;margin: 0 auto" action="/login" method="post">
-        <div style="margin-top: 90px;">
-            <p style="color: #009688;font-size: 30px;margin: 0 auto"><b>用户登录</b></p>
-            <div style="margin-top: 10px">
-                账号：<input type="text" name="username" placeholder="请输入账号"></br>
-            </div>
-            <div style="margin-top: 10px">
-                密码：<input type="password" name="password" placeholder="请输入密码"></br>
-            </div>
+                </div>
 
+                <div style="margin-bottom: 10px">
+                      <span style="color: red" th:text="${error}">
+
+                      </span>
+                </div>
+
+                <div style="margin-top: 10px">
+                      <button type="submit" class="layui-btn layui-btn-sm">登录</button>&nbsp;&nbsp;|&nbsp;&nbsp;<button type="button" class="layui-btn layui-btn-sm layui-btn-danger"><a href="/register">注册</a></button>
+                </div>
+            </form>
         </div>
-
-        <div style="margin-bottom: 10px">
-              <span style="color: red" th:text="${error}">
-
-              </span>
-        </div>
-
-        <div style="margin-top: 10px">
-              <button type="submit">登录</button>&nbsp;&nbsp;|&nbsp;&nbsp;<button type="button"><a href="/register">注册</a></button>
-        </div>
-    </form>
-</div>
-
+    </div>
+<div class="layui-footer" style="text-align: center;background-color: #FFFFFF;" th:include="comm/index_head :: foot"></div>
 <script src="../../static/js/jquery.js"></script>
 <script src="../../static/layui-v2.5.3/layui/layui.all.js"></script>
 <script src="../../static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <script>
-    //Demo
-    layui.use('form', function(){
-        var form = layui.form;
-
-        //监听提交
-        form.on('submit(formDemo)', function(data){
-            layer.msg(JSON.stringify(data.field));
-            return false;
-        });
-    });
 </script>
 </body>
 </html>

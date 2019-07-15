@@ -50,9 +50,9 @@
                 </div>
                 <!--关注、私信-->
                 <div style="margin-top: 5px;margin-bottom: 10px;width: 100%;text-align: center">
-                    <button  th:if="${beIdol.user.id}!=${session.loginUser.id}" type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
-                    <button th:if="${beIdol.user.id}==${session.loginUser.id}" type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">已关注</button>
-                    <button type="button" class="layui-btn layui-btn-radius layui-btn-warm bt" style="width: 110px;margin-top: 5px">私信</button>
+                    <button type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
+                   <!-- <button   type="button" name="gz"  class="layui-btn layui-btn-radius layui-btn-normal" style="width: 110px;margin-top: 5px">已关注</button>-->
+                    <button type="button" class="layui-btn layui-btn-radius layui-btn-warm bt" id="sx" style="width: 110px;margin-top: 5px">私信</button>
                 </div>
             </div>
 
@@ -368,11 +368,9 @@
         });
         //关注
         $(document).ready(function(){
-
-            var pid=$("#pid").val();
-
             $('#gz').click(function(){
-                if(uid==''||uid==0){
+                var uid=$("#uid").val();
+                if(uid==null){
                     layer.alert('你还没有登录！', {icon: 5,offset:'50%'});
                     return false;
                 }else{
@@ -386,21 +384,23 @@
                             url:"/idol/addIdol",
                             success:function(date){
                                 /* alert(date.code)*/
-                                if(date.error.eq("关注成功！")){
+                                if(date.error.eq(1)||date.error==1){
                                     /*$('#context').text('');*/
                                     layer.msg('关注成功',{
                                         offset:'50%'
-
                                     });
                                     setTimeout(function(){
                                         window.location.reload();//刷新当前页面.
                                     },1000)
-                                }else{
-
+                                };
+                                if (date.error.eq(0)||date.error==0){
                                     layer.msg('关注失败！',{
                                         offset:'50%'
                                     });
                                     return false;
+                                };
+                                if (date.error.eq(2)||date.error==2){
+                                    layer.msg("取消关注成功!")
                                 }
                             }
                         });

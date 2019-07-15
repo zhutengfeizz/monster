@@ -21,7 +21,7 @@ import java.util.List;
  **/
 @Service
 @Transactional
-public class IdolImpl implements IdolServices {
+public class IdolServicesImpl implements IdolServices {
     @Autowired
     private IdolDao idolDao;
     @Autowired
@@ -43,9 +43,11 @@ public class IdolImpl implements IdolServices {
         idol.setCreateTime(new Date());
         Idol save = idolDao.save(idol);
         if (save!=null){
-            System.out.println("添加收藏成功!");
+            System.out.println(save.getUser().getUsername()+",这个逼刚才关注了"+save.getBeUser().getUsername());
+            System.out.println("关注成功!");
         }else {
-            System.out.println("添加收藏失败!");
+            System.out.println(save.getUser().getUsername()+",这个逼刚才关注了"+save.getBeUser().getUsername());
+            System.out.println("关注失败!");
         }
         return save;
     }

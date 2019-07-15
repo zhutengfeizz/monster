@@ -76,8 +76,6 @@ public class IndexController {
     @PostMapping("login")
     public String login(String username, String password, Model model, HttpSession session, RedirectAttributes redirectAttributes){
         Map<String, Object> resultMap = userServices.login(username, password);
-        int newcode = getNewcode();
-        System.out.println(newcode);
         if((Boolean) resultMap.get("ok")){
             //把登录成功后的用户对象保存到session中
           User user= (User)resultMap.get("user");
