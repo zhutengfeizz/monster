@@ -46,16 +46,20 @@ public class IdoIController {
                 userServices.save(user1);
             }else {
                 model.addAttribute("error","关注失败！");
+                System.out.println("关注失败");
             }
             if (idol.equals("")||idol==null){
                 model.addAttribute("error","关注失败!");
+                System.out.println("关注失败");
             }else {
                 model.addAttribute("error","关注成功！");
+                System.out.println("关注成功");
             }
             return map;
         }else {
             idolServices.delete(idol1);
             model.addAttribute("error","取消关注成功!");
+            System.out.println("取消关注成功！");
             User user = userServices.finByid(beUid);
              user.setFanSize(user.getFanSize()-1);
              userServices.save(user);
@@ -72,8 +76,10 @@ public class IdoIController {
             Idol byId = idolServices.findById(id);
             idolServices.delete(byId);
             model.addAttribute("error","删除成功");
+            System.out.println("删除成功");
         }else {
             model.addAttribute("error","取消关注失败！id为空");
+            System.out.println("取消关注失败!该收藏不存在！");
         }
         return "";
     }

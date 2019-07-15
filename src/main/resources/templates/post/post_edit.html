@@ -39,7 +39,7 @@
                             </li>
                             <li style="float: left;padding-left: 30px;padding-right: 20px">
                                 <div class="cunt" th:text="${post.user.followSize}"></div>
-                                <div class="type" id="gz">关注</div>
+                                <div class="type" >关注</div>
                             </li>
                             <li style="float: left;padding-left: 30px;padding-right: 20px">
                                 <div class="cunt" th:text="${post.user.fanSize}"></div>
@@ -50,7 +50,7 @@
                 </div>
                 <!--关注、私信-->
                 <div style="margin-top: 5px;margin-bottom: 10px;width: 100%;text-align: center">
-                    <button type="button" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
+                    <button type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
                     <button type="button" class="layui-btn layui-btn-radius layui-btn-warm bt" style="width: 110px;margin-top: 5px">私信</button>
                 </div>
             </div>
@@ -207,7 +207,7 @@
     </div>
 </div>
 </div>
-<div th:include="comm/index_head :: foot"></div>
+<div style="text-align: center;background-color: #FFFFFF;" th:include="comm/index_head :: foot"></div>
 <div th:include="comm/index_head :: commonFooter"></div>
 <script th></script>
 <script>
@@ -367,24 +367,27 @@
         });
         //关注
         $(document).ready(function(){
-            var uid=$("#uid").val();
+
             var pid=$("#pid").val();
-            var byUid=$("byUid").val();
+
             $('#gz').click(function(){
                 if(uid==''||uid==0){
                     layer.alert('你还没有登录！', {icon: 5,offset:'50%'});
                     return false;
                 }else{
+                    var byUid=$("#byUid").val();
+                    var uid=$("#uid").val();
+                    alert("触发了点击关注"+"byUid:"+byUid+",uid"+uid);
                         $.ajax({
                             type:"get",
                             dataType:"json",
-                            data:{"byUid":byUid,"uid":uid},
+                            data:{"beUid":byUid,"uid":uid},
                             url:"/idol/addIdol",
                             success:function(date){
                                 /* alert(date.code)*/
-                                if(date.error.eq("评论成功！")){
+                                if(date.error.eq("关注成功！")){
                                     /*$('#context').text('');*/
-                                    layer.msg('评论成功',{
+                                    layer.msg('关注成功',{
                                         offset:'50%'
 
                                     });
@@ -393,7 +396,7 @@
                                     },1000)
                                 }else{
 
-                                    layer.msg('评论失败！',{
+                                    layer.msg('关注失败！',{
                                         offset:'50%'
                                     });
                                     return false;

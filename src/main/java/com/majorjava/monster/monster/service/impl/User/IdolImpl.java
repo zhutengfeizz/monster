@@ -37,11 +37,16 @@ public class IdolImpl implements IdolServices {
         User user = userServices.finByid(userId);
         System.out.println("创建关注对象传过来的user"+user.getUsername());
         User beUser = userServices.finByid(beUserId);
-        System.out.println("创建关注对象传过来被关注的user"+user.getUsername());
+        System.out.println("创建关注对象传过来被关注的user"+beUser.getUsername());
         idol.setUser(user);
         idol.setBeUser(beUser);
         idol.setCreateTime(new Date());
         Idol save = idolDao.save(idol);
+        if (save!=null){
+            System.out.println("添加收藏成功!");
+        }else {
+            System.out.println("添加收藏失败!");
+        }
         return save;
     }
 
