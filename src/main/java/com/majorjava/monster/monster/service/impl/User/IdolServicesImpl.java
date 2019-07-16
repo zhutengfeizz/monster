@@ -32,14 +32,20 @@ public class IdolServicesImpl implements IdolServices {
     }
 
     @Override
-    public Idol add(Integer userId, Integer beUserId) {
+    public Idol add(Integer uid, Integer beUid) {
         Idol idol=new Idol();
-        User user = userServices.finByid(userId);
+        User user = userServices.finByid(uid);
         System.out.println("创建关注对象传过来的user"+user.getUsername());
-        User beUser = userServices.finByid(beUserId);
+        User beUser = userServices.finByid(beUid);
         System.out.println("创建关注对象传过来被关注的user"+beUser.getUsername());
-        idol.setUser(user);
-        idol.setBeUser(beUser);
+        beUser.setFanSize(user.getFanSize()+1);
+        User saveBeUser = userServices.save(beUser);
+        user.setFollowSize(user.getFollowSize()+1);
+       User saveUser= userServices.save(user);
+
+
+        idol.setUser(saveUser);
+        idol.setBeUser(saveBeUser);
         idol.setCreateTime(new Date());
         Idol save = idolDao.save(idol);
         if (save!=null){

@@ -78,6 +78,13 @@ public class UserController {
         return "admin/user/admin_user_edit";
     }
 
+    @GetMapping("/sendcodeUpdatePassWord")
+    public String sendcodeUpdatePassWord(Integer id,Model model){
+        System.out.println("这个逼点击了修改密码："+id);
+        User user = userServices.finByid(id);
+        model.addAttribute("user",user);
+        return "user/user_updatePassWord";
+    }
       @PostMapping("/save")
       public String sava(int age,Integer id,RedirectAttributes redirectAttributes, String username,
                          String password, String password2, String sex, String birthday, String email,
@@ -89,6 +96,7 @@ public class UserController {
                                 user.setUsername(username);
                                 String s = UUID.randomUUID().toString().replaceAll("-", "");
                                 user.setSalt(s);
+                                user.setSignature("此人还没填写个性签名");
                             }else {
                                 user=userServices.finByid(id);
 

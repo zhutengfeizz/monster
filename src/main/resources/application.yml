@@ -6,7 +6,7 @@ spring:
     password: 123456
     driver-class-name: com.mysql.jdbc.Driver
   resources:
-    static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css,classpath:/D:/uploads/sb/,classpath:/D:/uploads/sb,classpath:/static/font-awesome-4.7.0/css/font-awesome.min.css,classpath:/META-INF/resources/webjars/,classpath:/templates,
+    static-locations: classpath:/,classpath:/static/layui-v2.5.3/layui,classpath:/static/layui-v2.5.3/layui/css,classpath:/D:/uploads/sb/,classpath:/D:/uploads/sb,classpath:/static/font-awesome-4.7.0/css/font-awesome.min.css,classpath:/META-INF/resources/webjars/,classpath:/templates,classpath:/static/sliderVerify/layui_exts/sliderVerify/,
 
   jpa:
     properties:

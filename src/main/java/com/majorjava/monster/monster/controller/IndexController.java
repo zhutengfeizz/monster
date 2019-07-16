@@ -107,6 +107,24 @@ public class IndexController {
         //发短信
         return map;
     }
+    @ResponseBody
+    @RequestMapping(value = "/sendcodeUpdatePassWord",method = RequestMethod.GET)
+    public Map<String,Object> sendcodeUpdatePassWord(String phone, HttpServletResponse response)throws ClientException {
+        Map<String,Object>map=new HashMap<>();
+        AliyunSmsUtils.setNewcode();
+        String code = Integer.toString(getNewcode());
+        SendSmsResponse sendSmsResponse = sendSms(phone, code);
+        System.out.println("短信接口返回的数据----------------");
+        System.out.println("Code=" + sendSmsResponse.getCode());
+        System.out.println("Message=" + sendSmsResponse.getMessage());
+        System.out.println("RequestId=" + sendSmsResponse.getRequestId());
+        System.out.println("BizId=" + sendSmsResponse.getBizId());
+        map.put("Code",code);
+        map.put("Message",sendSmsResponse.getMessage());
+        System.out.println("发送的验证码为："+code);
+        //发短信
+        return map;
+    }
 
     @PostMapping("register")
     public String register(String myCode,String phone,String code,String username,String password,String password2,String sex,String birthday,String email,Model model)throws ClientException, InterruptedException  {

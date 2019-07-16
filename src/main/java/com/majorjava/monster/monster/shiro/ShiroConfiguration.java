@@ -63,10 +63,11 @@ public class ShiroConfiguration {
         map.put("/templates","anon");
         map.put("/static/images","anon");
         map.put("/post/postHome","anon");
+        map.put("/static/sliderVerify/","anon");
        /* map.put("images/**","anon");*/
         //登出
         map.put("/logout","logout");
-        map.put("/**","authc");
+      /*  map.put("/**","authc");*/
         shiroFilterFactoryBean.setFilterChainDefinitionMap(map);
 
         return shiroFilterFactoryBean;
