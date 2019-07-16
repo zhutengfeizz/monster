@@ -325,9 +325,6 @@
             var pid=$("#pid").val();
             var city=$("input:hidden[name='city']").val();
             var lock = false; //声明lock为false
-            layui.use('layer', function() {
-                var layer=layui.layer;
-            })
             $('#sm').click(function(){
                 if(uid==''||uid==0){
                     layer.alert('你还没有登录！', {icon: 5,offset:'50%'});
@@ -338,7 +335,7 @@
                         layer.msg('评论内容不能为空！', {icon: 2 , offset:'50%'});
                         return false;
                     }else{
-                        var city=$("#city").val();
+                       /* var city=$("#city").val();*/
                         $.ajax({
                             type:"get",
                             dataType:"json",

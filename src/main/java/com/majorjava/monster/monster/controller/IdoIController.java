@@ -30,14 +30,13 @@ public class IdoIController {
     private IdolServices idolServices;
 
     @ResponseBody
-    @GetMapping("addIdol")
+    @GetMapping("/addIdol")
     public Map save(Integer uid , Integer beUid, Model model){
         Map<String,Object>map=new HashMap<>();
         Idol idol=null;
         Idol idol1 = idolServices.findByBeUserIdAndUserId(beUid, uid);
         System.out.println("idol1:----------------------------------------------------"+idol1.getId());
         if (idol1==null){
-            if (uid!=null||beUid!=null){
                 User user = userServices.finByid(beUid);
                 user.setFanSize(user.getFanSize()+1);
                 userServices.save(user);
@@ -52,10 +51,6 @@ public class IdoIController {
                     System.out.println(idol.getUser().getUsername()+",这个逼刚才关注了"+idol.getBeUser().getUsername());
                     model.addAttribute("error",1);
                 }
-            }else {
-                model.addAttribute("error",0);
-                System.out.println("关注失败");
-            }
             return map;
         }else {
             idolServices.delete(idol1);
