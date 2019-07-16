@@ -18,4 +18,6 @@ public interface UserDao extends CrudRepository<User, Integer> {
     List<User> findByStateOrderByCreateTimeDesc(int state);
     List<User>findByUsernameLikeAndStateOrderByCreateTimeDesc(String username, int state);
     User findByUsernameLike(String username);
+    User findByPhoneAndUsername(String phone,String username);
+
 }

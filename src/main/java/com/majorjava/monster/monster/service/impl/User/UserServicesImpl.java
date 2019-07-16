@@ -168,4 +168,9 @@ public class UserServicesImpl implements UserServices {
     public User findByUsernameLike(String username) {
         return userDao.findByUsernameLike(username);
     }
+
+    @Override
+    public User findByPhoneAndUsername(String phone, String username) {
+        return userDao.findByPhoneAndUsername(phone,username);
+    }
 }

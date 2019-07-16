@@ -33,29 +33,33 @@ public class IdoIController {
     @GetMapping("addIdol")
     public Map save(Integer uid , Integer beUid, Model model){
         Map<String,Object>map=new HashMap<>();
-        System.out.println("关注用户功能：传过来的用户ID为--"+uid+"，关注的ID为："+beUid);
+        Idol idol=null;
         Idol idol1 = idolServices.findByBeUserIdAndUserId(beUid, uid);
-        if (idol1==null){
-            System.out.println("根据:用户ID和关注的ID查找不到对象！");
-        }else {
-
-            System.out.println("查到值并输入当前用户的用户名:"+ idol1.getUser().getUsername());
-            System.out.println("根据:用户ID和关注的ID查找不到对象！");
-        }
         System.out.println("idol1:----------------------------------------------------"+idol1.getId());
-            if (idol1==null){
-                Idol add = idolServices.add(uid, beUid);
-                if (add==null){
-                    System.out.println(add.getUser().getUsername()+",这个逼刚才关注了"+add.getBeUser().getUsername());
-                    model.addAttribute("status",0);
+        if (idol1==null){
+            if (uid!=null||beUid!=null){
+                User user = userServices.finByid(beUid);
+                user.setFanSize(user.getFanSize()+1);
+                userServices.save(user);
+                User user1 = userServices.finByid(uid);
+                user1.setFollowSize(user1.getFollowSize()+1);
+                userServices.save(user1);
+                idol = idolServices.add(uid, beUid);
+                if (idol==null){
+                    System.out.println(idol.getUser().getUsername()+",这个逼刚才关注了"+idol.getBeUser().getUsername());
+                    model.addAttribute("error",0);
                 }else {
-                    System.out.println(add.getUser().getUsername()+",这个逼刚才关注了"+add.getBeUser().getUsername());
-                    model.addAttribute("status",1);
+                    System.out.println(idol.getUser().getUsername()+",这个逼刚才关注了"+idol.getBeUser().getUsername());
+                    model.addAttribute("error",1);
                 }
+            }else {
+                model.addAttribute("error",0);
+                System.out.println("关注失败");
+            }
             return map;
         }else {
             idolServices.delete(idol1);
-            model.addAttribute("status",2);
+            model.addAttribute("error",2);
             System.out.println("取消关注成功！");
             User user = userServices.finByid(beUid);
              user.setFanSize(user.getFanSize()-1);

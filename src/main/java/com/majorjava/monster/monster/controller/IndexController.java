@@ -6,6 +6,7 @@ import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.service.Post.PostService;
 import com.majorjava.monster.monster.service.User.UserServices;
+import com.majorjava.monster.monster.util.AliyunSmsByUpdatePassWordUtils;
 import com.majorjava.monster.monster.util.AliyunSmsUtils;
 import org.aspectj.bridge.MessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,7 +112,7 @@ public class IndexController {
     @RequestMapping(value = "/sendcodeUpdatePassWord",method = RequestMethod.GET)
     public Map<String,Object> sendcodeUpdatePassWord(String phone, HttpServletResponse response)throws ClientException {
         Map<String,Object>map=new HashMap<>();
-        AliyunSmsUtils.setNewcode();
+        AliyunSmsByUpdatePassWordUtils.setNewcode();
         String code = Integer.toString(getNewcode());
         SendSmsResponse sendSmsResponse = sendSms(phone, code);
         System.out.println("短信接口返回的数据----------------");

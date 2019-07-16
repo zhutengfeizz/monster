@@ -26,4 +26,5 @@ public interface UserServices {
     User  updateheadshot(Integer uid,String headshot);
     List<User>findByUsernameLikeAndStateOrderByCreateTimeDesc(String username, int state);
     User findByUsernameLike(String username);
+    User findByPhoneAndUsername(String phone,String username);
 }
