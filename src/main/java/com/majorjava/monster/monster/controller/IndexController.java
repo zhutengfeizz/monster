@@ -93,6 +93,7 @@ public class IndexController {
     @ResponseBody
     @RequestMapping(value = "/sendcode",method = RequestMethod.GET)
     public Map<String,Object> sendcode(String phone, HttpServletResponse response)throws ClientException {
+        System.out.println("修改密码阿里云接口：手机号码为"+phone);
          Map<String,Object>map=new HashMap<>();
         AliyunSmsUtils.setNewcode();
         String code = Integer.toString(getNewcode());
@@ -108,9 +109,11 @@ public class IndexController {
         //发短信
         return map;
     }
+
     @ResponseBody
-    @RequestMapping(value = "/sendcodeUpdatePassWord",method = RequestMethod.GET)
+    @GetMapping("/sendcodeUpdatePassWord")
     public Map<String,Object> sendcodeUpdatePassWord(String phone, HttpServletResponse response)throws ClientException {
+        System.out.println("修改密码阿里云接口：手机号码为"+phone);
         Map<String,Object>map=new HashMap<>();
         AliyunSmsByUpdatePassWordUtils.setNewcode();
         String code = Integer.toString(getNewcode());
@@ -126,7 +129,6 @@ public class IndexController {
         //发短信
         return map;
     }
-
     @PostMapping("register")
     public String register(String myCode,String phone,String code,String username,String password,String password2,String sex,String birthday,String email,Model model)throws ClientException, InterruptedException  {
         System.out.println("验证码为:"+myCode+"，用户输入的验证码为："+code);

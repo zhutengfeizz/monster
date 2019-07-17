@@ -47,6 +47,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public Comment save(Integer uid,Integer pid,String cont,String ip) {
+
         Post post = postService.finByid(pid);
         User user = userServices.finByid(uid);
         Long aLong = commentDao.countByPostId(pid);
@@ -82,6 +83,11 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Long countByPostId(Integer pid) {
         return commentDao.countByPostId(pid);
+    }
+
+    @Override
+    public Comment saveComment(Comment comment) {
+        return commentDao.save(comment);
     }
 
 

@@ -112,17 +112,19 @@ public class UserController {
     * @author ztf
     * @return java.lang.String
     */
-    @GetMapping("togetPassword")
+    @GetMapping("/togetPassword")
     public String getPassword(){
         return "user/getPassword";
     }
     @ResponseBody
-    @PostMapping("getPassword")
-    public Map getPassword(String myCode,String code,String phone, String username,String password, String password2){
+    @PostMapping("/getPassword")
+    public Map getPassword(String phone, String username,String password, String password2){
+        System.out.println("手机号:"+phone+"用户名:"+username);
         Map<String,Object>map=new HashMap<>();
         User byPhoneAndUsername = userServices.findByPhoneAndUsername(phone, username);
+        System.out.println("根据手机号和用户名："+byPhoneAndUsername);
         if (byPhoneAndUsername==null){
-            map.put("status",1);
+            map.put("status","用户信息填写不正确");
             System.out.println("用户信息填写不正确");
         }else {
             if (password==password2){

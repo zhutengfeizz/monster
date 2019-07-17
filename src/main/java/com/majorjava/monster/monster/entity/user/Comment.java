@@ -1,5 +1,6 @@
 package com.majorjava.monster.monster.entity.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -32,6 +33,7 @@ public class Comment {
     private Integer state;
     @OneToMany(mappedBy = "comment",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<ResponsesInResponses> responsesInResponsesList;
+    @JsonIgnore
     @Column(name = "niceComment")
     private int niceComment;
     private String ip;

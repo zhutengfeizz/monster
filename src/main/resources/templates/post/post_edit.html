@@ -180,15 +180,18 @@
                                     </div>
 
                                     <div style="width: 60px;float: right">
-                                        <span class="headertital" style="font-size: 10px;float: right"  id="number"  th:text="'#'+${comm.id}"></span><br/>
+                                        <!--<div th:if="${session.loginUser.id!=null}">
+                                            <a th:if="${session.loginUser.id==comm.user.id}" th:href="@{/delete/delete(cid=${comm.id})}"></a>
+                                        </div>-->
+                                        <span class="headertital" style="font-size: 10px;float: right"  name="number" th:value="${comm.id}" th:text="'#'+${commStat.count}"></span><br/>
                                     </div>
                                 </div>
                                 <div style="margin-top: 10px;float: left">
                                     <div th:utext="${comm.cont}" id="contText" style="margin-left: 10px;width: 530px;">
                                     </div>
                                     <div style="width: 100%;margin-top: 15px;float: left;margin-left: 10px">
-                                        <i class="layui-icon" style="margin-left: 10px;">&#xe6c6; <a class="afont" href="#" th:text="'赞:'+${comm.niceComment}"></a></i>
-                                        <i class="layui-icon" style="margin-left: 10px;">&#xe611; <a class="afont" href="#">回复</a></i>
+                                        <a th:id="${comm.id}" class="layui-icon dz" style="margin-left: 10px;" name="good">&#xe6c6;&nbsp;<span class="afont" href="javascript:void(0)" th:text="${comm.niceComment}"></span></a>
+                                        <i class="layui-icon" style="margin-left: 10px;">&#xe611;&nbsp;<a class="afont" href="#">回复</a></i>
                                         <span class="headertital"style="font-size: 13px">来自：<span id="ci" th:text="${comm.ip}"></span></span>
                                     </div>
                                     <!--<div style="width: 740px;height: 500px;background-color: #adadad">
@@ -326,8 +329,8 @@
             var city=$("input:hidden[name='city']").val();
             var lock = false; //声明lock为false
             $('#sm').click(function(){
-                if(uid==''||uid==0){
-                    layer.alert('你还没有登录！', {icon: 5,offset:'50%'});
+                if(uid==null||uid==0){
+                    layer.msg('你还没有登录！', {icon: 5,offset:'50%'});
                     return false;
                 }else{
                     var  cont=layedit.getContent((index));
@@ -369,7 +372,7 @@
         //关注
         $(document).ready(function(){
             $('#gz').click(function(){
-                var uid=$("#uid").val();
+                var uid=$(".headertital").val();
                 if(uid==null){
                     layer.alert('你还没有登录！', {icon: 5,offset:'50%'});
                     return false;
@@ -394,6 +397,7 @@
                                     layer.msg('关注成功',{
                                         offset:'50%'
                                     });
+                                    $("#gz").css("color","red");
                                     setTimeout(function(){
                                         window.location.reload();//刷新当前页面.
                                     },1000)
@@ -414,11 +418,49 @@
                 }
             });
         });
+
+        //ajax点赞
+        $(document).ready(function(){
+            $(".dz").click(function(){
+                var $this=$(this);
+                var number=$(this).text();
+                var cid=$(this).attr("id");
+
+                alert("触发了点赞"+"cid:"+cid+","+number);
+                 $.get("/comment/good",{cid:cid},function (data) {
+                     if(data !=null){
+                         number++;
+                         layer.msg('点赞成功！',{
+                             offset:'50%'});
+                         console.log(date.comment);
+                         $this.text(number);
+                         $this.css("color","red");
+                     }else {
+                         layer.msg("失败")
+                     }
+
+                 });
+                        /*$.ajax({
+                            type:"get",
+                            dataType:"json",
+                            data:{"cid":cid},
+                            url:"/comment/good",
+                            success:function(date){
+                                /!* alert(date.code)*!/
+                                number++;
+                                    layer.msg('点赞成功！',{
+                                        offset:'50%'});
+                                    console.log(date.comment);
+                                $this.text(number);
+                                $this.css("color","red");
+
+                            },sendError:function () {
+
+                            }
+                        });*/
+            });
+        });
     }();
-
-
-
-
 </script>
 </body>
 </html>

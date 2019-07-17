@@ -55,6 +55,21 @@ public class CommentController {
     }
 
     @ResponseBody
+    @GetMapping("good")
+    public Map<String,Object> good(Integer cid){
+        System.out.println("点了ID为："+cid);
+        Map<String,Object> map=new HashMap<>();
+        Comment byIdAndState = commentService.findByIdAndState(cid, 1);
+         int cont= byIdAndState.getNiceComment();
+        byIdAndState.setNiceComment(cont+1);
+        System.out.println("点赞数"+cont);
+        Comment save = commentService.saveComment(byIdAndState);
+        map.put("comment",save);
+        map.put("god",save.getNiceComment());
+        return map;
+    }
+
+    @ResponseBody
     @GetMapping("delete")
     public Map<String,Object> deleteComm(Integer cid, HttpSession session){
         User user = (User)session.getAttribute("loginUser");

@@ -19,4 +19,5 @@ public interface CommentService {
     Comment save(Integer uid,Integer pid,String cont,String ip);
     int delete(Integer cid);
     Long countByPostId(Integer pid);
+    Comment saveComment(Comment comment);
 }

@@ -4,6 +4,7 @@ import com.majorjava.monster.monster.dao.*;
 import com.majorjava.monster.monster.entity.user.Idol;
 import com.majorjava.monster.monster.entity.user.Post;
 import com.majorjava.monster.monster.entity.user.PrivateChat;
+import com.majorjava.monster.monster.entity.user.User;
 import com.majorjava.monster.monster.service.Post.CommentService;
 import com.majorjava.monster.monster.service.Post.PostService;
 import com.majorjava.monster.monster.service.User.CollectionsServices;
@@ -91,5 +92,7 @@ public class MonsterApplicationTests {
         }*/
         Long aLong = idolServices.countByBeUserId(28);
         System.out.println(aLong);
+        User open = userServices.findByPhoneAndUsername("13978985055", "open");
+        System.out.println(open);
     }
 }

@@ -31,9 +31,9 @@
                     <span th:text="${session.loginUser.username}"></span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">基本资料</a></dd>
-                    <dd><a href="">修改密码</a></dd>
-                    <dd><a href="">找回密码</a></dd>
+                    <dd><a href="#" th:href="@{/user/edit(id=${session.loginUser.id})}">基本资料</a></dd>
+                    <dd><a href="#" th:href="@{/user/sendcodeUpdatePassWord(id=${session.loginUser.id})}">修改密码</a></dd>
+                    <dd><a href="/user/togetPassword">找回密码</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item"><a href="/logout">注销</a></li>

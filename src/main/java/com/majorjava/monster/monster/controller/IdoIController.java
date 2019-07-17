@@ -30,7 +30,7 @@ public class IdoIController {
     private IdolServices idolServices;
 
     @ResponseBody
-    @GetMapping("/addIdol")
+    @GetMapping("addIdol")
     public Map save(Integer uid , Integer beUid, Model model){
         Map<String,Object>map=new HashMap<>();
         Idol idol=null;
