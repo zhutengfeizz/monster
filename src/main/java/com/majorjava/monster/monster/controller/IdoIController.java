@@ -31,30 +31,30 @@ public class IdoIController {
 
     @ResponseBody
     @GetMapping("addIdol")
-    public Map save(Integer uid , Integer beUid, Model model){
+    public Map<String,Object> save(Integer uid , Integer beUid, Model model){
+        System.out.println("uid"+uid+",beUid"+uid);
         Map<String,Object>map=new HashMap<>();
-        Idol idol=null;
         Idol idol1 = idolServices.findByBeUserIdAndUserId(beUid, uid);
-        System.out.println("idol1:----------------------------------------------------"+idol1.getId());
+        System.out.println("检查是否关注过："+idol1);
         if (idol1==null){
+            System.out.println("没关注过！添加关注！");
                 User user = userServices.finByid(beUid);
+            System.out.println("判断被关注的用户是否为空："+user);
                 user.setFanSize(user.getFanSize()+1);
                 userServices.save(user);
                 User user1 = userServices.finByid(uid);
                 user1.setFollowSize(user1.getFollowSize()+1);
                 userServices.save(user1);
-                idol = idolServices.add(uid, beUid);
-                if (idol==null){
-                    System.out.println(idol.getUser().getUsername()+",这个逼刚才关注了"+idol.getBeUser().getUsername());
-                    model.addAttribute("error",0);
+            Idol add = idolServices.add(uid, beUid);
+            System.out.println("添加的对象为："+add+",添加了点击关注的人是："+add.getUser().getUsername()+",添加了被关注的人是："+add.getBeUser().getUsername());
+            if (add==null){
+                    map.put("error","关注失败！");
                 }else {
-                    System.out.println(idol.getUser().getUsername()+",这个逼刚才关注了"+idol.getBeUser().getUsername());
-                    model.addAttribute("error",1);
+                    System.out.println(add.getUser().getUsername()+",这个逼刚才关注了"+add.getBeUser().getUsername());
+                     map.put("error","1");
                 }
-            return map;
         }else {
             idolServices.delete(idol1);
-            model.addAttribute("error",2);
             System.out.println("取消关注成功！");
             User user = userServices.finByid(beUid);
              user.setFanSize(user.getFanSize()-1);
@@ -62,8 +62,23 @@ public class IdoIController {
             User user1 = userServices.finByid(uid);
             user1.setFollowSize(user1.getFollowSize()-1);
             userServices.save(user1);
+            map.put("error","取消关注成功！");
         }
+        System.out.println("这是MAP里面的值"+map.get("error"));
        return map;
+    }
+    @ResponseBody
+    @GetMapping("getGz")
+    public Map<String,Object>getGz(Integer uid,Integer beUid){
+        System.out.println("是否关注过："+uid+","+beUid);
+        Map<String,Object> map=new HashMap<>();
+        Idol byBeUserIdAndUserId = idolServices.findByBeUserIdAndUserId(beUid, uid);
+        if (byBeUserIdAndUserId==null){
+            map.put("code",'0');
+        }else {
+            map.put("code",'1');
+        }
+        return map;
     }
 
     @GetMapping("delete")

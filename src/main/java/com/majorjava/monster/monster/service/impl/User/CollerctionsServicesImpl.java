@@ -70,4 +70,9 @@ public class CollerctionsServicesImpl implements CollectionsServices {
     public void delete(Integer id) {
         collectionsDao.deleteById(id);
     }
+
+    @Override
+    public Integer countByPostId(Integer pid) {
+        return collectionsDao.countByPostId(pid);
+    }
 }

@@ -42,8 +42,6 @@ public class IdolServicesImpl implements IdolServices {
         User saveBeUser = userServices.save(beUser);
         user.setFollowSize(user.getFollowSize()+1);
        User saveUser= userServices.save(user);
-
-
         idol.setUser(saveUser);
         idol.setBeUser(saveBeUser);
         idol.setCreateTime(new Date());
@@ -88,4 +86,10 @@ public class IdolServicesImpl implements IdolServices {
     public Long countByBeUserId(Integer beUserId) {
         return idolDao.countByBeUserId(beUserId);
     }
+
+    @Override
+    public Idol save(Idol idol) {
+        return idolDao.save(idol);
+    }
+
 }

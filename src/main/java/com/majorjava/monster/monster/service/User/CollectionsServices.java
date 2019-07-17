@@ -18,4 +18,6 @@ public interface CollectionsServices {
     Collections findByUserIdAndPostId(Integer uid,Integer pid);
     Collections addCollections(Integer uid, Integer pid);
      void delete(Integer id);
+    Integer countByPostId(Integer pid);
+
 }

@@ -14,7 +14,6 @@ import java.util.Date;
  **/
 @Entity
 @Table(name = "t_reply")
-@Data
 public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,5 +29,63 @@ public class Reply {
     private String content;//内容
     @Column(insertable = false,columnDefinition = "int default 1")
     private int state;
+    private int awesome;//赞
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Comment getComment() {
+        return comment;
+    }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Date getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(Date creationTime) {
+        this.creationTime = creationTime;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
+    public int getAwesome() {
+        return awesome;
+    }
+
+    public void setAwesome(int awesome) {
+        this.awesome = awesome;
+    }
+
 
 }

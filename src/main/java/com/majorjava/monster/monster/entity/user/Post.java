@@ -37,13 +37,13 @@ public class Post {
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
     private List<Comment> commentList; //评论的集合（一个帖子有多个评论）
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL,fetch=FetchType.LAZY)
-    private List<Collections> collectionsList;//收藏
+    private List<Collections> collectionsList;//
     @OneToOne
     @JsonIgnore
     @JoinColumn(name="field_id")
     private PartitionField field;//分区
     private Integer views;//访问量
-    private Integer awesome;//点赞
+    private Integer awesome;//收藏
     @Column(name = "cunt", nullable = false)
     private Long cunt=0L;//评论的数量
 

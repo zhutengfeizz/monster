@@ -18,6 +18,7 @@ import java.util.List;
 public interface CollectionsDao extends CrudRepository<Collections, Integer> {
     List<Collections> findByUserIdOrderByCreateTimeDesc(Integer id);
     Collections findByUserIdAndPostId(Integer uid,Integer pid);
+    Integer countByPostId(Integer pid);
 
 
 

@@ -46,6 +46,7 @@ public class CommentController {
                 if (save!=null){
                     map.put("state","评论成功");
                     map.put("code",1);
+                    map.put("comment",save);
                 }else {
                     map.put("state","评论失败");
                     map.put("code",0);

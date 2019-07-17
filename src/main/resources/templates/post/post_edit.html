@@ -6,6 +6,7 @@
         max-width: 400px;
         max-height: 400px;
     }
+    a {text-decoration: none}
   </style>
 </head>
 
@@ -41,19 +42,19 @@
                                 <div class="type">投稿</div>
                             </li>
                             <li style="float: left;padding-left: 30px;padding-right: 20px">
-                                <div class="cunt" th:text="${post.user.followSize}"></div>
+                                <div class="cunt"  th:text="${post.user.followSize}"></div>
                                 <div class="type" >关注</div>
                             </li>
                             <li style="float: left;padding-left: 30px;padding-right: 20px">
-                                <div class="cunt" th:text="${post.user.fanSize}"></div>
-                                <div class="type" >粉丝</div>
+                                <div class="cunt" id="fs" th:text="${post.user.fanSize}"></div>
+                                <div class="type"  >粉丝</div>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <!--关注、私信-->
                 <div style="margin-top: 5px;margin-bottom: 10px;width: 100%;text-align: center">
-                    <button type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
+                    <button  type="button" id="gz" class="layui-btn layui-btn-radius bt" style="width: 110px;margin-top: 5px">关注</button>
                    <!-- <button   type="button" name="gz"  class="layui-btn layui-btn-radius layui-btn-normal" style="width: 110px;margin-top: 5px">已关注</button>-->
                     <button type="button" class="layui-btn layui-btn-radius layui-btn-warm bt" id="sx" style="width: 110px;margin-top: 5px">私信</button>
                 </div>
@@ -96,11 +97,13 @@
                         <a href="#" th:text="${post.partition.tname}" style="margin-left: 0px" class="headertital"></a>
                         <span class="headertital">-</span>
                         <a href="#" th:text="${post.field.fname}" class="headertital">&nbsp;</a>&nbsp;&nbsp;&nbsp;
-                        <span class="headertital" th:text="阅读量+${post.views}" ></span>&nbsp;&nbsp;&nbsp;
-                        <span class="headertital"th:text="评论：+${count}"></span>&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                        <span class="headertital" th:text="${post.views}" ></span>&nbsp;&nbsp;&nbsp;
+                        <i class="fa fa-commenting-o" style="margin-left: 10px" aria-hidden="true"></i>
+                        <span class="headertital"th:text="${count}"></span>&nbsp;&nbsp;&nbsp;
                         <span class="headertital">&nbsp;&nbsp;|&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <img class="headertital" src="../../static/images/土豆.png" style="width: 20px;height: 20px;">&nbsp;
-                        <span class="headertital">360</span>&nbsp;
+                        <i class="layui-icon layui-icon-rate-solid" style="font-size:18px; color: #FFB91B;"></i>
+                        <span id="scn" class="headertital" th:text="${post.awesome}"></span>&nbsp;
                     </div>
                 </div>
                 <hr style="color: silver; font-size: 3px;margin-top: 10px;margin-bottom: 10px" >
@@ -131,9 +134,9 @@
             <!--评论区-->
             <div style="margin-top: 20px;float: left;padding: 0px;width: 100%">
                 <div style="padding: 10px" id="comment">
-                    <button type="button"  style="background-color:#FF7600;border-radius:50%;width: 30px;height: 30px;border: none;"><i class="layui-icon" style="color: white">&#xe658;</i>
+                    <button id="sc" type="button"  style="background-color:#FF7600;border-radius:50%;width: 30px;height: 30px;border: none;"><i id="sci" class="layui-icon" style="color: white">&#xe658;</i>
                     </button>
-                    <span style="margin-left: 5px">收藏</span>
+                    <span id="scy">收藏</span>
                 </div>
                 <!--内容-->
                 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 50px;width: 730px">
@@ -155,7 +158,7 @@
                 </div>
             </div>
             <!--用户评论集合遍历-->
-            <div style="width: 740px;float: left;padding: 10px">
+            <div style="width: 740px;float: left;padding: 10px" id="abc">
                 <div style="height: 97px;width: 740px;" th:if="${commentList!=null}" th:each="comm  : ${commentList}">
                     <div style="float: left;width: 100%;margin-top: 50px;border-bottom: 1px #F6F6F6 solid">
                         <!--<div style="float: left;height: 70px">
@@ -166,7 +169,7 @@
                         </div>
                         <div>
                             <div style="width: 100%;">
-                                <div style="">
+                                <div style="height: 30px">
                                     <div style="float: left">
                                         <span style="margin-left: 10px" th:text="${comm.user.username}"></span>
                                     </div>
@@ -189,14 +192,18 @@
                                 <div style="margin-top: 10px;float: left">
                                     <div th:utext="${comm.cont}" id="contText" style="margin-left: 10px;width: 530px;">
                                     </div>
-                                    <div style="width: 100%;margin-top: 15px;float: left;margin-left: 10px">
-                                        <a th:id="${comm.id}" class="layui-icon dz" style="margin-left: 10px;" name="good">&#xe6c6;&nbsp;<span class="afont" href="javascript:void(0)" th:text="${comm.niceComment}"></span></a>
-                                        <i class="layui-icon" style="margin-left: 10px;">&#xe611;&nbsp;<a class="afont" href="#">回复</a></i>
-                                        <span class="headertital"style="font-size: 13px">来自：<span id="ci" th:text="${comm.ip}"></span></span>
-                                    </div>
                                     <!--<div style="width: 740px;height: 500px;background-color: #adadad">
-
                                     </div>-->
+                                </div>
+
+                                <div style="width: 680px;margin-top: 15px;float: left;margin-left: 50px">
+                                    <a href="javascript:;"  th:id="${comm.id}" class="layui-icon dz" style="margin-left: 10px;">&#xe6c6;&nbsp;<span class="afont" name="good"  th:text="${comm.niceComment}"></span></a>
+                                    <i class="layui-icon hfd" style="margin-left: 10px;" >&#xe611;&nbsp;<a class="afont hfd"  href="javascript:void (0)">回复</a></i>
+                                    <span class="headertital"style="font-size: 13px" th:text="'来自:'+${comm.ip}"></span></span>
+
+                                    <div class="fwb"  style=" height: 400px;width: 680px;background-color: #F7F7F7;margin-top: 10px">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -204,9 +211,6 @@
                 </div>
                 <div th:if="${commentList.size()==0}" style="background-color: #FAFAFA;align-content: center;height: 70px;width: 700px;margin: 0px auto">
                        <div style="width: 290px;margin: 0 auto;height: 70px;">
-                           <div th:if="${session.loginUser==null}">
-                               <button>点我登陆！</button>
-                           </div>
                            <h4 style="line-height: 70px">快！暂时还没有人评论赶紧抢沙发！</h4>
                        </div>
                 </div>
@@ -215,22 +219,62 @@
         </div>
     </div>
 </div>
+    <input type="hidden" id="city" name="city" value="">
 </div>
+<ul class="layui-fixbar"><a href="#abc"><li class="layui-icon" lay-type="bar1" style="">评</li></a><li class="layui-icon layui-fixbar-top" id="top" lay-type="top" style="display: list-item;"></li></ul>
 <div style="text-align: center;background-color: #FFFFFF;margin-top: 30px" th:include="comm/index_head :: foot"></div>
 <div th:include="comm/index_head :: commonFooter"></div>
-<script th></script>
 <script>
+    $(document).ready(function() {
+        //首先将#back-to-top隐藏
+        $("#top").hide();
+
+        //当滚动条的位置处于距顶部100像素以下时，跳转链接出现，否则消失
+        $(function() {
+            $(window).scroll(function() {
+                if ($(window).scrollTop() > 100) {
+                    $("#top").fadeIn(1500);
+                }
+                else {
+                    $("#top").fadeOut(1500);
+                }
+            });
+            //当点击跳转链接后，回到页面顶部位置
+            $("#top").click(function() {
+                $('body,html').animate({
+                        scrollTop: 0
+                    },
+                    500);
+                return false;
+            });
+        });
+    });
+
     //由于模块都一次性加载，因此不用执行 layui.use() 来加载对应模块，直接使用即可：
     ;!function(){
         var layer = layui.layer
-            ,form = layui.form
             ,carousel = layui.carousel
+            ,$ = layui.jquery
+            ,element=layui.element
+            ,form = layui.form
             ,layedit = layui.layedit
             ,laydate = layui.laydate
             ,laypage = layui.laypage
+            , util = layui.util
             ,upload = layui.upload;
 
 
+
+        //执行
+        util.fixbar({
+            bar1: true
+            ,click: function(type){
+                console.log(type);
+                if(type === 'bar1'){
+                    alert('点击了bar1')
+                }
+            }
+        });
 
         //只显示上一页、下一页
         laypage.render({
@@ -260,6 +304,16 @@
         laydate.render({
             elem: '#date1'
         });
+        //执行
+        util.fixbar({
+            bar1: true
+            ,click: function(type){
+                console.log(type);
+                if(type === 'bar1'){
+                    alert('点击了bar1')
+                }
+            }
+        });
 
         layedit.set({
             uploadImage: {
@@ -268,10 +322,20 @@
                 ,method: 'post'
             }
         });
+       var  index2=layedit.build('demo2',{
+            tool:['face', 'link', 'unlink', '|', 'left', 'center', 'right','image']
+            ,height: 150,
+        });
+
         //自定义工具栏
         var index=  layedit.build('LAY_demo2', {
             tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right','image']
             ,height: 150,
+        });
+
+        $('#layerDemo .layui-btn').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
         });
 
         /*     //获取富文本框的值
@@ -319,15 +383,40 @@
 
         });
 
+        //页面加载完执行当前用户是否关注
+        $(document).ready(function(){
+            var  uid=$("#uid").val();
+            if (uid==null){
+                return false;
+            } else {
+                //获取当前用户
+                var beUid=$("#byUid").val()
+                $.ajax({
+                    url: '/idol/getGz',
+                    type: 'get',
+                    dataType: 'json',
+                    data:{"beUid":beUid,"uid":uid},
+                    success:function(date){
+                        console.log(date)
+                        /* alert(date.code)*/
+                        if(date.code==='1'){
+                            $("#gz").css("background-color","#c2c2c2")
+                            $("#gz").text("已关注")
+                        }else {
+                            $("#gz").css("background-color","#009688")
+                            $("#gz").text("关注")
+                        }
+                    }
+                });
+            }
+
+            });
         /*layui.*/
         //ajax回复帖子功能
         //ajax评论
         $(document).ready(function(){
-            var str = window.location.href;
             var uid=$("#uid").val();
             var pid=$("#pid").val();
-            var city=$("input:hidden[name='city']").val();
-            var lock = false; //声明lock为false
             $('#sm').click(function(){
                 if(uid==null||uid==0){
                     layer.msg('你还没有登录！', {icon: 5,offset:'50%'});
@@ -338,7 +427,7 @@
                         layer.msg('评论内容不能为空！', {icon: 2 , offset:'50%'});
                         return false;
                     }else{
-                       /* var city=$("#city").val();*/
+                        var city = $("input:hidden[id='city']").val();
                         $.ajax({
                             type:"get",
                             dataType:"json",
@@ -372,44 +461,45 @@
         //关注
         $(document).ready(function(){
             $('#gz').click(function(){
-                var uid=$(".headertital").val();
+                var uid=$("#uid").val();
                 if(uid==null){
                     layer.alert('你还没有登录！', {icon: 5,offset:'50%'});
                     return false;
                 }else{
+                    var $this=$(this);
                     var byUid=$("#byUid").val();
                     var uid=$("#uid").val();
                     if (byUid==uid){
                         layer.alert("自己无法关注自己！",{icon: 5,offset:'50%'});
                         return false;
                     } else {
-                        alert("触发了点击关注"+"byUid:"+byUid+",uid"+uid);
                         $.ajax({
                             type:"get",
                             dataType:"json",
                             data:{"beUid":byUid,"uid":uid},
                             url:"/idol/addIdol",
                             success:function(date){
-                                console.log(date)
                                 /* alert(date.code)*/
-                                if(date.status==1){
+                                if(date.error==='1'){
                                     /*$('#context').text('');*/
                                     layer.msg('关注成功',{
                                         offset:'50%'
                                     });
-                                    $("#gz").css("color","red");
-                                    setTimeout(function(){
-                                        window.location.reload();//刷新当前页面.
-                                    },1000)
-                                }
-                                if (date.status==0){
-                                    layer.msg('关注失败！',{
+                                    var fs=$("#fs").text();
+                                        fs++;
+                                    $("#fs").text(fs);
+                                    $("#gz").css("background-color","#c2c2c2")
+                                    $("#gz").text("已关注")
+                                }else {
+                                    layer.msg(date.error,{
                                         offset:'50%'
                                     });
-                                    return false;
-                                };
-                                if (date.status==2){
-                                    layer.msg("取消关注成功!")
+                                    var fs=$("#fs").text();
+                                    fs--;
+                                    $("#fs").text(fs);
+                                    $("#gz").css("background-color","#009688")
+                                    $("#gz").text("关注")
+
                                 }
                             }
                         });
@@ -425,7 +515,6 @@
                 var $this=$(this);
                 var number=$(this).text();
                 var cid=$(this).attr("id");
-
                 alert("触发了点赞"+"cid:"+cid+","+number);
                  $.get("/comment/good",{cid:cid},function (data) {
                      if(data !=null){
@@ -458,6 +547,140 @@
 
                             }
                         });*/
+            });
+        });
+
+
+        //页面加载完执行当前用户是否已收藏
+        $(document).ready(function(){
+            var  uid=$("#uid").val();
+            if (uid==null){
+                return false;
+            } else {
+                //获取当前用户
+                var pid=$("#pid").val()
+                $.ajax({
+                    url: '/collections/getSc',
+                    type: 'get',
+                    dataType: 'json',
+                    data:{"pid":pid,"uid":uid},
+                    success:function(date){
+                        console.log(date)
+                        /* alert(date.code)*/
+                        if(date.code==='1'){
+                            $("#sci").css("color","#FFB800");
+                            $("#scy").text("已收藏")
+                        }else {
+                            $("#scy").text("收藏")
+                        }
+                    }
+                });
+            }
+
+        });
+
+        //ajax收藏帖子
+        $(document).ready(function(){
+            var uid=$("#uid").val();
+            var pid=$("#pid").val();
+            $('#sc').click(function(){
+                if(uid==null||uid==0){
+                    layer.msg('你还没有登录！', {icon: 5,offset:'50%'});
+                    return false;
+                }else{
+                        $.ajax({
+                            type:"get",
+                            dataType:"json",
+                            data:{"pid":pid,"uid":uid},
+                            url:"/collections/add",
+                            success:function(date){
+                                console.log(date);
+                                /* alert(date.code)*/
+                                if(date.code==='1'){
+                                    /*$('#context').text('');*/
+                                    layer.msg('收藏成功',{
+                                        offset:'50%'
+                                    });
+                                    var scn=$("#scn").text();
+                                   $("#sci").css("color","#FFB800");
+                                    $("#scy").text("已收藏")
+                                    $("#scn").text(scn++);
+                                }else {
+                                    layer.msg(date.error,{
+                                        offset:'50%'
+                                    });
+                                    $("#sci").css("color","#FFFFFF");
+                                    $("#scy").text("收藏")
+                                    var scn=$("#scn").text();
+                                    $("#scn").text(scn++);
+                                }
+                            }
+                        });
+                }
+            });
+        });
+
+        $(document).ready(function(){
+            $(".hfd").click(function(){
+                    //fwb元素后面增加一个div元素
+                $(this).next().next().after($("i").find("div")).after("<div style=\"margin-bottom: 20px;margin-top: 20px; width: 100%;\"><textarea class=\"layui-textarea\" id=\"LAY_demo1\" style=\"display: none\"></textarea></div><div><button style='float: right' type='button' class=\"hr  layui-btn layui-btn-sm\">提交</button></div>");
+                layedit.set({
+                    uploadImage: {
+                        url: '/upload/add'
+                        ,type: 'file'
+                        ,method: 'post'
+                    }
+                });
+                //自定义工具栏
+                var index1=  layedit.build('LAY_demo1', {
+                    tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right','image']
+                    ,height: 150,
+                });
+            });
+        })
+
+        //ajax评论的回复
+        $(document).ready(function(){
+            $('.hr').click(function(){
+                alert("触发了点击回复评论");
+                var uid=$("#uid").val();
+                var cid=$(this).parent().prev().prev().prev().prev().prev().attr('id');
+                if(uid==null||uid==0){
+                    alert("评论的"+cid);
+                    layer.msg('你还没有登录！', {icon: 5,offset:'50%'});
+                    return false;
+                }else{
+                    var  cont=layedit.getContent((index1));
+                    if(cont==null||cont==""){
+                        layer.msg('评论内容不能为空！', {icon: 2 , offset:'50%'});
+                        return false;
+                    }else{
+                        var city = $("input:hidden[id='city']").val();
+                        $.ajax({
+                            type:"get",
+                            dataType:"json",
+                            data:{"content":cont,"cid":cid,"uid":uid,"ip":city},
+                            url:"/reply/add",
+                            success:function(date){
+                                /* alert(date.code)*/
+                                if(date.code==1){
+                                    /*$('#context').text('');*/
+                                    layer.msg('评论成功',{
+                                        offset:'50%'
+
+                                    });
+                                }else{
+
+                                    layer.msg('评论失败！',{
+                                        offset:'50%'
+                                    });
+                                    return false;
+                                }
+                            }
+                        });
+                    }
+                }
+
             });
         });
     }();

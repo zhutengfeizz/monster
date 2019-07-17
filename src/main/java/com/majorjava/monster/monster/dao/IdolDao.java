@@ -23,4 +23,5 @@ public interface IdolDao extends CrudRepository<Idol, Integer>, JpaRepository<Id
     //根据被关注的用户和当前用户查找关注对象
     Idol findByBeUserIdAndUserId(Integer beUserId,Integer userId);
     Long countByBeUserId(Integer beUserId);
+
 }

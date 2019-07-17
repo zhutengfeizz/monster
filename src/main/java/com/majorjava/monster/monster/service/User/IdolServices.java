@@ -1,6 +1,7 @@
 package com.majorjava.monster.monster.service.User;
 
 import com.majorjava.monster.monster.entity.user.Idol;
+import com.majorjava.monster.monster.entity.user.User;
 
 import java.util.List;
 
@@ -22,4 +23,5 @@ public interface IdolServices {
     Idol findByBeUserIdAndUserId(Integer beUserId,Integer userId);
     Idol findById(Integer id);
     Long countByBeUserId(Integer beUserId);
+    Idol save(Idol idol);
 }

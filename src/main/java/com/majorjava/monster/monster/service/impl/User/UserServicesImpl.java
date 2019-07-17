@@ -115,7 +115,7 @@ public class UserServicesImpl implements UserServices {
 
     @Override
     public User finByid(Integer id) {
-        User user = userDao.findById(id).get();
+       User user = userDao.findById(id).get();
         return user;
     }
 

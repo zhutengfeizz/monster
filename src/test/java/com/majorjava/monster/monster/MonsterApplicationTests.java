@@ -90,9 +90,15 @@ public class MonsterApplicationTests {
         for (Idol o:order1){
             System.out.println(o.getUser().getUsername()+"关注了"+o.getBeUser().getUsername());
         }*/
-        Long aLong = idolServices.countByBeUserId(28);
-        System.out.println(aLong);
-        User open = userServices.findByPhoneAndUsername("13978985055", "open");
-        System.out.println(open);
+        Idol add = new Idol();
+        User user = userServices.finByid(28);
+        User user1 = userServices.finByid(49);
+        add.setBeUser(user1);
+        add.setUser(user);
+        Idol save = idolServices.save(add);
+        System.out.println(save.getUser().getUsername()+","+save.getBeUser());
+/*
+        Post post = postService.finByid(15);
+        System.out.println(post);*/
     }
 }

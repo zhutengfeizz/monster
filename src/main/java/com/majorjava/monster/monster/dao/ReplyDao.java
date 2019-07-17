@@ -16,4 +16,6 @@ import java.util.List;
 public interface ReplyDao extends CrudRepository<Reply, Integer> {
       List<Reply>findByUserIdAndCommentId(Integer uid,Integer cid);
       List<Reply>findByCommentIdOrderByCreationTimeDesc(Integer cid);
+      List<Reply> findByCommentId(Integer rid);
+
 }

@@ -5,6 +5,7 @@ import com.majorjava.monster.monster.service.Post.CommentService;
 import com.majorjava.monster.monster.service.Post.FieldService;
 import com.majorjava.monster.monster.service.Post.PartitionService;
 import com.majorjava.monster.monster.service.Post.PostService;
+import com.majorjava.monster.monster.service.User.CollectionsServices;
 import com.majorjava.monster.monster.service.User.IdolServices;
 import com.majorjava.monster.monster.service.User.UserServices;
 import com.majorjava.monster.monster.upload.UploadProperties;
@@ -46,6 +47,8 @@ public class PostController {
     private UserServices userServices;
     @Autowired
     private IdolServices idolServices;
+    @Autowired
+    private CollectionsServices collectionsServices;
     /*没有条件的分页查询*/
     @GetMapping("/findPostNoQuery")
     public String findPostNoQuery(ModelMap modelMap, Integer page,Integer size){
@@ -158,6 +161,7 @@ public class PostController {
             PostPartition postPartition = partitionService.finByid(partition);
             p.setPartition(postPartition);
             p.setViews(0);
+            p.setAwesome(0);
             p.setCunt(0L);
         }
         System.out.println(p);
@@ -201,11 +205,17 @@ public class PostController {
         List<Post> posts = postService.postAll();
         model.addAttribute("postList",posts);
 
+
+
+
+
         Post post = postService.finByid(id);
         System.out.println("post:"+post);
        int sun= post.getViews();
         sun++;
         post.setViews(sun);
+        Integer integer = collectionsServices.countByPostId(id);
+        post.setAwesome(integer);
         Post save = postService.save(post);
         System.out.println("访问量"+save.getViews());
         model.addAttribute("post",save);
